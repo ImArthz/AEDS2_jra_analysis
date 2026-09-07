@@ -1,0 +1,161 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{utf8}
+\usepackage[portuguese]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    citecolor=blue!80!black,
+    urlcolor=blue!80!black
+}
+
+\title{
+    \textbf{Relatório Parcial: Coleta, Tratamento e Modelagem de Dados} \\
+    \large Análise de Corridas G1 Japonesas (JRA) e Genealogia (JBIS) em Grafos \\
+    \small Disciplina de Algoritmos e Estruturas de Dados 2 (AEDS 2)
+}
+\author{\textbf{Desenvolvimento do Projeto}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Este relatório documenta a primeira fase do projeto da disciplina de Algoritmos e Estruturas de Dados 2 (AEDS 2), focada na extração automatizada, estruturação e modelagem dos dados de corridas oficiais de Grupo 1 (G1) do turfe japonês (\emph{Japan Racing Association -- JRA}) e das linhagens de pedigree no \emph{Japan Bloodhorse Information System (JBIS)}, cobrindo o período de 2002 a 2020. Detalham-se as decisões de engenharia de software para garantir a resiliência do \emph{web scraper}, o esquema relacional em SQLite/CSV, o tratamento de particularidades técnicas (como a codificação de caracteres \texttt{cp932}/Shift-JIS) e o mapeamento dos dados para estruturas de grafos (DAG genealógico e Grafo de Competição). A etapa de extração foi concluída com 100\% de êxito, resultando em 464 corridas G1, 1.348 entradas de pódio (Top 3), 696 cavalos únicos e 696 pedigrees mapeados (1.522 nós no DAG).
+\end{abstract}
+
+\hrule
+\vspace{0.5cm}
+
+\section{Introdução e Escopo Temporal}
+
+O objetivo principal deste trabalho é aplicar conceitos avançados de **Estruturas de Dados e Teoria dos Grafos** em um conjunto de dados do mundo real. O turfe japonês moderno oferece um domínio rico para estudo devido à forte especialização de atletas e à transmissão genética de características físicas e esportivas através das gerações.
+
+\subsection{Definição do Intervalo Temporal (2002 a 2020)}
+A escolha do período de **2002 a 2020** foi fundamentada em dois fatores determinantes:
+\begin{enumerate}
+    \item \textbf{Disponibilidade Técnica dos Dados:} As páginas oficiais detalhadas de resultados no arquivo moderno da JRA (\texttt{datafile/seiseki/replay/}) foram padronizadas a partir do ano de 2002. Anos anteriores apresentam estruturas não padronizadas ou restrições de acesso.
+    \item \textbf{Relevância Histórica e Escala Ideal:} Esse intervalo de 19 anos compreende a era de ouro do turfe japonês moderno, dominada pela linhagem lendária de \emph{Sunday Silence} e de seus descendentes (como \emph{Deep Impact}, \emph{Heart's Cry}, \emph{King Kamehameha}, \emph{Orfevre} e \emph{Almond Eye}).
+    \item \textbf{Adequação para Algoritmos de AEDS 2:} O volume resultante de aproximadamente 464 corridas e 696 cavalos únicos gera um grafo de dimensão ideal (com aproximadamente 1.500 nós na árvore genealógica expandida). Essa escala permite a execução eficiente de algoritmos de alta complexidade (LCA, Dijkstra, componentes conexos e centralidade) sem saturação de memória ou necessidade de infraestruturas distribuídas.
+\end{enumerate}
+
+---
+
+\section{Arquitetura e Modelagem do Banco de Dados}
+
+Para garantir a persistência dos dados e a integridade referencial, implementou-se um banco de dados relacional em **SQLite** (\texttt{jra\_g1.db}), integrado a um módulo de sincronização automática com arquivos **CSV** (\texttt{database.py}).
+
+\subsection{Esquema Relacional}
+O banco de dados é composto por quatro tabelas fundamentais:
+\begin{itemize}
+    \item \texttt{races}: Armazena informações da corrida (\texttt{race\_id}, \texttt{year}, \texttt{date}, \texttt{race\_name}, \texttt{track}, \texttt{surface}, \texttt{distance}, \texttt{url}).
+    \item \texttt{race\_entries}: Registra os pódios (\texttt{race\_id}, \texttt{horse\_name}, \texttt{position}, \texttt{finish\_time}, \texttt{jockey}, \texttt{weight}).
+    \item \texttt{horses}: Tabela de cardinalidade única de competidores (\texttt{horse\_id}, \texttt{name}, \texttt{sex}).
+    \item \texttt{pedigree}: Estrutura deparentesco (\texttt{horse\_id}, \texttt{sire\_name}, \texttt{dam\_name}, \texttt{grandsire\_name}, \texttt{dam\_sire\_name}).
+\end{itemize}
+
+Índices remissivos (\texttt{CREATE INDEX}) foram aplicados nos campos de busca mais frequentes (\texttt{name}, \texttt{sire\_name}, \texttt{position}, \texttt{year}) para otimizar os tempos de junção nas consultas algorítmicas.
+
+---
+
+\section{Desenvolvimento dos Web Scrapers e Resiliência}
+
+A coleta de dados foi dividida em dois módulos distintos em Python:
+
+\subsection{Etapa 1: Raspagem de Corridas G1 (JRA)}
+O módulo \texttt{scraper\_jra.py} acessa os calendários anuais da JRA e extrai o Top 3 (1º, 2º e 3º colocados) de cada grande prêmio.
+
+\textbf{Desafios Técnicos Resolvidos:}
+\begin{itemize}
+    \item \textbf{Tratamento de Encoding (\texttt{cp932}/Shift-JIS):} Identificou-se que páginas da JRA (em especial do ano de 2016) utilizavam codificação japonesa de caracteres onde bibliotecas padrão como o \texttt{apparent\_encoding} falhavam. Forçou-se o uso do \texttt{cp932} (superset de Shift-JIS no Windows), garantindo a parsing perfeita dos nomes dos cavalos e datas em kanji (\texttt{月/日}).
+    \item \textbf{Politeness Delay e Checkpointing:} Cada requisição HTTP foi configurada com um atraso de $2{,}0$ segundos (\texttt{time.sleep(2.0)}). Antes de realizar qualquer requisição, o sistema verifica a presença da URL no banco de dados, permitindo retoma automática em caso de interrupção.
+\end{itemize}
+
+\subsection{Etapa 2: Raspagem de Genealogia e Pedigree (JBIS)}
+O módulo \texttt{scraper\_pedigree.py} realiza consultas no \emph{JBIS Search} para cada cavalo único identificado na Etapa 1, buscando a linhagem de 5 gerações.
+
+\textbf{Mecanismos de Segurança Implementados:}
+\begin{itemize}
+    \item \textbf{Retry com Backoff Exponencial:} Em caso de oscilações de rede, o scraper realiza até 3 tentativas com intervalos crescentes.
+    \item \textbf{Tratamento de IDs Não Localizados:} Para evitar loops de tentativas em registros ausentes, salva-se um indicador neutro na tabela.
+    \item \textbf{Persistência Incremental:} A sincronização com os arquivos CSV e a confirmação (\texttt{commit}) no banco SQLite ocorrem a cada 5 cavalos processados.
+\end{itemize}
+
+---
+
+\section{Conexão com Algoritmos e Estruturas de Dados 2}
+
+Os dados extraídos alimentam dois grafos principais no módulo \texttt{graph\_analysis.py}:
+
+\subsection{1. Grafo de Pedigree (DAG -- Directed Acyclic Graph)}
+\begin{itemize}
+    \item \textbf{Definição:} Grafo direcionado acíclico onde os nós são os cavalos e ancestrais, e as arestas direcionadas representam a relação de parentesco ($Pai \to Filho$, $M\tilde{a}e \to Filho$).
+    \item \textbf{Algoritmos Aplicados:}
+    \begin{itemize}
+        \item \textbf{Busca em Largura (BFS):} Cálculo de distâncias geracionais.
+        \item \textbf{Menor Ancestral Comum (LCA -- Lowest Common Ancestor):} Identificação do ancestral comum mais próximo entre campeões.
+    \end{itemize}
+\end{itemize}
+
+\subsection{2. Grafo de Competição (Rede de Rivalidades)}
+\begin{itemize}
+    \item \textbf{Definição:} Grafo de confrontos diretos entre cavalos que disputaram pódios G1 juntos.
+    \item \textbf{Algoritmos Aplicados:}
+    \begin{itemize}
+        \item \textbf{Componentes Conexos:} Identificação de subgrupos de competidores.
+        \item \textbf{Algoritmo de Dijkstra:} Menor caminho na rede de rivalidades esportivas.
+    \end{itemize}
+\end{itemize}
+
+---
+
+\section{Resultados da Coleta}
+
+A execução completa dos scrapers produziu os seguintes resultados consolidados:
+
+\begin{table}[h!]
+\centering
+\caption{Resumo Estatístico do Conjunto de Dados Extraído (2002--2020)}
+\vspace{0.2cm}
+\begin{tabular}{llr}
+\toprule
+\textbf{Métrica} & \textbf{Descrição} & \textbf{Valor Final} \\
+\midrule
+Corridas G1 & Total de provas de Grupo 1 catalogadas & \textbf{464} \\
+Entradas no Pódio & Posições de 1º, 2º e 3º lugares salvas & \textbf{1.348} \\
+Cavalos Únicos & Competidores distintos registrados & \textbf{696} \\
+Pedigrees Coletados & Genealogias completas extraídas no JBIS & \textbf{696 (100\%)} \\
+Nós no Grafo DAG & Tamanho total do grafo de linhagens & \textbf{1.522} \\
+Maior Componente Conexo & Cavalos conectados no grafo de competição & \textbf{555} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Distribuição Preliminar de Linhagens Dominantes (Top Sires)}
+Dentre os 696 cavalos mapeados, destaca-se a acentuada hegemonia dos garanhões:
+\begin{enumerate}
+    \item \textbf{Deep Impact (\emph{ディープインパクト}):} 144 colocações no Top 3 (143 na grama).
+    \item \textbf{Sunday Silence (\emph{サンデーサイレンス}):} 114 colocações no Top 3 (111 na grama).
+    \item \textbf{King Kamehameha (\emph{キングカメハメハ}):} 69 colocações no Top 3 (60 grama / 9 areia).
+    \item \textbf{Stay Gold (\emph{ステイゴールド}):} 49 colocações no Top 3 (41 grama / 7 obstáculos).
+    \item \textbf{Fuji Kiseki (\emph{フジキセキ}):} 49 colocações no Top 3.
+\end{enumerate}
+
+---
+
+\section{Conclusão e Próximos Passos}
+
+A fase de extração e tratamento de dados foi finalizada com sucesso pleno, gerando um banco relacional robusto e arquivos CSV sincronizados sem perda de informações. Os commits correspondentes foram enviados ao repositório oficial do projeto no GitHub (\texttt{ImArthz/AEDS2\_jra\_analysis}).
+
+As próximas etapas concentrar-se-ão na execução completa das análises de grafos em \texttt{graph\_analysis.py}, na validação das hipóteses de especialização por superfície/distância e na redação dos resultados finais da disciplina de AEDS 2.
+
+\end{document}
