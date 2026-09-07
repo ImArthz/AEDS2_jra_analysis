@@ -1,0 +1,116 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{utf8}
+\usepackage[portuguese]{babel}
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\setlist{leftmargin=*,noitemsep,topsep=2pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    citecolor=blue!80!black,
+    urlcolor=blue!80!black
+}
+
+\begin{document}
+
+% Cabeçalho Acadêmico Compacto
+\begin{center}
+    {\Large \textbf{Proposta Inicial de Projeto: Ciência dos Dados \& AEDS 2}} \\[0.2cm]
+    {\large \textbf{Análise de Hereditariedade, Especialização e Rivalidade no Turfe Japones (JRA G1)}} \\[0.15cm]
+    \small \textbf{Autor:} Arthur De Oliveira Mendonça \quad|\quad \textbf{Instituição:} CEFET-MG -- Campus Divinópolis \\
+    \small \textbf{Disciplinas Integradas:} Ciência dos Dados \& Algoritmos e Estruturas de Dados 2 (AEDS 2) \\[0.1cm]
+    \hrule
+\end{center}
+
+\vspace{-0.2cm}
+
+\section{Tema, Ideia Geral e Relevância}
+O projeto aborda a análise de dados esportivos e genéticos do turfe de elite no Japão, focando nas corridas de Grupo 1 (G1) promovidas pela \emph{Japan Racing Association (JRA)} e nas árvores genealógicas catalogadas pelo \emph{Japan Bloodhorse Information System (JBIS)}. 
+
+\textbf{Relevância:} O turfe de alto rendimento é um ambiente complexo onde o desempenho esportivo é influenciado por múltiplos fatores heterogêneos: a fisiologia do atleta, o tipo de piso (\emph{Turf}/Grama vs. \emph{Dirt}/Areia vs. Obstáculos), a distância da prova (de 1.200m a 4.250m) e, predominantemente, a carga genética transmitida pelos ancestrais. Trata-se de um domínio ideal para Ciência dos Dados, pois une o rigor da estatística exploratória e da modelagem preditiva ao estudo de redes complexas e Teoria dos Grafos (AEDS 2).
+
+\section{Pergunta Principal e Hipóteses de Pesquisa}
+
+\textbf{Pergunta Principal:}
+\begin{quote}
+    \itshape
+    Em que medida o pedigree (linhagem paterna e materna) determina a especialização em tipo de pista e distância, e como a posição dos competidores na rede de rivalidades reflete o sucesso esportivo em provas G1 no Japão?
+\end{quote}
+
+\textbf{Hipóteses Secundárias:}
+\begin{itemize}
+    \item \textbf{H1 (Especialização Genética por Linhagem):} Determinados garanhões (\emph{Sires}) transmitem às suas proles uma predisposição estatisticamente significante para superfícies específicas (ex.: a linhagem de \emph{Deep Impact} dominante na grama vs. \emph{Kurofune} na areia) e faixas de distância (\emph{Sprint}, \emph{Mile}, \emph{Intermediate}, \emph{Long}).
+    \item \textbf{H2 (Estrutura de Rivalidade e Desempenho):} Cavalos com maior centralidade e grau no grafo de competição mantêm maior estabilidade de desempenho e longevidade no pódio ao longo das temporadas.
+\end{itemize}
+
+\section{Bases de Dados, Fontes e Variáveis Coletadas}
+
+Os dados foram obtidos via \emph{web scraping} automatizado a partir de duas fontes oficiais primárias:
+\begin{enumerate}
+    \item \textbf{Japan Racing Association (JRA):} Extração do histórico de corridas G1 e dos pódios (1º, 2º e 3º colocados).
+    \item \textbf{Japan Bloodhorse Information System (JBIS Search):} Extração da genealogia de 5 gerações para cada cavalo.
+\end{enumerate}
+
+\textbf{Volume e Estado dos Dados (100\% Coletados e Validados):}
+\begin{itemize}
+    \item \textbf{464 Corridas G1} catalogadas.
+    \item \textbf{1.348 Registros de Pódio (Top 3)} com dados detalhados de colocação, jóquei, tempo e peso.
+    \item \textbf{696 Cavalos Únicos} mapeados com 100\% de suas árvores genealógicas salvas no banco relacional SQLite (\texttt{jra\_g1.db}) e sincronizados em arquivos CSV.
+\end{itemize}
+
+\textbf{Principais Variáveis Coletadas:}
+\begin{itemize}
+    \item \emph{Corridas:} \texttt{race\_id}, \texttt{year}, \texttt{date}, \texttt{race\_name}, \texttt{track}, \texttt{surface} (\emph{Turf}, \emph{Dirt}, \emph{Obstacle}), \texttt{distance} (metros), \texttt{url}.
+    \item \emph{Resultados:} \texttt{position} (1º, 2º, 3º), \texttt{horse\_name}, \texttt{jockey}, \texttt{finish\_time}, \texttt{weight}.
+    \item \emph{Pedigree / Genealogia:} \texttt{sire\_name} (Pai), \texttt{dam\_name} (Mãe), \texttt{grandsire\_name} (Avô Paterno), \texttt{dam\_sire\_name} (Avô Materno / \emph{Damsire}).
+\end{itemize}
+
+\section{Período Analisado e Justificativa}
+
+\textbf{Período Considerando:} **2002 a 2020** (19 anos completos de histórico).
+
+\textbf{Justificativa da Escolha:}
+\begin{enumerate}
+    \item \textbf{Padronização Técnica:} As páginas oficiais da JRA contendo os relatórios detalhados de corrida (\texttt{replay/}) passaram por padronização em formato HTML moderno a partir de 2002.
+    \item \textbf{Relevância Histórica:} Este recorte engloba a "Era de Ouro" do turfe japonês moderno, marcada pelo domínio genético indiscutível do garanhão \emph{Sunday Silence} e de seu filho \emph{Deep Impact}.
+    \item \textbf{Volume Ideal para Ciência dos Dados e AEDS 2:} O intervalo gera um volume robusto de 696 cavalos e um grafo genealógico de 1.522 nós, escala perfeita para análises de agrupamento, testes de hipóteses estatísticos e algoritmos de grafos sem extrapolar a capacidade de processamento.
+\end{enumerate}
+
+\section{Metodologia e Análises Pretendidas}
+
+A abordagem metodológica integrará técnicas de Ciência dos Dados e Teoria dos Grafos:
+
+\begin{enumerate}
+    \item \textbf{Análise Exploratória de Dados (EDA) e Estatística Descritiva:}
+    \begin{itemize}
+        \item Distribuição das taxas de vitória e pódio agrupadas por \emph{Sire} (Pai) e \emph{Dam Sire} (Avô Materno).
+        \item Cruzamento de frequências entre linhagem genética e tipo de superfície (\emph{Turf} vs. \emph{Dirt}).
+    \end{itemize}
+    
+    \item \textbf{Testes Estatísticos de Hipóteses:}
+    \begin{itemize}
+        \item Aplicação do teste Qui-Quadrado ($\chi^2$) de Independência para avaliar se a escolha/desempenho no piso depende da linhagem paterna.
+        \item Testes ANOVA / Kruskal-Wallis para comparar os tempos médios e distâncias preferenciais por família genética.
+    \end{itemize}
+
+    \item \textbf{Modelagem de Redes e Grafos (Conexão AEDS 2):}
+    \begin{itemize}
+        \item \emph{Grafo DAG de Pedigree:} Construção da árvore genealógica direcionada para execução de algoritmos de Menor Ancestral Comum (LCA) e distâncias geracionais via BFS/DFS.
+        \item \emph{Grafo de Competição:} Modelagem da rede de rivalidades (cavalos conectados por pódios compartilhados), permitindo calcular métricas de centralidade (\emph{Betweenness}, \emph{Closeness}, Grau) e partes desconexas (Componentes Conexos).
+    \end{itemize}
+
+    \item \textbf{Agrupamento (Clustering) e Modelos Preditivos:}
+    \begin{itemize}
+        \item Aplicação de algoritmos de agrupamento (ex.: \emph{K-Means} ou \emph{Hierarchical Clustering}) para identificar perfis homogêneos de cavalos (ex.: "Especialistas em Sprint na Grama" vs. "Fundistas Versáteis").
+        \item Construção de um modelo preditivo preliminar (ex.: \emph{Random Forest} ou Regressão Logística Multinomial) para prever a probabilidade de sucesso de um cavalo em determinada superfície com base nos atributos do seu pedigree.
+    \end{itemize}
+\end{enumerate}
+
+\end{document}
