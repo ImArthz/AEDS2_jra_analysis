@@ -22,10 +22,20 @@ HTTP_HEADERS = {
 BASE_JRA = "https://www.jra.go.jp"
 
 def fetch_html(url):
-    """Baixa HTML com detecção inteligente de encoding (Shift_JIS / UTF-8)."""
+    """Baixa HTML com detecção robusta de encoding (cp932/Shift-JIS para páginas JRA).
+    
+    O apparent_encoding pode retornar encodings incorretos (ex: windows-1256 para
+    páginas japonesas). Para URLs da JRA usamos cp932 (superset do Shift-JIS no Windows)
+    como padrão, e fazemos fallback para UTF-8 se detectado no Content-Type.
+    """
     try:
         r = requests.get(url, headers=HTTP_HEADERS, timeout=15)
-        r.encoding = r.apparent_encoding or "shift_jis"
+        ct = r.headers.get("Content-Type", "").lower()
+        if "utf-8" in ct:
+            r.encoding = "utf-8"
+        else:
+            # cp932 é o Shift-JIS estendido do Windows, cobre todos os caracteres JRA
+            r.encoding = "cp932"
         return r.text
     except Exception as e:
         print(f"[ERRO] Falha ao baixar {url}: {e}")
@@ -51,7 +61,9 @@ def extract_g1_calendar(year):
         race_name = tds[1]
 
         # Filtro de linhas válidas da tabela oficial
-        if not race_name or not ("/" in date_str or "月" in date_str) or len(date_str) > 20:
+        # Formatos de data aceitos: "2/21" (antigos) ou "2月21日" (novos, 2016+)
+        has_date = "/" in date_str or "月" in date_str or "日" in date_str
+        if not race_name or not has_date or len(date_str) > 30:
             continue
 
         links = [a["href"] for a in tr.find_all("a", href=True) if "result" in a["href"]]

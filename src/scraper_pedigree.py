@@ -98,7 +98,14 @@ def extract_jbis_pedigree(horse_id, horse_name):
         return None
 
 def scrape_missing_pedigrees(delay=2.0, max_horses=None):
-    """Consulta cavalos que ainda não têm pedigree cadastrado e preenche a tabela."""
+    """Consulta cavalos que ainda não têm pedigree cadastrado e preenche a tabela.
+    
+    Funcionalidades de resiliência:
+    - Checkpoint automático: pula cavalos já na tabela pedigree (inclusive os não-encontrados)
+    - Retry com backoff exponencial em caso de falha de rede (até 3 tentativas)
+    - Salva registro vazio para cavalos não encontrados (evita re-tentar nas execuções seguintes)
+    - Exporta CSV a cada 5 registros para garantir persistência máxima
+    """
     init_db()
     conn = get_connection()
     cur = conn.cursor()
@@ -122,16 +129,45 @@ def scrape_missing_pedigrees(delay=2.0, max_horses=None):
     print(f"=======================================================\n")
 
     success_count = 0
+    not_found_count = 0
+    error_count = 0
+
     for idx, horse_name in enumerate(pending, 1):
         print(f"[{idx}/{len(pending)}] Pesquisando '{horse_name}'...")
-        horse_id = search_jbis_horse_id(horse_name)
+
+        # --- Retry com backoff exponencial para busca do ID ---
+        horse_id = None
+        for attempt in range(3):
+            try:
+                horse_id = search_jbis_horse_id(horse_name)
+                break
+            except Exception as e:
+                wait = delay * (2 ** attempt)
+                print(f"   [RETRY {attempt+1}/3] Erro na busca, aguardando {wait:.1f}s... ({e})")
+                time.sleep(wait)
         time.sleep(delay)
 
         if not horse_id:
-            print(f"   [AVISO] ID não localizado no JBIS para: {horse_name}")
+            print(f"   [AVISO] ID não localizado no JBIS para: {horse_name} — salvando registro vazio (não tentará novamente).")
+            not_found_count += 1
+            # Salva registro vazio para o checkpoint pular nas próximas execuções
+            cur.execute("""
+            INSERT OR IGNORE INTO pedigree (horse_id, horse_name)
+            VALUES (?, ?)
+            """, (f"notfound_{horse_name[:20]}", horse_name))
+            conn.commit()
             continue
 
-        ped_data = extract_jbis_pedigree(horse_id, horse_name)
+        # --- Retry com backoff exponencial para extração do pedigree ---
+        ped_data = None
+        for attempt in range(3):
+            try:
+                ped_data = extract_jbis_pedigree(horse_id, horse_name)
+                break
+            except Exception as e:
+                wait = delay * (2 ** attempt)
+                print(f"   [RETRY {attempt+1}/3] Erro no pedigree, aguardando {wait:.1f}s... ({e})")
+                time.sleep(wait)
         time.sleep(delay)
 
         if ped_data:
@@ -155,14 +191,25 @@ def scrape_missing_pedigrees(delay=2.0, max_horses=None):
             conn.commit()
             success_count += 1
             print(f"   ✓ Salvo: Pai = {ped_data['sire_name']} | Avô Materno = {ped_data['dam_sire_name']}")
+        else:
+            error_count += 1
+            print(f"   [ERRO] Não foi possível extrair pedigree para: {horse_name}")
 
-        # Exporta CSV a cada 10 registros
-        if idx % 10 == 0:
+        # Exporta CSV a cada 5 registros para garantir persistência máxima
+        if idx % 5 == 0:
             export_to_csv()
+
+        # Relatório de progresso a cada 20 cavalos
+        if idx % 20 == 0:
+            print(f"\n--- Progresso: {idx}/{len(pending)} | ✓ {success_count} ok | ✗ {not_found_count} n/f | ⚠ {error_count} erros ---\n")
 
     export_to_csv()
     conn.close()
-    print(f"\n[Pedigree] Finalizado! {success_count} genealogias coletadas e sincronizadas.")
+    print(f"\n[Pedigree] Finalizado!")
+    print(f"  ✓ Coletados:    {success_count}")
+    print(f"  ✗ Não achados:  {not_found_count}")
+    print(f"  ⚠ Com erro:     {error_count}")
+    print(f"  Total:          {success_count + not_found_count + error_count}/{len(pending)}")
 
 if __name__ == "__main__":
     scrape_missing_pedigrees(delay=2.0)
