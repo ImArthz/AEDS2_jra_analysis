@@ -16,3 +16,15 @@ ENV/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# DB files
+*.db
+*.db-*
+
+# Ignore currently running CSVs
+data/csv/pedigree.csv
+data/csv/pedigree_tree.csv
+
+# Temp files
+test_jbis.html
+src/patch.py

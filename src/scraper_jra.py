@@ -1,255 +1,323 @@
-"""
-Módulo de Web Scraping da JRA (Japan Racing Association)
-Extrai histórico oficial de corridas G1 e Top 3 com checkpointing e delay seguro.
-"""
-
 import sys
-import os
-import re
 import time
-import urllib.parse
-import requests
+import sqlite3
+import re
+import traceback
+import urllib.request
+from urllib.error import HTTPError, URLError
 from bs4 import BeautifulSoup
+
+# Import database functions
 from database import get_connection, init_db, export_to_csv
 
-# Configura codificação de saída para UTF-8 no Windows
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+# Reconfigure stdout/stderr for Windows UTF-8
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
-HTTP_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+# Constants
+BASE_URL = 'https://www.jra.go.jp'
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
 }
-BASE_JRA = "https://www.jra.go.jp"
+DELAY = 1.5
 
-def fetch_html(url):
-    """Baixa HTML com detecção robusta de encoding (cp932/Shift-JIS para páginas JRA).
-    
-    O apparent_encoding pode retornar encodings incorretos (ex: windows-1256 para
-    páginas japonesas). Para URLs da JRA usamos cp932 (superset do Shift-JIS no Windows)
-    como padrão, e fazemos fallback para UTF-8 se detectado no Content-Type.
-    """
-    try:
-        r = requests.get(url, headers=HTTP_HEADERS, timeout=15)
-        ct = r.headers.get("Content-Type", "").lower()
-        if "utf-8" in ct:
-            r.encoding = "utf-8"
-        else:
-            # cp932 é o Shift-JIS estendido do Windows, cobre todos os caracteres JRA
-            r.encoding = "cp932"
-        return r.text
-    except Exception as e:
-        print(f"[ERRO] Falha ao baixar {url}: {e}")
-        return None
-
-def extract_g1_calendar(year):
-    """Extrai a lista de corridas G1 do ano informado."""
-    url = f"{BASE_JRA}/datafile/seiseki/replay/{year}/g1.html"
-    html = fetch_html(url)
-    if not html:
-        return []
-
-    soup = BeautifulSoup(html, "html.parser")
-    races = []
-
-    # Procura linhas de tabela com links para resultados
-    for tr in soup.find_all("tr"):
-        tds = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
-        if len(tds) < 5:
-            continue
-
-        date_str = tds[0]
-        race_name = tds[1]
-
-        # Filtro de linhas válidas da tabela oficial
-        # Formatos de data aceitos: "2/21" (antigos) ou "2月21日" (novos, 2016+)
-        has_date = "/" in date_str or "月" in date_str or "日" in date_str
-        if not race_name or not has_date or len(date_str) > 30:
-            continue
-
-        links = [a["href"] for a in tr.find_all("a", href=True) if "result" in a["href"]]
-        if not links:
-            continue
-
-        result_rel_url = links[0]
-        result_full_url = urllib.parse.urljoin(url, result_rel_url)
-
-        track = tds[2] if len(tds) > 2 else ""
-        course_str = ""
-        for cell in tds[3:]:
-            if "芝" in cell or "ダ" in cell or "障" in cell:
-                course_str = cell
-                break
-
-        surface = "Dirt" if "ダ" in course_str else ("Turf" if "芝" in course_str else "Obstacle")
-        dist_match = re.search(r"(\d[\d,]*)", course_str)
-        distance = int(dist_match.group(1).replace(",", "")) if dist_match else 0
-
-        # Gerar race_id limpo
-        match_id = re.search(r"result/([a-zA-Z0-9]+)\.html", result_rel_url)
-        race_code = match_id.group(1) if match_id else f"race_{len(races)+1}"
-        race_id = f"{year}_{race_code}"
-
-        races.append({
-            "race_id": race_id,
-            "year": year,
-            "date": date_str,
-            "race_name": race_name,
-            "track": track,
-            "surface": surface,
-            "distance": distance,
-            "url": result_full_url
-        })
-
-    return races
-
-def extract_race_top3(result_url):
-    """Acessa a página de resultado oficial e extrai o Top 3 (1º, 2º e 3º)."""
-    html = fetch_html(result_url)
-    if not html:
-        return []
-
-    soup = BeautifulSoup(html, "html.parser")
-    target_table = None
-    target_headers = None
-
-    # Encontra a tabela oficial com 着順 e 馬名 no cabeçalho
-    for tbl in soup.find_all("table"):
-        for row in tbl.find_all("tr")[:2]:
-            heads = [re.sub(r'\s+', '', c.get_text(strip=True)) for c in row.find_all(["th", "td"])]
-            if any('着順' in h for h in heads) and any('馬名' in h for h in heads) and len(heads) < 20 and heads[0] in ['着順', '着']:
-                target_table = tbl
-                target_headers = heads
-                break
-        if target_table:
-            break
-
-    if not target_table:
-        return []
-
-    def find_idx(keywords):
-        for i, h in enumerate(target_headers):
-            for k in keywords:
-                if k in h:
-                    return i
-        return -1
-
-    idx_pos = find_idx(['着順', '着'])
-    idx_name = find_idx(['馬名'])
-    idx_jockey = find_idx(['騎手'])
-    idx_time = find_idx(['タイム'])
-    idx_weight = find_idx(['負担重量', '斤量'])
-    idx_sex = find_idx(['性齢', '性'])
-
-    entries = []
-    seen_positions = set()
-
-    for tr in target_table.find_all("tr")[1:]:
-        cells = [c.get_text(strip=True) for c in tr.find_all(["td", "th"])]
-        if len(cells) <= max(idx_pos, idx_name) or idx_pos == -1 or idx_name == -1:
-            continue
-
-        pos_str = cells[idx_pos].strip()
-        if pos_str in ['1', '2', '3'] and pos_str not in seen_positions:
-            seen_positions.add(pos_str)
-            pos = int(pos_str)
-            raw_name = cells[idx_name]
-            horse_name = re.sub(r'[\(（][^()（）]+[\)）]', '', raw_name).strip()
-
-            jockey = cells[idx_jockey] if idx_jockey != -1 and len(cells) > idx_jockey else ""
-            finish_time = cells[idx_time] if idx_time != -1 and len(cells) > idx_time else ""
+def fetch_html(url, retries=3):
+    """Fetch HTML with robust error handling and retries."""
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=10) as response:
+                return response.read().decode('cp932', errors='replace')
+        except HTTPError as e:
+            print(f"HTTP Error {e.code} fetching {url}: {e.reason}")
+            if e.code in [403, 404]:
+                return None # Don't retry on 403/404
+        except Exception as e:
+            print(f"Error fetching {url}: {e}")
+        
+        if attempt < retries - 1:
+            wait_time = 2 ** attempt
+            print(f"Retrying in {wait_time} seconds...")
+            time.sleep(wait_time)
             
-            weight = 0.0
-            if idx_weight != -1 and len(cells) > idx_weight:
-                wm = re.search(r'(\d+\.?\d*)', cells[idx_weight])
-                if wm:
-                    weight = float(wm.group(1))
+    print(f"Failed to fetch {url} after {retries} attempts.")
+    return None
 
-            sex = ""
-            if idx_sex != -1 and len(cells) > idx_sex:
-                s_str = cells[idx_sex]
-                if '牡' in s_str: sex = '牡'
-                elif '牝' in s_str: sex = '牝'
-                elif 'セ' in s_str: sex = 'セン'
+def parse_grade(race_name):
+    """Parse grade and weight from race name."""
+    grade_weight = 0.0
+    grade = ''
+    if 'GⅠ' in race_name or 'ＧⅠ' in race_name or 'G1' in race_name:
+        grade = 'G1'
+        grade_weight = 1.0
+    elif 'GⅡ' in race_name or 'ＧⅡ' in race_name or 'G2' in race_name:
+        grade = 'G2'
+        grade_weight = 0.7
+    elif 'GⅢ' in race_name or 'ＧⅢ' in race_name or 'G3' in race_name:
+        grade = 'G3'
+        grade_weight = 0.5
+    return grade, grade_weight
 
-            entries.append({
-                "position": pos,
-                "horse_name": horse_name,
-                "jockey": jockey,
-                "finish_time": finish_time,
-                "weight": weight,
-                "sex": sex
-            })
+def parse_weather_going(text):
+    """Parse weather and going from text."""
+    weather_map = {'晴': 'Fine', '曇': 'Cloudy', '雨': 'Rain', '小雨': 'Light Rain', '雪': 'Snow'}
+    going_map = {'良': 'Firm', '稍重': 'Good to Soft', '重': 'Soft', '不良': 'Heavy'}
+    
+    weather = ''
+    for k, v in weather_map.items():
+        if f'天候：{k}' in text or f'天候:{k}' in text:
+            weather = v
+            break
+            
+    going = ''
+    for k, v in going_map.items():
+        if f'：{k}' in text or f':{k}' in text:
+            going = v
+            break
+            
+    return weather, going
 
-    return sorted(entries, key=lambda x: x["position"])[:3]
-
-def scrape_jra_period(start_year=2002, end_year=2020, delay=2.0):
-    """Executa a raspagem com checkpointing automático."""
-    init_db()
-    conn = get_connection()
-    cur = conn.cursor()
-
-    total_saved_races = 0
-    total_saved_entries = 0
-
-    print(f"\n=======================================================")
-    print(f"  Iniciando Scraper JRA G1: {start_year} a {end_year}")
-    print(f"  Taxa de requisições: 1 req a cada {delay}s (politeness)")
-    print(f"=======================================================\n")
-
-    for year in range(start_year, end_year + 1):
-        print(f"\n>>> Processando Ano: {year} <<<")
-        races = extract_g1_calendar(year)
-        print(f"  [Ano {year}] Encontradas {len(races)} corridas G1.")
-        time.sleep(delay)
-
-        for race in races:
-            # 1. Verifica Checkpoint: corrida já salva?
-            cur.execute("SELECT 1 FROM races WHERE url = ?", (race["url"],))
-            if cur.fetchone():
-                print(f"  [CHECKPOINT] Corrida já existe no banco: {race['race_id']} ({race['race_name']}). Pulando...")
-                continue
-
-            print(f"  -> Coletando Top 3: {race['race_id']} - {race['race_name']} ({race['surface']} {race['distance']}m)...")
-            top3 = extract_race_top3(race["url"])
-
-            # 2. Inserir Corrida no SQLite
-            cur.execute("""
-            INSERT OR REPLACE INTO races (race_id, year, date, race_name, track, surface, distance, url)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                race["race_id"], race["year"], race["date"], race["race_name"],
-                race["track"], race["surface"], race["distance"], race["url"]
-            ))
-
-            # 3. Inserir Cavalos e Entradas
-            for entry in top3:
-                # Inserir cavalo se não existir
-                cur.execute("INSERT OR IGNORE INTO horses (horse_id, name, sex) VALUES (?, ?, ?)",
-                            (None, entry["horse_name"], entry["sex"]))
+def parse_race_result(html, race_url, race_id, year):
+    """Parse the race result page."""
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    # Extract metadata (weather, going)
+    weather, going = '', ''
+    cell = soup.find('div', class_='cell')
+    if cell:
+        weather, going = parse_weather_going(cell.get_text())
+    
+    table = None
+    rows = []
+    for tbl in soup.find_all('table'):
+        r = tbl.find_all('tr', recursive=False)
+        if len(r) > 2:
+            first_row = r[0]
+            if first_row and '馬名' in first_row.get_text():
+                table = tbl
+                rows = r
+                break
+            
+    if not table or len(rows) < 2:
+        return None, weather, going
+        
+    # Extract headers
+    header_cells = rows[0].find_all(['th', 'td'])
+    headers = [th.get_text(strip=True) for th in header_cells]
+    
+    def find_idx(name, default_idx):
+        for i, h in enumerate(headers):
+            if name in h:
+                return i
+        return default_idx
+        
+    pos_idx = find_idx('着順', 0)
+    horse_idx = find_idx('馬名', 4)
+    sex_idx = find_idx('性', 5)
+    age_idx = find_idx('齢', 6)
+    weight_idx = find_idx('負担重量', 7)
+    jockey_idx = find_idx('騎手', 8)
+    time_idx = find_idx('タイム', 9)
+    margin_idx = find_idx('着差', 10)
+    horse_weight_idx = find_idx('馬体重', 11)
+    trainer_idx = find_idx('調教師', 12)
+    popularity_idx = find_idx('単勝人気', 13)
+    
+    entries = []
+    
+    for row in rows[1:]:
+        cells = row.find_all(['th', 'td'])
+        if not cells:
+            continue
+            
+        try:
+            pos_text = cells[pos_idx].get_text(strip=True)
+            try:
+                position = int(pos_text)
+            except ValueError:
+                position = 99 # DNF/DQ
                 
-                # Inserir entrada da corrida
-                cur.execute("""
-                INSERT OR REPLACE INTO race_entries (race_id, horse_id, horse_name, position, finish_time, jockey, weight)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-                """, (
-                    race["race_id"], None, entry["horse_name"], entry["position"],
-                    entry["finish_time"], entry["jockey"], entry["weight"]
-                ))
-                total_saved_entries += 1
+            horse_name = cells[horse_idx].get_text(strip=True)
+            horse_id = ''
+            a_tag = cells[horse_idx].find('a')
+            if a_tag and 'href' in a_tag.attrs:
+                m = re.search(r'(/meikan/horse/[^/]+/)', a_tag['href'])
+                if m:
+                    horse_id = m.group(1)
+            if not horse_id:
+                horse_id = horse_name
+                    
+            sex = cells[sex_idx].get_text(strip=True)
+            age_text = cells[age_idx].get_text(strip=True)
+            try:
+                age = int(age_text)
+            except ValueError:
+                age = None
+                
+            weight = cells[weight_idx].get_text(strip=True)
+            jockey = cells[jockey_idx].get_text(strip=True)
+            finish_time = cells[time_idx].get_text(strip=True)
+            margin = cells[margin_idx].get_text(strip=True)
+            
+            # The data has TWO cells for horse weight: value and change.
+            if len(cells) > horse_weight_idx + 1:
+                hw_val = cells[horse_weight_idx].get_text(strip=True)
+                hw_change = cells[horse_weight_idx + 1].get_text(strip=True)
+                horse_weight = f"{hw_val}({hw_change})" if hw_change else hw_val
+            else:
+                horse_weight = cells[horse_weight_idx].get_text(strip=True)
+                
+            # Shift indices by 1 for cells after the split horse weight column
+            trainer = cells[trainer_idx + 1].get_text(strip=True) if len(cells) > trainer_idx + 1 else ''
+            
+            # The 'odds' field in result table is actually popularity rank
+            popularity = cells[popularity_idx + 1].get_text(strip=True) if len(cells) > popularity_idx + 1 else ''
+            
+            # TODO: Parse passing_positions from コーナー通過順位 section
+            passing_positions = ''
+            
+            entry = {
+                'race_id': race_id,
+                'horse_name': horse_name,
+                'horse_id': horse_id,
+                'position': position,
+                'finish_time': finish_time,
+                'jockey': jockey,
+                'trainer': trainer,
+                'weight': weight,
+                'odds': popularity, # Stored in 'odds' field for now
+                'horse_weight': horse_weight,
+                'age': age,
+                'sex': sex,
+                'passing_positions': passing_positions,
+                'margin': margin
+            }
+            entries.append(entry)
+            
+        except Exception as e:
+            print(f"Error parsing row in {race_url}: {e}")
+            continue
+            
+    return entries, weather, going
 
-            conn.commit()
-            total_saved_races += 1
-            print(f"     ✓ OK: {len(top3)} colocados salvos para {race['race_name']}.")
-            time.sleep(delay)
+def scrape_year(year, source='graded'):
+    """Scrape races for a specific year."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    url = f"{BASE_URL}/datafile/seiseki/replay/{year}/jyusyo.html"
+    if source == 'g1':
+        url = f"{BASE_URL}/datafile/seiseki/replay/{year}/g1.html"
+        
+    print(f"Fetching {url}")
+    html = fetch_html(url)
+    
+    if not html and source == 'graded':
+        print(f"jyusyo.html failed for {year}, trying g1.html fallback...")
+        source = 'g1'
+        url = f"{BASE_URL}/datafile/seiseki/replay/{year}/g1.html"
+        html = fetch_html(url)
+        
+    if not html:
+        print(f"Could not fetch data for {year}")
+        return
+        
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    result_links = []
+    import re
+    for a in soup.find_all('a', href=True):
+        href = a['href']
+        if 'result' in href or re.search(r'\d{2,3}\.html$', href):
+            result_links.append(a)
+            
+    print(f"Found {len(result_links)} race links for {year}")
+    
+    import urllib.parse
+    for i, a in enumerate(result_links):
+        href = a['href']
+        race_url = urllib.parse.urljoin(url, href)
+            
+        row = a.find_parent('tr')
+        date_str, race_name, track, surface_dist = '', '', '', ''
+        
+        if row:
+            cells = row.find_all(['th', 'td'])
+            if len(cells) >= 5:
+                date_str = cells[0].get_text(strip=True)
+                race_name = cells[1].get_text(strip=True)
+                track = cells[2].get_text(strip=True)
+                surface_dist = cells[4].get_text(strip=True)
+                
+        grade, grade_weight = parse_grade(race_name)
+        
+        surface = 'Turf' if '芝' in surface_dist else 'Dirt' if 'ダート' in surface_dist else ''
+        distance = ''
+        m = re.search(r'([0-9,]+)', surface_dist)
+        if m:
+            distance = m.group(1).replace(',', '')
+            
+        # Create unique race ID
+        race_id = f"{year}_{track}_{race_name}"
+        
+        # Pular se j existe no banco de dados
+        cur = conn.cursor()
+        cur.execute("SELECT 1 FROM races WHERE race_id = ?", (race_id,))
+        if cur.fetchone():
+            print(f"Skipping {year} {race_name} (already scraped)")
+            continue
 
-        # Exporta CSV incrementalmente após cada ano concluído
-        export_to_csv()
-
-    conn.close()
-    print(f"\n=======================================================")
-    print(f"  Concluído! Total de corridas salvas nesta sessão: {total_saved_races}")
-    print(f"  Total de entradas Top 3 salvas: {total_saved_entries}")
-    print(f"=======================================================\n")
+        print(f"Scraping {year} {race_name} ({race_url})")
+        time.sleep(DELAY)
+        
+        result_html = fetch_html(race_url)
+        if not result_html:
+            continue
+            
+        entries, weather, going = parse_race_result(result_html, race_url, race_id, year)
+        
+        # Save race
+        cursor.execute('''
+        INSERT OR REPLACE INTO races (
+            race_id, year, date, race_name, track, grade, grade_weight, 
+            surface, distance, going, weather, num_runners, url
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            race_id, year, date_str, race_name, track, grade, grade_weight,
+            surface, distance, going, weather, len(entries) if entries else 0, race_url
+        ))
+        
+        # Save entries
+        if entries:
+            for e in entries:
+                if not e.get('horse_name'):
+                    continue
+                try:
+                    cursor.execute('INSERT OR IGNORE INTO horses (name, horse_id, sex) VALUES (?, ?, ?)', (e['horse_name'], e['horse_id'], e['sex']))
+                    cursor.execute('''
+                    INSERT OR REPLACE INTO race_entries (
+                        race_id, horse_name, horse_id, position, finish_time,
+                        jockey, trainer, weight, odds, horse_weight, age, sex,
+                        passing_positions, margin
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                        e['race_id'], e['horse_name'], e['horse_id'], e['position'], e['finish_time'],
+                        e['jockey'], e['trainer'], e['weight'], e['odds'], e['horse_weight'], 
+                        e['age'], e['sex'], e['passing_positions'], e['margin']
+                    ))
+                except Exception as ex:
+                    print(f"FOREIGN KEY ERROR! race_id: {e['race_id']}, horse_name: {e['horse_name']}")
+                    raise ex
+        
+        # Checkpoint: save each race immediately to SQLite
+        conn.commit()
+        
+    print(f"Finished scraping year {year}")
+    export_to_csv()
 
 if __name__ == "__main__":
-    scrape_jra_period(2002, 2020, delay=2.0)
+    init_db()
+    # Example: run for recent years
+    for y in range(2005, 2026):
+        scrape_year(y, source='graded')
