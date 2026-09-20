@@ -1,0 +1,43 @@
+name: Build and Release LaTeX PDF
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-latex-pdf:
+    name: Build LaTeX PDF
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Compile LaTeX Document
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: docs
+          root_file: relatorio_extracao.tex
+          compiler: pdflatex
+          args: "-interaction=nonstopmode -halt-on-error"
+
+      - name: Create tag
+        id: create_tag
+        run: |
+          TAG="v1.0.${{ github.run_number }}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Release PDF
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.create_tag.outputs.tag }}
+          name: "Relatorio JRA/JBIS ${{ steps.create_tag.outputs.tag }}"
+          files: docs/relatorio_extracao.pdf
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

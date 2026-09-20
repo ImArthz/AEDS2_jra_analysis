@@ -5,6 +5,9 @@
   <img alt="SQLite" src="https://img.shields.io/badge/SQLite-Database-lightgrey.svg">
   <img alt="NetworkX" src="https://img.shields.io/badge/NetworkX-Graph_Theory-green.svg">
   <img alt="Status" src="https://img.shields.io/badge/Status-Stable%20(2002--2025)-brightgreen">
+  <a href="https://github.com/ImArthz/AEDS2_jra_analysis/actions/workflows/compile_latex.yml">
+    <img src="https://github.com/ImArthz/AEDS2_jra_analysis/actions/workflows/compile_latex.yml/badge.svg" alt="Build Status">
+  </a>
 </div>
 
 <br/>
@@ -47,7 +50,19 @@ Módulo que converte dinamicamente terminologias de pista (`良` -> `Firm`) e cl
 Todo o projeto foi espelhado dinamicamente entre arquivos `.csv` estáticos na pasta `data/csv/` e um banco SQLite `jra_graded.db`.
 
 📄 **Relatório Técnico Completo:**
-Elaborei um documento minucioso explicando minha arquitetura, os erros que contornei (como blocos de IP e restrições silenciosas do banco) no formato `LaTeX`. O arquivo renderizado e o código-fonte encontram-se no diretório `docs/relatorio_extracao.tex`.
+Elaborei um documento minucioso explicando minha arquitetura, os erros que contornei (como blocos de IP e restrições silenciosas do banco) no formato `LaTeX`.
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/relatorio_extracao.pdf">
+        <img src="https://img.shields.io/badge/Download_Artigo-PDF-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download PDF">
+      </a>
+    </td>
+  </tr>
+</table>
+
+O arquivo renderizado no botão acima é compilado automaticamente via **GitHub Actions** a cada push. O código-fonte encontra-se no diretório `docs/relatorio_extracao.tex`.
 
 ---
 
