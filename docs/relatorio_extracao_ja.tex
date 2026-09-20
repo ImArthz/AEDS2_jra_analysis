@@ -1,0 +1,55 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{xeCJK}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\title{\textbf{高度技術レポート：日本の競馬におけるデータエンジニアリングとグラフ理論}}
+\author{AEDS 2}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本技術レポートでは、日本の競馬分析パイプラインに実装されたソフトウェアアーキテクチャ、データエンジニアリングの決定事項、およびアルゴリズム構造（グラフ理論）について詳述します。2002年から2025年までの期間を対象に、JRAの歴史的エリートレース（重賞レース）のデータとJBISの遺伝的血統データベースを統合しています。
+\end{abstract}
+
+\section{導入とスコープ}
+本システムの開発は、高度なデータ構造（AEDS 2）の複雑なアルゴリズムや、将来の機械学習（\textit{Machine Learning}）による予測モデリングをサポートするための信頼性の高いリレーショナルデータベースを構築することを目的としています。対象をG1、G2、G3の重賞レースに限定することで、非重賞レースのノイズを排除し、競争力の高いデータセットを確保しています。
+
+\section{リレーショナルアーキテクチャ (SQLite)}
+ストレージコアはSQLite3上に設計されました。大量のデータをサポートし、整合性を保証するために、厳密に型指定されています。
+\begin{itemize}
+    \item \textbf{\texttt{races}テーブル：} イベントのメタデータ（\texttt{race\_id} (PK)、\texttt{date}、\texttt{distance}、\texttt{weather}、\texttt{going}）を保存します。
+    \item \textbf{\texttt{race\_entries}テーブル：} 各馬の個別の指標（タイム、騎手、斤量、馬体重、着差）を記録します。\texttt{races}と\texttt{horses}に外部キーでリンクされています。
+    \item \textbf{\texttt{horses}テーブル：} 統合エンティティ。\texttt{horse\_id} (PK)、総獲得賞金、および生物学的データを保存します。
+    \item \textbf{\texttt{ON UPDATE CASCADE}制約：} 重要な課題を解決しました。当初、システムは馬名を一時的なPKとして使用していました。JBISと照合する際、IDの更新により外部キー（\textit{Foreign Key}）違反が発生しました。\texttt{CASCADE}を実装することで、\texttt{horses}テーブルの更新が\texttt{race\_entries}の数千のレコードに自動的に反映されるようになりました。
+\end{itemize}
+
+\section{ウェブスクレイピングエンジニアリングと回復力}
+データ収集エンジンは、\texttt{BeautifulSoup}と\texttt{requests}を使用してPythonで開発され、フォールトトレラントなデザインパターンを実装しています。
+
+\subsection{JRAモジュール（過去のレース結果）}
+JRA（日本中央競馬会）からのデータ抽出では、20年以上にわたるレガシーHTMLコードの構造的な不整合を回避する必要がありました。不安定なCSSクラスに依存するのではなく、アルゴリズムは構造的なパターン（例：14の特定の列を含むヘッダーを持つ子テーブル）を追跡します。また、馬体重など、基本重量と増減が1つの\texttt{<td>}に結合されていた列を分割する解析ロジックも実装されました。事前の\texttt{SELECT 1}クエリによるスキップロジック（\textit{Skip Logic}）が組み込まれ、すでにマッピングされたレースのネットワーク遅延を節約しています。
+
+\subsection{JBISモジュール（遺伝とプロフィール）}
+JBIS（ジャパン・ブラッドホース・インフォメーション・システム）では、従来のテーブルの代わりにHTML定義リスト（\texttt{<dt>}と\texttt{<dd>}）が使用されているという別の障害に直面しました。パーサーはDOM内の兄弟ノードを検索するように適合されました。レート制限を処理するために、積極的なタイムアウトとともにエクスポネンシャルバックオフ（\textit{Exponential Backoff}）制御メカニズムがインスタンス化されました。血統図は、5つの遺伝レベルに制限された深さ優先探索（DFS）を介してスクレイピングされ、分析された馬1頭あたり最大62の祖先ノードを登録します。
+
+\section{アルゴリズムモデリング（グラフ）}
+最終レイヤーでは、高度な処理のためにリレーショナルマトリックスをインメモリストラクチャ（\textit{NetworkX}を使用）に変換します。
+
+\subsection{血統DAG（遺伝的ツリー）}
+祖先テーブルは、有向非巡回グラフ（\textit{Directed Acyclic Graph}: DAG）に変換されます。頂点は馬を表し、エッジは子孫から親を指します。この幾何学的構造上で最小共通祖先（LCA）アルゴリズムが実行され、予測される交配間の近交係数を迅速に計算します。
+
+\subsection{ライバル関係グラフとPageRank}
+スポーツの歴史は二部グラフとしてモデル化されます。エッジの重みは直接の勝利を反映します。私たちは古典的な\textit{PageRank}アルゴリズムのカスタマイズ版を実行します：馬は勝つことだけでなく、ランキングの高いレジェンドと繰り返し競うことによって指数関数的に権威を吸収し、線形統計に隠された真の運動能力を明らかにします。
+
+\section{結論}
+開発された技術的フレームワークは、データ構造、エンティティ関係モデリング、およびネットワークの回復力（スクレイピング）に関する深い知識を統合し、複雑な人工知能アーキテクチャの準備が整った、クリーンで文書化されたデータセットを提供します。
+
+\end{document}

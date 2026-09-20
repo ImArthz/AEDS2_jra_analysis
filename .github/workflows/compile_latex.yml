@@ -12,18 +12,34 @@ permissions:
 
 jobs:
   build-latex-pdf:
-    name: Build LaTeX PDF
+    name: Build LaTeX PDFs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Compile LaTeX Document
+      - name: Compile PT-BR Document
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: docs
           root_file: relatorio_extracao.tex
-          compiler: pdflatex
+          compiler: xelatex
+          args: "-interaction=nonstopmode -halt-on-error"
+
+      - name: Compile EN Document
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: docs
+          root_file: relatorio_extracao_en.tex
+          compiler: xelatex
+          args: "-interaction=nonstopmode -halt-on-error"
+
+      - name: Compile JA Document
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: docs
+          root_file: relatorio_extracao_ja.tex
+          compiler: xelatex
           args: "-interaction=nonstopmode -halt-on-error"
 
       - name: Create tag
@@ -32,12 +48,15 @@ jobs:
           TAG="v1.0.${{ github.run_number }}"
           echo "tag=$TAG" >> $GITHUB_OUTPUT
 
-      - name: Release PDF
+      - name: Release PDFs
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.create_tag.outputs.tag }}
-          name: "Relatorio JRA/JBIS ${{ steps.create_tag.outputs.tag }}"
-          files: docs/relatorio_extracao.pdf
+          name: "Relatorios JRA/JBIS ${{ steps.create_tag.outputs.tag }}"
+          files: |
+            docs/relatorio_extracao.pdf
+            docs/relatorio_extracao_en.pdf
+            docs/relatorio_extracao_ja.pdf
           make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

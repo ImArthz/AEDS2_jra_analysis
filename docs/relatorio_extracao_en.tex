@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\title{\textbf{Advanced Technical Report: Data Engineering and Graph Theory in Japanese Horse Racing}}
+\author{AEDS 2}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This technical report details the software architecture, data engineering decisions, and algorithmic structures (Graph Theory) implemented in the Japanese horse racing analysis pipeline. Covering the period from 2002 to 2025, the system integrates historical elite race data (Graded Races) from the JRA with genetic lineage databases from the JBIS.
+\end{abstract}
+
+\section{Introduction and Scope}
+The development of this system aims to build a highly reliable relational database to support complex algorithms for the Advanced Data Structures (AEDS 2) course, as well as future predictive modeling in \textit{Machine Learning}. By restricting the domain to G1, G2, and G3 graded races, we ensure a dataset dense in competitive quality, filtering out the noise of non-qualifying races.
+
+\section{Relational Architecture (SQLite)}
+The storage core was designed on SQLite3. The relational model is strictly typed to support high volumes and ensure integrity:
+\begin{itemize}
+    \item \textbf{Table \texttt{races}:} Stores event metadata (\texttt{race\_id} (PK), \texttt{date}, \texttt{distance}, \texttt{weather}, \texttt{going}).
+    \item \textbf{Table \texttt{race\_entries}:} Records individual metrics per athlete (finish time, jockey, physical and handicap weights, winning margins). Foreign keys link to \texttt{races} and \texttt{horses}.
+    \item \textbf{Table \texttt{horses}:} The unifying entity. Stores \texttt{horse\_id} (PK), total earnings, and biological data.
+    \item \textbf{\texttt{ON UPDATE CASCADE} Constraint:} A critical challenge solved. Initially, the system used the horse's name as a temporary PK. When cross-referencing with JBIS, updating the ID caused \textit{Foreign Key} violations. Implementing \texttt{CASCADE} allowed the update in the \texttt{horses} table to automatically reflect across thousands of records in \texttt{race\_entries}.
+\end{itemize}
+
+\section{Web Scraping Engineering and Resilience}
+The collection engine was developed in Python using \texttt{BeautifulSoup} and \texttt{requests}, implementing fault-tolerant \textit{design patterns}.
+
+\subsection{JRA Module (Historical Results)}
+Extracting data from the \textit{Japan Racing Association} required bypassing structural inconsistencies from over two decades of legacy HTML code. Instead of relying on volatile CSS classes, the algorithm tracks structural patterns (e.g., child tables with headers containing 14 specific columns). Parsing logic was also implemented to dismember concatenated columns, such as horse weight, which historically combined the base weight and variance into a single \texttt{<td>}. A \textit{Skip Logic} system was inserted via preliminary \texttt{SELECT 1} queries, saving network latency for previously mapped races.
+
+\subsection{JBIS Module (Genetics and Profiles)}
+At the \textit{Japan Bloodhorse Information System}, extraction faced another hurdle: the use of HTML Definition Lists (\texttt{<dt>} and \texttt{<dd>}) instead of conventional tables. The parser was adapted to find sibling nodes in the DOM. To handle rate limiting, an \textit{Exponential Backoff} control mechanism was instantiated alongside aggressive timeouts. The pedigree tree is scraped via depth-first search (DFS) limited to 5 genetic levels, registering up to 62 ancestral nodes per horse analyzed.
+
+\section{Algorithmic Modeling (Graphs)}
+The final layer translates relational matrices into in-memory structures (using \textit{NetworkX}) for advanced processing:
+
+\subsection{Pedigree DAG (Genetic Trees)}
+The ancestors table is converted into a \textit{Directed Acyclic Graph} (DAG). Vertices represent horses, and edges point from offspring to their parents. Over this geometric structure, the \textit{Lowest Common Ancestor} (LCA) algorithm is executed, quickly calculating the inbreeding coefficient between projected crossbreeds.
+
+\subsection{Rivalry Graphs and PageRank}
+Sports history is modeled as bipartite graphs. Edge weights reflect direct victories. We run a tailored version of the classic \textit{PageRank} algorithm: a horse exponentially absorbs authority not only by winning but by recurrently competing against high-ranking legends, revealing true athletic quality hidden in linear statistics.
+
+\section{Conclusion}
+The technological framework developed consolidates deep knowledge of Data Structures, Entity-Relationship modeling, and network resilience (Scraping), delivering a clean, documented dataset ready for complex Artificial Intelligence architectures.
+
+\end{document}

@@ -1,6 +1,14 @@
 # 🏇 JRA Graded Races & JBIS Pedigree Analysis (AEDS 2)
 
 <div align="center">
+  <a href="README.md">🇧🇷 Português</a> |
+  <a href="README.en.md">🇺🇸 English</a> |
+  <a href="README.ja.md">🇯🇵 日本語</a>
+</div>
+
+<br/>
+
+<div align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.13-blue.svg">
   <img alt="SQLite" src="https://img.shields.io/badge/SQLite-Database-lightgrey.svg">
   <img alt="NetworkX" src="https://img.shields.io/badge/NetworkX-Graph_Theory-green.svg">
@@ -35,14 +43,14 @@ Vasculha o histórico de corridas japonesas do tipo G1, G2 e G3, extraindo métr
 Busca dados sobre ganhos financeiros (em Ienes) na página dos perfis, além de minerar e modelar uma **Árvore Genealógica de 5 Gerações** (até 62 ancestrais por cavalo) que fundamenta as análises genéticas e de endocruzamento.
 
 ### 3. Sistema de Validação Dinâmica (QA)
-Gera relatórios de integridade referencial automáticos e dispara alertas em caso de anomalias (e.g., valores ausentes devido a raspagens falhas) nas relações entre Tabelas de Cavalo e Resultados.
+Gera relatórios de integridade referencial automáticos e dispara alertas em caso de anomalias nas relações entre Tabelas de Cavalo e Resultados.
 
 ### 4. Dicionário de Tradução Dinâmica (JP -> EN)
 Módulo que converte dinamicamente terminologias de pista (`良` -> `Firm`) e clima do formato codificado japonês para a taxonomia esportiva universal em Inglês. Essencial para treinar futuros algoritmos de Inteligência Artificial sem viés de idioma.
 
 ### 5. Engine Analítica de Grafos
 - **Grafos Direcionados Acíclicos (DAG):** Mapeamento genético focado na árvore ascendente dos animais (útil para Lowest Common Ancestor).
-- **Grafos Bipartidos e de Centralidade:** Conexão direta entre jóqueis e cavalos. Utilização do algoritmo **PageRank** da Google adaptado para o ecossistema das corridas, onde enfrentar vencedores históricos também confere peso e autoridade a um atleta.
+- **Grafos Bipartidos e de Centralidade:** Conexão direta entre jóqueis e cavalos. Utilização do algoritmo **PageRank** da Google adaptado para o ecossistema das corridas.
 
 ---
 
@@ -56,13 +64,23 @@ Elaborei um documento minucioso explicando minha arquitetura, os erros que conto
   <tr>
     <td align="center">
       <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/relatorio_extracao.pdf">
-        <img src="https://img.shields.io/badge/Download_Artigo-PDF-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download PDF">
+        <img src="https://img.shields.io/badge/Download_Artigo-PT--BR_PDF-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download PDF PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/relatorio_extracao_en.pdf">
+        <img src="https://img.shields.io/badge/Download_Article-EN_PDF-blue?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download PDF EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/relatorio_extracao_ja.pdf">
+        <img src="https://img.shields.io/badge/Download_Report-JA_PDF-green?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download PDF JA">
       </a>
     </td>
   </tr>
 </table>
 
-O arquivo renderizado no botão acima é compilado automaticamente via **GitHub Actions** a cada push. O código-fonte encontra-se no diretório `docs/relatorio_extracao.tex`.
+Os arquivos renderizados acima são compilados automaticamente via **GitHub Actions** a cada push.
 
 ---
 
@@ -74,10 +92,3 @@ O arquivo renderizado no botão acima é compilado automaticamente via **GitHub 
    cd src
    python run_pipeline.py --start-year 2002 --end-year 2025 --analyze
    ```
-3. O sistema reconhecerá instantaneamente de onde parou e continuará a construir seu grafo de conhecimento com segurança total.
-
----
-
-<div align="center">
-  <i>Desenvolvido com ☕ e focado na interseção entre Esportes, Biologia e Dados.</i>
-</div>

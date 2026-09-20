@@ -1,4 +1,5 @@
 \documentclass[12pt,a4paper]{article}
+\usepackage{fontspec}
 \usepackage[utf8]{inputenc}
 \usepackage[portuguese]{babel}
 \usepackage[margin=2.5cm]{geometry}
@@ -8,48 +9,50 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 
-\title{\textbf{Relatório Técnico: Engenharia de Dados e Grafos no Turfe Japonês}}
-\author{Seu Nome / AEDS 2}
+\title{\textbf{Relatório Técnico Avançado: Engenharia de Dados e Grafos no Turfe Japonês}}
+\author{AEDS 2}
 \date{\today}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Este relatório documenta a construção do \textit{pipeline} de coleta, validação e modelagem de grafos que desenvolvi para o projeto final da disciplina de Algoritmos e Estruturas de Dados 2 (AEDS 2). O foco é o tratamento de dados de cavalos de corrida japoneses (G1, G2 e G3) da JRA (Japan Racing Association) e perfis biológicos e pedigrees (JBIS), englobando o período de 2002 a 2025. O sistema processou de forma autônoma mais de 33 mil participações em corridas e catalogou mais de 8 mil cavalos.
+Este relatório técnico detalha a arquitetura de software, as decisões de engenharia de dados e as estruturas algorítmicas (Teoria dos Grafos) implementadas no pipeline de análise do turfe japonês. Cobrindo o período de 2002 a 2025, o sistema integra dados históricos de corridas de elite (Graded Races) da JRA com bases de linhagens genéticas do JBIS.
 \end{abstract}
 
-\section{Introdução}
-O objetivo central deste trabalho é a aplicação de estruturas de grafos avançadas e algoritmos de análise de redes (como \textit{PageRank} e \textit{Centralidade de Autovetor}) sobre o contexto do turfe. Escolhi utilizar as corridas graduadas (Graded Races) da \textit{Japan Racing Association} (JRA) entre os anos de 2002 e 2025. Diferente das corridas comuns (que inflariam a base de dados de forma desnecessária), as corridas Graded reúnem apenas a elite absoluta dos competidores esportivos do Japão, fornecendo um ambiente riquíssimo e equilibrado para a aplicação de heurísticas e futuras predições de \textit{Machine Learning} baseadas em linhagem genética.
+\section{Introdução e Escopo}
+O desenvolvimento deste sistema visa construir uma base de dados altamente confiável e relacional para suportar algoritmos complexos da disciplina de Algoritmos e Estruturas de Dados 2 (AEDS 2), bem como modelagens preditivas futuras em \textit{Machine Learning}. Ao restringir o domínio às corridas de grau G1, G2 e G3, garantimos um \textit{dataset} denso em qualidade competitiva, filtrando ruídos de corridas não-qualificatórias.
 
-\section{Engenharia de Dados e Coleta (Web Scraping)}
-Para suportar o volume histórico sem bloqueios e sem perda de estado, desenvolvi um pipeline estruturado em 5 etapas contínuas e altamente resilientes:
-
-\subsection{Etapa 1: JRA Scraper (Histórico de Corridas)}
-O primeiro desafio de engenharia que enfrentei foi a enorme inconsistência do layout e das URLs no arquivo histórico da JRA. Durante os anos mais antigos (como o começo dos anos 2000), os links de resultados nem sequer apontavam para páginas de perfil com identificadores, e a estrutura das tabelas HTML utilizava formatações e aninhamentos imprevisíveis.
-Para contornar isso, desenvolvi um parser robusto com o \textit{BeautifulSoup} focado em expressões regulares (regex) dinâmicas e na localização de cabeçalhos literais de tabela. Assim, consegui capturar não só os pódios, mas todos os participantes, incluindo margens de vitória, condições de clima, pista, e o peso detalhado do animal, fatores cruciais para o grafo de características biológicas.
-
-\subsection{Etapa 2: JBIS Scraper (Pedigree 5-Gen e Perfis)}
-A segunda etapa exigiu cruzar as informações com o banco de dados oficial de linhagens japonês, o JBIS. 
-Enfrentei desafios clássicos de \textit{Design} de Bancos de Dados Relacionais: como o primeiro scraper salvava o nome do cavalo como uma `Primary Key'' provisória, a tentativa de atualizar a chave com o ID oficial do JBIS disparava exceções de violação de Chave Estrangeira (\textit{Foreign Key}). Solucionei o impasse arquitetural alterando a declaração SQL com a cláusula \texttt{ON UPDATE CASCADE}. Com isso, qualquer nova identidade capturada propagava a correção instantaneamente para todos os milhares de resultados vinculados ao cavalo em cascata. Além disso, a extração dos perfis exigiu adaptar a raspagem para listas de definição HTML (\texttt{<dt>} e \texttt{<dd>}), garantindo o resgate do total de prêmios financeiros e árvore genealógica de 5 gerações completas.
-
-\subsection{Etapas 3 e 4: Validação e Tradução}
-Com os dados persistidos de forma segura no SQLite através de um sistema incremental (\textit{Checkpointing}), estruturei módulos de pós-processamento:
+\section{Arquitetura Relacional (SQLite)}
+O \textit{core} de armazenamento foi projetado sobre SQLite3. O modelo relacional foi estritamente tipado para suportar alto volume e garantir integridade:
 \begin{itemize}
-    \item \textbf{Validação Automática (QA):} Sistema de triagem que levanta anomalias de dados faltantes e valida a integridade referencial das tabelas (Avisos contra dados vazios ou corrompidos).
-    \item \textbf{Tradução Dinâmica (JP $\to$ EN):} Criação de uma pipeline baseada em dicionários hash para verter todo o conhecimento (estados de pista de grama, clima, graus) de \textit{Shift-JIS} (cp932) para a padronização Americana em Inglês.
+    \item \textbf{Tabela \texttt{races}:} Armazena metadados do evento (\texttt{race\_id} (PK), \texttt{date}, \texttt{distance}, \texttt{weather}, \texttt{going}).
+    \item \textbf{Tabela \texttt{race\_entries}:} Registra as métricas individuais por atleta (tempo, jóquei, peso físico e de handicap, margem de vitória). Chave estrangeira ligada a \texttt{races} e \texttt{horses}.
+    \item \textbf{Tabela \texttt{horses}:} Entidade unificadora. Armazena \texttt{horse\_id} (PK), prêmios financeiros e dados biológicos.
+    \item \textbf{Restrição \texttt{ON UPDATE CASCADE}:} Desafio crítico solucionado. Inicialmente, o sistema usava o nome do cavalo como PK temporária. Ao cruzar com o JBIS, a atualização do ID causava violações de \textit{Foreign Key}. A implementação do \texttt{CASCADE} permitiu que a atualização na tabela \texttt{horses} refletisse automaticamente em milhares de registros na \texttt{race\_entries}.
 \end{itemize}
 
-\section{Estruturação de Grafos (AEDS 2)}
-Finalmente, transformei as tabelas relacionais no objeto central de estudo da disciplina de AEDS 2.
+\section{Engenharia de Web Scraping e Resiliência}
+O motor de coleta foi desenvolvido em Python utilizando \texttt{BeautifulSoup} e \texttt{requests}, implementando \textit{design patterns} de tolerância a falhas.
 
-\subsection{DAG de Pedigree}
-Gerei um Grafo Direcionado Acíclico (DAG) mapeando nós de filhos para nós de ancestrais em até 5 níveis de profundidade, utilizando a biblioteca \textit{NetworkX}. Esta estrutura é o esqueleto para algoritmos como o \textit{Lowest Common Ancestor} (LCA), que possibilitará calcular rapidamente graus de endocruzamento e força de linhagens.
+\subsection{Módulo JRA (Resultados Históricos)}
+A extração de dados da \textit{Japan Racing Association} exigiu contornar inconsistências estruturais de mais de duas décadas de código HTML legado. 
+Em vez de depender de classes CSS voláteis, o algoritmo rastreia padrões estruturais (ex: tabelas filhas com cabeçalhos contendo 14 colunas específicas). Também foi necessário implementar lógicas de \textit{parsing} para desmembrar colunas concatenadas, como o peso do animal, que historicamente unia o peso base e a oscilação em uma única \texttt{<td>}. Foi inserido um sistema de \textit{Skip Logic} via consultas \texttt{SELECT 1} prévias, economizando latência de rede para corridas já mapeadas.
 
-\subsection{Grafos de Competição e Autoridade}
-Modelei as corridas na pista sob a ótica da Teoria dos Grafos. Em vez de simplesmente contar vitórias lineares, submeti o grafo de confrontos ao algoritmo de \textit{PageRank} e à métrica de \textit{Centralidade}. Com isso, a engine gráfica consegue expor a real ''influência'' de um atleta na história (por exemplo, avaliando não apenas quem vence mais, mas quem compete lado a lado repetidas vezes contra as lendas do esporte, absorvendo pontuação e autoridade pela proximidade nos nós adjacentes).
+\subsection{Módulo JBIS (Genética e Perfis)}
+No \textit{Japan Bloodhorse Information System}, a extração encontrou outro obstáculo: o uso de Listas de Definição HTML (\texttt{<dt>} e \texttt{<dd>}) no lugar de tabelas convencionais. O \textit{parser} foi adaptado para buscar pares de irmãos no DOM.
+Para suportar limites de requisição (\textit{Rate Limiting}), instanciei um controle de \textit{Exponential Backoff} (esperas de segurança progressivas a cada falha) e \textit{Timeouts} agressivos. A árvore genealógica é raspeada via busca em profundidade (DFS) limitada a 5 níveis genéticos, registrando até 62 nós ancestrais por cavalo analisado.
+
+\section{Modelagem Algorítmica (Grafos)}
+A camada final traduz as matrizes relacionais em estruturas em memória (usando \textit{NetworkX}) para processamento avançado:
+
+\subsection{DAG de Pedigree (Árvores Genéticas)}
+A tabela de ancestrais é convertida em um \textit{Directed Acyclic Graph} (Grafo Direcionado Acíclico). Os vértices representam os cavalos, e as arestas apontam da progênie para seus genitores. Sobre esta estrutura geométrica, executa-se o algoritmo de \textit{Lowest Common Ancestor} (LCA), calculando rapidamente o nível de consanguinidade (\textit{inbreeding}) entre cruzas projetadas.
+
+\subsection{Grafos de Rivalidade e PageRank}
+O histórico esportivo é modelado como grafos bipartidos. O peso das arestas reflete as vitórias diretas. Executamos o clássico algoritmo de \textit{PageRank} (Larry Page, 1998) ajustado: um cavalo absorve autoridade exponencialmente não apenas ao vencer, mas ao competir recorrentemente contra lendas de alto ''Rank'', revelando a verdadeira qualidade atlética oculta nas estatísticas lineares.
 
 \section{Conclusão}
-O sistema arquitetado não apenas consome dados passivamente, mas reage a falhas de timeout, normaliza chaves primárias e cria conexões não-triviais através da matemática dos grafos. Este relatório prova a eficiência de aliar Estruturas de Dados com Engenharia de Sistemas em prol da Ciência de Dados, abrindo portas valiosas para o treinamento de \textit{Machine Learning} em disciplinas futuras.
+O arcabouço tecnológico desenvolvido consolida conhecimentos profundos de Estruturas de Dados, modelagem Entidade-Relacionamento e resiliência de redes (Scraping), entregando um \textit{dataset} limpo, documentado e pronto para arquiteturas complexas de Inteligência Artificial.
 
 \end{document}
