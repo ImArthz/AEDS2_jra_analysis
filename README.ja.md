@@ -99,8 +99,8 @@ G1、G2、G3の日本のレースの歴史を探求し、正確な指標（年�
 
 ### トップ10 種牡馬（父馬）
 日本の重賞レース（2002-2025）で最も支配的な血統のグラフ。
-![トップ10種牡馬](docs/assets/top_sires.png)
+![トップ10種牡馬](docs/assets/top_sires_ja.png)
 
 ### トップ10 獲得賞金ランキング
 データベースに記録された総獲得賞金が最も高い馬。
-![トップ10獲得賞金](docs/assets/top_earners.png)
+![トップ10獲得賞金](docs/assets/top_earners_ja.png)

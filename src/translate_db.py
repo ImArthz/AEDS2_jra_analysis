@@ -11,6 +11,7 @@ import sqlite3
 import pandas as pd
 import pykakasi
 import functools
+import json
 from database import get_connection, DB_PATH
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -18,12 +19,28 @@ sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 
 kks = pykakasi.kakasi()
 
+# Carregar dicionário do Gemini (se existir)
+gemini_dict = {}
+if os.path.exists('data/gemini_cache.json'):
+    try:
+        with open('data/gemini_cache.json', 'r', encoding='utf-8') as f:
+            gemini_dict = json.load(f)
+        print(f"[*] Dicionário Gemini carregado com {len(gemini_dict)} nomes originais!")
+    except:
+        pass
+
 @functools.lru_cache(maxsize=100000)
 def to_romaji(text):
-    if not text or pd.isna(text): return text
-    if isinstance(text, (int, float)): return text
-    res = kks.convert(str(text))
-    return "".join([item['hepburn'] for item in res]).title().strip()
+    if not text:
+        return text
+    
+    # Prioridade Máxima: Tradução Perfeita da IA (ex: Deep Impact)
+    if text in gemini_dict:
+        return gemini_dict[text]
+        
+    # Fallback: Transliteração Matemática PyKakasi
+    result = kks.convert(text)
+    return "".join([item['hepburn'] for item in result]).title().strip()
 
 # ================================================================
 # DICIONÁRIOS DE TRADUÇÃO
