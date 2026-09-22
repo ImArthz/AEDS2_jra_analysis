@@ -9,10 +9,21 @@ import os
 import re
 import sqlite3
 import pandas as pd
+import pykakasi
+import functools
 from database import get_connection, DB_PATH
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
+kks = pykakasi.kakasi()
+
+@functools.lru_cache(maxsize=100000)
+def to_romaji(text):
+    if not text or pd.isna(text): return text
+    if isinstance(text, (int, float)): return text
+    res = kks.convert(str(text))
+    return "".join([item['hepburn'] for item in res]).title().strip()
 
 # ================================================================
 # DICIONÁRIOS DE TRADUÇÃO
@@ -200,6 +211,10 @@ def create_english_db(source_db=None, target_db=None):
     schema_sql = conn_src.execute("SELECT sql FROM sqlite_master WHERE type='table'").fetchall()
     for (sql,) in schema_sql:
         if sql:
+            # Remove UNIQUE constraint from name in horses table to avoid collisions after translation
+            if 'CREATE TABLE horses' in sql or 'CREATE TABLE "horses"' in sql:
+                sql = sql.replace('name TEXT UNIQUE NOT NULL', 'name TEXT NOT NULL')
+                sql = sql.replace('name TEXT UNIQUE', 'name TEXT')
             conn_dst.execute(sql)
     
     # Copiar índices
@@ -234,22 +249,29 @@ def create_english_db(source_db=None, target_db=None):
         df_entries.to_sql('race_entries', conn_dst, if_exists='append', index=False)
         print(f"  ✓ {len(df_entries)} entradas traduzidas")
     
-    # 4. Copiar horses (nomes próprios mantidos em JP)
-    print("[Copiando] horses...")
+    # 4. Copiar horses (nomes próprios agora traduzidos)
+    print("[Traduzindo] horses...")
     df_horses = pd.read_sql_query("SELECT * FROM horses", conn_src)
     if not df_horses.empty:
         df_horses['sex'] = df_horses['sex'].apply(lambda x: translate_text(x, SEX_MAP))
+        for col in ['name', 'color', 'breeder', 'owner']:
+            if col in df_horses.columns:
+                df_horses[col] = df_horses[col].apply(to_romaji)
         df_horses.to_sql('horses', conn_dst, if_exists='append', index=False)
         print(f"  ✓ {len(df_horses)} cavalos")
     
-    # 5. Copiar pedigree (nomes próprios)
-    print("[Copiando] pedigree...")
+    # 5. Copiar pedigree (nomes próprios traduzidos)
+    print("[Traduzindo] pedigree...")
     for table in ['pedigree', 'pedigree_tree']:
         try:
             df = pd.read_sql_query(f"SELECT * FROM {table}", conn_src)
             if not df.empty:
+                cols_tr = ['horse_name', 'sire_name', 'dam_name', 'grandsire_name', 'dam_sire_name', 'ancestor_name']
+                for col in cols_tr:
+                    if col in df.columns:
+                        df[col] = df[col].apply(to_romaji)
                 df.to_sql(table, conn_dst, if_exists='append', index=False)
-                print(f"  ✓ {len(df)} registros em {table}")
+                print(f"  ✓ {len(df)} registros traduzidos em {table}")
         except Exception:
             print(f"  - {table}: vazio ou não existe")
     

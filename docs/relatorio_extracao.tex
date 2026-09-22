@@ -202,6 +202,34 @@ Onde:
 
 O brilhantismo e o sucesso inquestionável dessa abordagem é visualizado nos resultados da saída. Um Cavalo azarão que participou de pouquíssimas provas em sua carreira na JRA, jamais tendo alcançado o 1º lugar em toda a sua vida (o que em Tabelas SQL e CSV o deixaria no final do ranking global na posição \#30.000, tido como fracasso), se esse cavalo repetidas vezes chegou na 2ª e 3ª posição cruzando o funil atrás da traseira de cavalos verdadeiramente lendários e míticos de altíssimo grau $PR$ e *EigenVector Centrality*, o algoritmo flui e absorve indiretamente por reflexão a autoridade desses vértices densos gigantescos. O Azarão, mesmo com ZERADAS vitórias, é ranqueado no topo do \textit{PageRank} das tabelas do sistema, e o algoritmo prova matematicamente que esse cavalo era fisicamente extraordinário e só não possuía ouro pelo terrível azar de ter nascido cronologicamente na mesma era das lendas indomáveis do esporte. O grafo desmascara o talento e extrai "diamantes em formato de dados".
 
+﻿
+\section{Reta Final: Extracao Continua de 36 Horas e Resiliencia Arquitetural}
+
+A transicao de um script teorico de extracao para um pipeline de dados massivo e ininterrupto revelou as duras realidades da instabilidade de redes no mundo real e anomalias de bancos de dados legados. A fase definitiva de extracao comecou no domingo, aproximadamente as 15:00, e foi concluida com sucesso na terca-feira a 01:00, totalizando quase 36 horas de execucao implacavel. Esta maratona exigiu a implementacao de padroes avancados de engenharia de software para garantir a sobrevivencia do pipeline.
+
+\subsection{Resiliencia Contra Quedas de Rede e Colisoes Semanticas}
+Durante a execucao, o script encontrou obstaculos severos que teriam travado fatalmente um raspador sequencial padrao. Catalogamos \textit{IntegrityErrors} no banco de dados, especificamente decorrentes de violacoes da restricao \textit{UNIQUE} em chaves primarias. Isso ocorreu porque os dados oficiais da JRA contem multiplas variacoes ortograficas para o exato mesmo cavalo. Quando a API do JBIS resolvia essas variacoes, ela retornava corretamente o mesmo ID biologico. Para evitar que o pipeline parasse ao descobrir uma chave primaria duplicada, projetamos um \textbf{Escudo Global Try-Catch} inteligente emparelhado com um \textit{Protocolo de Mesclagem} (Merge) SQL programatico. Ao detectar um \texttt{IntegrityError}, o algoritmo interceptava dinamicamente a excecao, redirecionava todas as chaves estrangeiras (Entradas de Corrida) do alias duplicado para o \texttt{horse\_id} oficial registrado, deletava a duplicata da memoria e prosseguia perfeitamente para a proxima iteracao.
+
+Alem disso, dos 8.224 cavalos processados, exatamente 39 sofreram de \textit{Time-Outs} de conexao durante a madrugada. Atraves de consultas SQL precisas, esses nos isolados foram identificados e raspados novamente de forma individual no final do lote, atingindo uma taxa de sucesso de 100\% de raspagem sem nenhum alvo faltando. Uma anomalia microscopica tambem foi documentada: 8 cavalos oficiais da JRA possuiam arvores genealogicas literalmente vazias no banco de dados original do JBIS. Isso valida a precisao matematica de nossa extracao.
+
+\subsection{Normalizacao Linguistica e Otimizacao de Memoization em O(1)}
+Um requisito critico para internacionalizar o conjunto de dados e prepara-lo para consumo por Inteligencia Artificial foi a erradicacao completa de caracteres japoneses das colunas textuais (Nomes de Cavalos, Donos, Joqueis, Criadores). Para conseguir isso, integramos a biblioteca linguistica \texttt{pykakasi}, traduzindo estritamente todo substantivo proprio para \textit{Hepburn Romaji} (o alfabeto latino padrao).
+
+No entanto, aplicar essa transformacao linguistica sequencialmente na enorme tabela \texttt{pedigree\_tree} — que inchou para impressionantes \textbf{504.206 nos ancestrais relacionais} — introduziu um severo gargalo computacional. Mitigamos isso injetando uma camada de \textit{Memoization de Programacao Dinamica} (\texttt{functools.lru\_cache}). Uma vez que o meio milhao de nos, na verdade, se origina de um grupo muito menor de ancestrais biologicos que se repetem, armazenar a traducao em cache em uma estrutura de Mapa de Hash em O(1) reduziu o tempo de traducao de cerca de 30 minutos estimados para menos de 30 segundos.
+
+\subsection{Relatorio de Validacao Formal}
+O script final de validacao analisou o conjunto de dados em CSV ingles exportado em O(N) usando Pandas, levando meros 2.4 segundos para confirmar a integridade estrutural absoluta da rede relacional. As contagens conclusivas atestam a robustez da preparacao do grafo:
+\begin{itemize}
+    \item \textbf{Total de Corridas Graded:} 3.217
+    \item \textbf{Total de Entradas (Arestas):} 33.424
+    \item \textbf{Cavalos Unicos (Vertices):} 8.224
+    \item \textbf{Pedigrees Diretos:} 8.216
+    \item \textbf{Total de Nos da Arvore Genealogica:} 504.206
+\end{itemize}
+A validacao confirmou zero referencias fantasmas (0 Chaves Estrangeiras quebradas) em todas as 33.424 entradas, garantindo um ambiente matematicamente perfeito para as iminentes implementacoes do PageRank e do Grafo Aciclico Direcionado (DAG).
+
+
+
 \section{Considerações Finais e Expansão Futura de IA}
 O desenvolvimento prático e analítico desta arquitetura provou incontestavelmente a necessidade premente de acoplar noções clássicas de estruturas computacionais com extrações severas de domínios caóticos, fragmentados e repletos de ruídos oriundos da internet legada dos anos 2000.
 O resultado consolidado superou mais de 33 mil entradas esportivas validadas por QA e 8 mil nós mapeados individualmente no grafo semântico.

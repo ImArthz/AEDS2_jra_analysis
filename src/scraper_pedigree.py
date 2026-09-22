@@ -9,6 +9,7 @@ import re
 import time
 import urllib.parse
 import requests
+import sqlite3
 from bs4 import BeautifulSoup
 from database import get_connection, init_db, export_to_csv
 
@@ -191,66 +192,79 @@ def scrape_missing_pedigrees(delay=2.0, max_horses=None):
     print(f"{'='*60}\n")
 
     for idx, (horse_name, db_horse_id) in enumerate(pending, 1):
-        print(f"[{idx}/{len(pending)}] '{horse_name}'...")
-        horse_id = search_jbis_horse_id(horse_name, delay)
-        time.sleep(delay)
+        try:
+            print(f"[{idx}/{len(pending)}] '{horse_name}'...")
+            horse_id = search_jbis_horse_id(horse_name, delay)
+            time.sleep(delay)
 
-        if not horse_id:
-            print(f"   [N/F] No localizado no JBIS.")
-            cur.execute("INSERT OR IGNORE INTO pedigree (horse_id, horse_name) VALUES (?, ?)", (db_horse_id, horse_name))
-            cur.execute("UPDATE horses SET profile_scraped = 1 WHERE name = ?", (horse_name,))
-            conn.commit()
-            continue
+            if not horse_id:
+                print(f"   [N/F] No localizado no JBIS.")
+                cur.execute("INSERT OR IGNORE INTO pedigree (horse_id, horse_name) VALUES (?, ?)", (db_horse_id, horse_name))
+                cur.execute("UPDATE horses SET profile_scraped = 1 WHERE name = ?", (horse_name,))
+                conn.commit()
+                continue
 
-        # 1. Extrair Perfil
-        profile = extract_jbis_profile(horse_id)
-        time.sleep(delay)
+            # 1. Extrair Perfil
+            profile = extract_jbis_profile(horse_id)
+            time.sleep(delay)
 
-        # Atualizar tabela horses com perfil
-        cur.execute("""
-        UPDATE horses SET 
-            horse_id = ?, birth_date = ?, color = ?, breeder = ?, 
-            owner = ?, total_earnings = ?, total_starts = ?, total_wins = ?, 
-            profile_scraped = 1
-        WHERE name = ?
-        """, (
-            horse_id, profile["birth_date"], profile["color"], profile["breeder"],
-            profile["owner"], profile["total_earnings"], profile["total_starts"], 
-            profile["total_wins"], horse_name
-        ))
-        
-        # 2. Extrair Pedigree
-        result = extract_jbis_pedigree_5gen(horse_id, horse_name)
-        time.sleep(delay)
-
-        if result:
-            leg = result["legacy"]
-            cur.execute("""
-            INSERT OR REPLACE INTO pedigree (
-                horse_id, horse_name, sire_id, sire_name, dam_id, dam_name,
-                grandsire_id, grandsire_name, dam_sire_id, dam_sire_name
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                leg["horse_id"], leg["horse_name"], leg["sire_id"], leg["sire_name"],
-                leg["dam_id"], leg["dam_name"], leg["grandsire_id"], leg["grandsire_name"],
-                leg["dam_sire_id"], leg["dam_sire_name"]
-            ))
-
-            for entry in result["tree"]:
+            # Atualizar tabela horses com perfil
+            try:
                 cur.execute("""
-                INSERT OR REPLACE INTO pedigree_tree
-                (horse_id, horse_name, ancestor_id, ancestor_name, generation, line)
-                VALUES (?, ?, ?, ?, ?, ?)
+                UPDATE horses SET 
+                    horse_id = ?, birth_date = ?, color = ?, breeder = ?, 
+                    owner = ?, total_earnings = ?, total_starts = ?, total_wins = ?, 
+                    profile_scraped = 1
+                WHERE name = ?
                 """, (
-                    entry["horse_id"], entry["horse_name"], entry["ancestor_id"], 
-                    entry["ancestor_name"], entry["generation"], entry["line"]
+                    horse_id, profile["birth_date"], profile["color"], profile["breeder"],
+                    profile["owner"], profile["total_earnings"], profile["total_starts"], 
+                    profile["total_wins"], horse_name
                 ))
-            print(f"   ✓ Perfil e Pedigree salvos ({len(result['tree'])} ancestrais). Ganhos: {profile['total_earnings']:,} ¥")
-        else:
-            print(f"   [ERRO] Apenas perfil salvo. Falha no Pedigree.")
+            except sqlite3.IntegrityError:
+                print(f"   [MERGE] Conflito de ID: '{horse_name}' é uma variação de um cavalo existente. Mesclando para o ID oficial {horse_id}.")
+                cur.execute("UPDATE race_entries SET horse_id = ? WHERE horse_id = ?", (horse_id, db_horse_id))
+                cur.execute("DELETE FROM pedigree WHERE horse_id = ?", (db_horse_id,))
+                cur.execute("DELETE FROM horses WHERE horse_id = ?", (db_horse_id,))
+                conn.commit()
+                continue
+        
+            # 2. Extrair Pedigree
+            result = extract_jbis_pedigree_5gen(horse_id, horse_name)
+            time.sleep(delay)
 
-        conn.commit()
-        if idx % 10 == 0: export_to_csv()
+            if result:
+                leg = result["legacy"]
+                cur.execute("""
+                INSERT OR REPLACE INTO pedigree (
+                    horse_id, horse_name, sire_id, sire_name, dam_id, dam_name,
+                    grandsire_id, grandsire_name, dam_sire_id, dam_sire_name
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    leg["horse_id"], leg["horse_name"], leg["sire_id"], leg["sire_name"],
+                    leg["dam_id"], leg["dam_name"], leg["grandsire_id"], leg["grandsire_name"],
+                    leg["dam_sire_id"], leg["dam_sire_name"]
+                ))
+
+                for entry in result["tree"]:
+                    cur.execute("""
+                    INSERT OR REPLACE INTO pedigree_tree
+                    (horse_id, horse_name, ancestor_id, ancestor_name, generation, line)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """, (
+                        entry["horse_id"], entry["horse_name"], entry["ancestor_id"], 
+                        entry["ancestor_name"], entry["generation"], entry["line"]
+                    ))
+                print(f"   ✓ Perfil e Pedigree salvos ({len(result['tree'])} ancestrais). Ganhos: {profile['total_earnings']:,} ¥")
+            else:
+                print(f"   [ERRO] Apenas perfil salvo. Falha no Pedigree.")
+
+            conn.commit()
+            if idx % 10 == 0: export_to_csv()
+
+        except Exception as global_e:
+            print(f"   [ERRO CRITICO] Falha ao processar {horse_name}: {global_e}")
+            continue
 
     export_to_csv()
     conn.close()
