@@ -22,8 +22,8 @@ ENV/
 *.db-*
 
 # Ignore currently running CSVs
-data/csv/pedigree.csv
-data/csv/pedigree_tree.csv
+
+
 
 # Temp files
 test_jbis.html
