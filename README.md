@@ -92,3 +92,15 @@ Os arquivos renderizados acima são compilados automaticamente via **GitHub Acti
    cd src
    python run_pipeline.py --start-year 2002 --end-year 2025 --analyze
    ```
+
+## 📊 Insights dos Dados
+
+Durante o sprint de extracao de 36 horas, consolidamos um banco de dados biologico massivo. Aqui estao alguns insights visuais gerados diretamente dos CSVs em ingles:
+
+### Top 10 Sires (Pais)
+Um olhar sobre as linhagens (bloodlines) mais dominantes nas corridas Graded do Japao (2002-2025).
+![Top 10 Sires](docs/assets/top_sires.png)
+
+### Top 10 Cavalos Mais Ricos
+Os cavalos com os maiores ganhos totais registrados no banco de dados.
+![Top 10 Earners](docs/assets/top_earners.png)

@@ -92,3 +92,15 @@ The rendered files above are automatically compiled via **GitHub Actions** on ev
    cd src
    python run_pipeline.py --start-year 2002 --end-year 2025 --analyze
    ```
+
+## 📊 Data Insights
+
+During the 36-hour extraction sprint, we consolidated a massive biological database. Here are some visual insights generated directly from the English CSVs:
+
+### Top 10 Sires (Fathers)
+A look at the most dominant bloodlines in Japanese Graded races (2002-2025).
+![Top 10 Sires](docs/assets/top_sires.png)
+
+### Top 10 Earners
+The most financially successful horses in the database.
+![Top 10 Earners](docs/assets/top_earners.png)
