@@ -20,24 +20,42 @@ sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 kks = pykakasi.kakasi()
 
 # Carregar dicionário do Gemini (se existir)
+GEMINI_CACHE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "gemini_cache.json"))
+COUNTRY_RE = re.compile(r'^(.+?)\s*(\([A-Z]{2,4}\))\s*$')
+
 gemini_dict = {}
-if os.path.exists('data/gemini_cache.json'):
+if os.path.exists(GEMINI_CACHE_PATH):
     try:
-        with open('data/gemini_cache.json', 'r', encoding='utf-8') as f:
+        with open(GEMINI_CACHE_PATH, 'r', encoding='utf-8') as f:
             gemini_dict = json.load(f)
-        print(f"[*] Dicionário Gemini carregado com {len(gemini_dict)} nomes originais!")
-    except:
-        pass
+        print(f"[*] Dicionário Gemini carregado com {len(gemini_dict):,} nomes originais!")
+    except Exception as e:
+        print(f"[!] Erro ao carregar gemini_cache.json: {e}")
 
 @functools.lru_cache(maxsize=100000)
 def to_romaji(text):
+    if not text or pd.isna(text):
+        return text
+    text = str(text).strip()
     if not text:
         return text
-    
-    # Prioridade Máxima: Tradução Perfeita da IA (ex: Deep Impact)
+
+    # Prioridade 1: Tradução exata da IA (ex: Deep Impact)
     if text in gemini_dict:
         return gemini_dict[text]
-        
+
+    # Prioridade 2: Sufixo de país (ex: サンデーサイレンス(USA) -> Sunday Silence (USA))
+    m = COUNTRY_RE.match(text)
+    if m:
+        base, country = m.group(1).strip(), m.group(2).strip()
+        if base in gemini_dict:
+            clean_base = COUNTRY_RE.sub(r'\1', gemini_dict[base]).strip()
+            return f"{clean_base} {country}"
+
+    # Se já está em ASCII puro, manter como está
+    if text.isascii():
+        return text
+
     # Fallback: Transliteração Matemática PyKakasi
     result = kks.convert(text)
     return "".join([item['hepburn'] for item in result]).title().strip()
@@ -74,9 +92,32 @@ WEATHER_MAP = {
 
 # Sexo
 SEX_MAP = {
-    '牡': 'Male', '牝': 'Female', 'セン': 'Gelding', 'セ': 'Gelding',
+    '牡': 'Male', '牝': 'Female', 'セン': 'Gelding', 'セ': 'Gelding', 'せん': 'Gelding',
     'Male': 'Male', 'Female': 'Female', 'Gelding': 'Gelding',
 }
+
+# Pelagem (Coat Color)
+COLOR_MAP = {
+    '鹿毛': 'Bay',
+    '黒鹿毛': 'Dark Bay',
+    '栗毛': 'Chestnut',
+    '栃栗毛': 'Dark Chestnut',
+    '青鹿毛': 'Brown',
+    '青毛': 'Black',
+    '芦毛': 'Grey',
+    '白毛': 'White',
+}
+
+def translate_sex(val):
+    if not val or pd.isna(val):
+        return val
+    s = str(val).strip()
+    if s in SEX_MAP:
+        return SEX_MAP[s]
+    m = re.match(r'^(牡|牝|せん|セン|セ)\d*$', s)
+    if m:
+        return SEX_MAP.get(m.group(1), s)
+    return s
 
 # Grade (normalizar caracteres full-width)
 GRADE_MAP = {
@@ -164,9 +205,13 @@ def translate_race_name(name):
     clean = re.sub(r'^[GＧ][ⅠⅡⅢ123]\s*', '', name).strip()
     if clean in RACE_NAME_MAP:
         return RACE_NAME_MAP[clean]
+    if name in gemini_dict:
+        return gemini_dict[name]
+    if clean in gemini_dict:
+        return gemini_dict[clean]
     
-    # Se não encontrou, retornar original (mantém em japonês)
-    return name
+    # Fallback via to_romaji
+    return to_romaji(clean)
 
 
 def translate_margin(margin):
@@ -200,6 +245,20 @@ def translate_margin(margin):
         return f"{m2.group(1)} {m2.group(2)}/{m2.group(3)} lengths"
     
     return translate_text(margin, MARGIN_MAP)
+
+
+def translate_race_id(rid):
+    """Converte race_id japonés (ex: 2002_中山_弥生賞) para ASCII limpo (ex: 2002_Nakayama_Yayoi_Sho)."""
+    if not rid or pd.isna(rid):
+        return rid
+    parts = str(rid).strip().split('_', 2)
+    if len(parts) == 3:
+        yr, trk, rname = parts
+        trk_en = translate_text(trk, TRACK_MAP)
+        rname_en = translate_race_name(rname)
+        slug = re.sub(r'[^A-Za-z0-9]+', '_', str(rname_en)).strip('_')
+        return f"{yr}_{trk_en}_{slug}"
+    return to_romaji(rid)
 
 
 def create_english_db(source_db=None, target_db=None):
@@ -246,7 +305,21 @@ def create_english_db(source_db=None, target_db=None):
     # 2. Traduzir e copiar races
     print("[Traduzindo] races...")
     df_races = pd.read_sql_query("SELECT * FROM races", conn_src)
+    race_id_map = {}
     if not df_races.empty:
+        # Construir mapa determinístico e único de race_id JP -> EN
+        used_rids = set()
+        for orig_rid in df_races['race_id']:
+            cand = translate_race_id(orig_rid)
+            base_cand = cand
+            k = 2
+            while cand in used_rids:
+                cand = f"{base_cand}_{k}"
+                k += 1
+            used_rids.add(cand)
+            race_id_map[orig_rid] = cand
+
+        df_races['race_id'] = df_races['race_id'].map(race_id_map)
         df_races['track'] = df_races['track'].apply(lambda x: translate_text(x, TRACK_MAP))
         df_races['surface'] = df_races['surface'].apply(lambda x: translate_text(x, SURFACE_MAP))
         df_races['going'] = df_races['going'].apply(lambda x: translate_text(x, GOING_MAP))
@@ -260,20 +333,27 @@ def create_english_db(source_db=None, target_db=None):
     print("[Traduzindo] race_entries...")
     df_entries = pd.read_sql_query("SELECT * FROM race_entries", conn_src)
     if not df_entries.empty:
-        df_entries['sex'] = df_entries['sex'].apply(lambda x: translate_text(x, SEX_MAP))
+        df_entries['race_id'] = df_entries['race_id'].map(lambda x: race_id_map.get(x, translate_race_id(x)))
+        df_entries['sex'] = df_entries['sex'].apply(translate_sex)
         df_entries['margin'] = df_entries['margin'].apply(translate_margin)
-        # Nomes de cavalos e jóqueis ficam em japonês (são nomes próprios)
+        for col in ['horse_name', 'horse_id', 'jockey', 'trainer']:
+            if col in df_entries.columns:
+                df_entries[col] = df_entries[col].apply(to_romaji)
+        df_entries = df_entries.drop_duplicates(subset=['race_id', 'horse_name'], keep='first')
         df_entries.to_sql('race_entries', conn_dst, if_exists='append', index=False)
         print(f"  ✓ {len(df_entries)} entradas traduzidas")
     
-    # 4. Copiar horses (nomes próprios agora traduzidos)
+    # 4. Copiar horses (nomes próprios e cores traduzidos)
     print("[Traduzindo] horses...")
     df_horses = pd.read_sql_query("SELECT * FROM horses", conn_src)
     if not df_horses.empty:
-        df_horses['sex'] = df_horses['sex'].apply(lambda x: translate_text(x, SEX_MAP))
-        for col in ['name', 'color', 'breeder', 'owner']:
+        df_horses['sex'] = df_horses['sex'].apply(translate_sex)
+        if 'color' in df_horses.columns:
+            df_horses['color'] = df_horses['color'].apply(lambda x: translate_text(x, COLOR_MAP))
+        for col in ['horse_id', 'name', 'breeder', 'owner']:
             if col in df_horses.columns:
                 df_horses[col] = df_horses[col].apply(to_romaji)
+        df_horses = df_horses.drop_duplicates(subset=['horse_id'], keep='first')
         df_horses.to_sql('horses', conn_dst, if_exists='append', index=False)
         print(f"  ✓ {len(df_horses)} cavalos")
     
@@ -283,10 +363,12 @@ def create_english_db(source_db=None, target_db=None):
         try:
             df = pd.read_sql_query(f"SELECT * FROM {table}", conn_src)
             if not df.empty:
-                cols_tr = ['horse_name', 'sire_name', 'dam_name', 'grandsire_name', 'dam_sire_name', 'ancestor_name']
+                cols_tr = ['horse_id', 'horse_name', 'sire_name', 'dam_name', 'grandsire_name', 'dam_sire_name', 'ancestor_name']
                 for col in cols_tr:
                     if col in df.columns:
                         df[col] = df[col].apply(to_romaji)
+                if table == 'pedigree':
+                    df = df.drop_duplicates(subset=['horse_id'], keep='first')
                 df.to_sql(table, conn_dst, if_exists='append', index=False)
                 print(f"  ✓ {len(df)} registros traduzidos em {table}")
         except Exception:
