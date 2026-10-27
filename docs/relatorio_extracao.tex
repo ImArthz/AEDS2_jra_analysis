@@ -202,7 +202,7 @@ Onde:
 
 O brilhantismo e o sucesso inquestionável dessa abordagem é visualizado nos resultados da saída. Um Cavalo azarão que participou de pouquíssimas provas em sua carreira na JRA, jamais tendo alcançado o 1º lugar em toda a sua vida (o que em Tabelas SQL e CSV o deixaria no final do ranking global na posição \#30.000, tido como fracasso), se esse cavalo repetidas vezes chegou na 2ª e 3ª posição cruzando o funil atrás da traseira de cavalos verdadeiramente lendários e míticos de altíssimo grau $PR$ e *EigenVector Centrality*, o algoritmo flui e absorve indiretamente por reflexão a autoridade desses vértices densos gigantescos. O Azarão, mesmo com ZERADAS vitórias, é ranqueado no topo do \textit{PageRank} das tabelas do sistema, e o algoritmo prova matematicamente que esse cavalo era fisicamente extraordinário e só não possuía ouro pelo terrível azar de ter nascido cronologicamente na mesma era das lendas indomáveis do esporte. O grafo desmascara o talento e extrai "diamantes em formato de dados".
 
-﻿
+
 \section{Reta Final: Extracao Continua de 36 Horas e Resiliencia Arquitetural}
 
 A transicao de um script teorico de extracao para um pipeline de dados massivo e ininterrupto revelou as duras realidades da instabilidade de redes no mundo real e anomalias de bancos de dados legados. A fase definitiva de extracao comecou no domingo, aproximadamente as 15:00, e foi concluida com sucesso na terca-feira a 01:00, totalizando quase 36 horas de execucao implacavel. Esta maratona exigiu a implementacao de padroes avancados de engenharia de software para garantir a sobrevivencia do pipeline.
@@ -210,25 +210,78 @@ A transicao de um script teorico de extracao para um pipeline de dados massivo e
 \subsection{Resiliencia Contra Quedas de Rede e Colisoes Semanticas}
 Durante a execucao, o script encontrou obstaculos severos que teriam travado fatalmente um raspador sequencial padrao. Catalogamos \textit{IntegrityErrors} no banco de dados, especificamente decorrentes de violacoes da restricao \textit{UNIQUE} em chaves primarias. Isso ocorreu porque os dados oficiais da JRA contem multiplas variacoes ortograficas para o exato mesmo cavalo. Quando a API do JBIS resolvia essas variacoes, ela retornava corretamente o mesmo ID biologico. Para evitar que o pipeline parasse ao descobrir uma chave primaria duplicada, projetamos um \textbf{Escudo Global Try-Catch} inteligente emparelhado com um \textit{Protocolo de Mesclagem} (Merge) SQL programatico. Ao detectar um \texttt{IntegrityError}, o algoritmo interceptava dinamicamente a excecao, redirecionava todas as chaves estrangeiras (Entradas de Corrida) do alias duplicado para o \texttt{horse\_id} oficial registrado, deletava a duplicata da memoria e prosseguia perfeitamente para a proxima iteracao.
 
-Alem disso, dos 8.224 cavalos processados, exatamente 39 sofreram de \textit{Time-Outs} de conexao durante a madrugada. Atraves de consultas SQL precisas, esses nos isolados foram identificados e raspados novamente de forma individual no final do lote, atingindo uma taxa de sucesso de 100\% de raspagem sem nenhum alvo faltando. Uma anomalia microscopica tambem foi documentada: 8 cavalos oficiais da JRA possuiam arvores genealogicas literalmente vazias no banco de dados original do JBIS. Isso valida a precisao matematica de nossa extracao.
+Alem disso, dos 8.209 cavalos processados, exatamente 39 sofreram de \textit{Time-Outs} de conexao durante a madrugada. Atraves de consultas SQL precisas, esses nos isolados foram identificados e raspados novamente de forma individual no final do lote, atingindo uma taxa de sucesso de 100\% de raspagem sem nenhum alvo faltando. Uma anomalia microscopica tambem foi documentada: 8 cavalos oficiais da JRA possuiam arvores genealogicas literalmente vazias no banco de dados original do JBIS. Isso valida a precisao matematica de nossa extracao.
 
 \subsection{Normalizacao Linguistica e Otimizacao de Memoization em O(1)}
 Um requisito critico para internacionalizar o conjunto de dados e prepara-lo para consumo por Inteligencia Artificial foi a erradicacao completa de caracteres japoneses das colunas textuais (Nomes de Cavalos, Donos, Joqueis, Criadores). Para conseguir isso, integramos a biblioteca linguistica \texttt{pykakasi}, traduzindo estritamente todo substantivo proprio para \textit{Hepburn Romaji} (o alfabeto latino padrao).
 
-No entanto, aplicar essa transformacao linguistica sequencialmente na enorme tabela \texttt{pedigree\_tree} — que inchou para impressionantes \textbf{504.206 nos ancestrais relacionais} — introduziu um severo gargalo computacional. Mitigamos isso injetando uma camada de \textit{Memoization de Programacao Dinamica} (\texttt{functools.lru\_cache}). Uma vez que o meio milhao de nos, na verdade, se origina de um grupo muito menor de ancestrais biologicos que se repetem, armazenar a traducao em cache em uma estrutura de Mapa de Hash em O(1) reduziu o tempo de traducao de cerca de 30 minutos estimados para menos de 30 segundos.
+No entanto, aplicar essa transformacao linguistica sequencialmente na enorme tabela \texttt{pedigree\_tree} — que inchou para impressionantes \textbf{504.074 nos ancestrais relacionais} — introduziu um severo gargalo computacional. Mitigamos isso injetando uma camada de \textit{Memoization de Programacao Dinamica} (\texttt{functools.lru\_cache}). Uma vez que o meio milhao de nos, na verdade, se origina de um grupo muito menor de ancestrais biologicos que se repetem, armazenar a traducao em cache em uma estrutura de Mapa de Hash em O(1) reduziu o tempo de traducao de cerca de 30 minutos estimados para menos de 30 segundos.
 
 \subsection{Relatorio de Validacao Formal}
 O script final de validacao analisou o conjunto de dados em CSV ingles exportado em O(N) usando Pandas, levando meros 2.4 segundos para confirmar a integridade estrutural absoluta da rede relacional. As contagens conclusivas atestam a robustez da preparacao do grafo:
 \begin{itemize}
-    \item \textbf{Total de Corridas Graded:} 3.217
-    \item \textbf{Total de Entradas (Arestas):} 33.424
-    \item \textbf{Cavalos Unicos (Vertices):} 8.224
-    \item \textbf{Pedigrees Diretos:} 8.216
-    \item \textbf{Total de Nos da Arvore Genealogica:} 504.206
+    \item \textbf{Total de Corridas Graded:} 3.216
+    \item \textbf{Total de Entradas (Arestas):} 33.409
+    \item \textbf{Cavalos Unicos (Vertices):} 8.209
+    \item \textbf{Pedigrees Diretos:} 8.202
+    \item \textbf{Total de Nos da Arvore Genealogica:} 504.074
 \end{itemize}
-A validacao confirmou zero referencias fantasmas (0 Chaves Estrangeiras quebradas) em todas as 33.424 entradas, garantindo um ambiente matematicamente perfeito para as iminentes implementacoes do PageRank e do Grafo Aciclico Direcionado (DAG).
+A validacao confirmou zero referencias fantasmas (0 Chaves Estrangeiras quebradas) em todas as 33.409 entradas, garantindo um ambiente matematicamente perfeito para as iminentes implementacoes do PageRank e do Grafo Aciclico Direcionado (DAG).
 
 
+
+\section{Engenharia de Traducao Hibrida (IA + Lexico) e Sanitizacao Profunda de Anomalias}
+
+Durante a preparacao do conjunto de dados para publicacao cientifica internacional (padrao \textit{Zenodo}) e treinamento de algoritmos de Aprendizado de Maquina, uma auditoria minuciosa revelou que a simples transliteracao fonetica automatizada apresentava falhas linguisticas e estruturais severas. Esta secao documenta os sete problemas criticos de traducao e sanitizacao enfrentados e a arquitetura hibrida desenvolvida para soluciona-los.
+
+\subsection{Problema 1: O Colapso da Transliteracao Fonetica Pura (\texttt{pykakasi}) em Katakana (\textit{Gairaigo})}
+No ecossistema do turfe japones, os nomes de cavalos puro-sangue sao registrados oficialmente no silabario \textit{Katakana}, que adapta foneticamente vocabulos estrangeiros (ingles, frances, italiano, alemao) a fonotatica japonesa --- caracterizada por silabas abertas (insercao de vogais epenteticas) e ausencia de distincao entre as consoantes liquidas $/l/$ e $/r/$.
+Quando o pipeline preliminar aplicou a biblioteca \texttt{pykakasi} (projetada para converter Kanji em \textit{Hepburn Romaji}), o algoritmo realizou uma transliteracao fonetica literal das silabas em Katakana, gerando cadeias de caracteres irreconheciveis internacionalmente:
+\begin{itemize}
+    \item \textit{Deep Impact} era corrompido para \texttt{"Diipuinpakuto"};
+    \item \textit{Admire Cozzene} tornava-se \texttt{"Adomaiyakojiin"};
+    \item \textit{Divine Light} convertia-se em \texttt{"Divainraito"};
+    \item \textit{Derby Legno} transformava-se em \texttt{"Daabiireguno"};
+    \item \textit{Orfevre} e \textit{Vodka} perdiam completamente sua grafia oficial internacional.
+\end{itemize}
+Alem de comprometer a legibilidade cientifica dos grafos e relatorios, essa distorcao impedia o cruzamento do banco com bases internacionais de genealogia equina, onde ancestrais importados apareciam ora em ingles original, ora em Romaji fonetico, fragmentando um mesmo vertice biologico em dois nos distintos no Grafo Aciclico Direcionado (DAG).
+
+\subsection{Problema 2: Ambiguidade de Leituras \textit{Onyomi}, \textit{Kunyomi} e \textit{Nanori} em Antroponimos (Kanji)}
+Diferentemente dos cavalos (grafados em Katakana), os nomes de joqueis, treinadores e proprietarios japoneses sao registrados em ideogramas \textit{Kanji}. Na lingua japonesa, nomes proprios humanos frequentemente utilizam leituras especiais (\textit{Nanori}) que divergem da leitura sino-japonesa padrao (\textit{Onyomi}).
+Observou-se que tradutores estatisticos genericos sem contexto de dominio convertiam erroneamente o nome do lendario joquei \textit{Yutaka Take} para \texttt{"Taketoyo"} (leitura composta \textit{Onyomi}), alem de falharem na padronizacao de joqueis internacionais licenciados pela JRA (cujos nomes aparecem com caracteres de largura total \textit{Full-Width}, como \texttt{C. Lemaire} e \texttt{M. Demuro}).
+
+\subsection{Problema 3: Poluicao Semantica de Abreviaturas Societarias e Taxonomia Biologica (Pelagens)}
+Na tabela mestre \texttt{horses}, os atributos \texttt{owner} (Proprietario) e \texttt{breeder} (Criador/Haras) contem prefixos e sufixos juridicos japoneses abreviados entre parenteses, notadamente \textit{Yugen Gaisha} (Sociedade Limitada) e \textit{Kabushiki Gaisha} (Sociedade Anonima).
+O motor fonetico \texttt{pykakasi}, ao encontrar o ideograma isolado de \textit{Yugen} entre parenteses, aplicava a leitura verbal nativa (\textit{Kunyomi}: \texttt{"Ari"}) e para \textit{Kabushiki} aplicava \texttt{"Kabu"}, produzindo registros absurdos como \texttt{"(Ari) Shadaireesuhoosu"} e \texttt{"(Kabu) Daabiisha"}, em vez das denominacoes corporativas oficiais \textbf{Shadai Race Horse Co., Ltd.} e \textbf{Darby Co., Ltd.}.
+
+Analogamente, o atributo biologico \texttt{color} (cor da pelagem do animal) havia sido submetido ao conversor fonetico em vez de um dicionario taxonomico, gerando categorias em Romaji japones (\texttt{"Kage"}, \texttt{"Kurige"}, \texttt{"Ashige"}, \texttt{"Kurokage"}) no banco em ingles, quando a taxonomia zootecnica internacional exige estritamente \textbf{Bay}, \textbf{Chestnut}, \textbf{Grey}, \textbf{Dark Bay}, \textbf{Dark Chestnut}, \textbf{Brown}, \textbf{Black} e \textbf{White}.
+
+\subsection{Problema 4: Assimetria Relacional na Traducao Parcial (\texttt{race\_entries} vs. \texttt{horses})}
+Na primeira versao do script \texttt{translate\_db.py}, as tabelas \texttt{horses}, \texttt{pedigree} e \texttt{pedigree\_tree} tinham seus nomes proprios traduzidos, mas a tabela fato \texttt{race\_entries} mantinha os atributos \texttt{horse\_name}, \texttt{jockey} e \texttt{trainer} em japones original, alem de preservar o identificador composto \texttt{race\_id} com caracteres Kanji.
+Essa assimetria causava falha total em operacoes de juncao relacional (\texttt{INNER JOIN ON race\_entries.horse\_name = horses.name}) nos arquivos CSV em ingles (\texttt{data/csv\_en/}), inviabilizando consultas analiticas diretas por nome.
+
+\subsection{Problema 5: Desperdicio de Requisicoes e Colisoes de Sufixos Geograficos na \texttt{pedigree\_tree}}
+A varredura completa das cinco tabelas do banco identificou \textbf{39.533 strings unicas} candidatas a traducao. Enviar esse volume sequencialmente para uma API de Grande Modelo de Linguagem (LLM) gerava dois problemas graves:
+\begin{enumerate}
+    \item \textbf{Redundancia de Strings ASCII:} Devido a importacao historica de garanhoes e matrizes estrangeiras pelo Japao, \textbf{15.350 das 39.533 strings (38,8\%) ja estavam originalmente em Ingles/ASCII} no banco do JBIS (ex.: \texttt{"Northern Dancer(CAN)"}, \texttt{"Comedy King(GB)"}). O envio indiscriminado dessas strings desperdicava quase metade da cota de requisicoes e tokens da API.
+    \item \textbf{Duplicacao por Sufixo de Pais:} O mesmo ancestral aparecia multiplas vezes com e sem sufixo de origem (ex.: o nome em Katakana de \textit{Sunday Silence} isolado e acompanhado de \texttt{(USA)}). Ao desacoplar via Expressao Regular o sufixo \texttt{(\textbackslash([A-Z]\{2,4\}\textbackslash)\$)} antes da consulta ao cache, traduzir apenas o radical base e reagrupar o sufixo no pos-processamento, reduzimos o universo real de traducao para \textbf{23.511 radicais japoneses unicos}.
+\end{enumerate}
+
+\subsection{Problema 6: Arquitetura do Motor Hibrido em 3 Camadas (\texttt{hybrid\_translator.py})}
+Para traduzir os 23.511 radicais japoneses com precisao de especialista e sem esbarrar em limites de taxa (\textit{HTTP 429 Resource Exhausted} ou \textit{HTTP 503 Unavailable}), projetamos uma arquitetura hibrida em tres camadas:
+\begin{enumerate}
+    \item \textbf{Camada 1 --- Dicionarios Deterministicos $O(1)$ e Normalizacao Unicode NFKC:} Mapeamento imediato de hipodromos (\texttt{TRACK\_MAP}), superficies (\texttt{SURFACE\_MAP}), estado da pista (\texttt{GOING\_MAP}), clima (\texttt{WEATHER\_MAP}), sexo (\texttt{SEX\_MAP}) e pelagens (\texttt{COLOR\_MAP}), combinado com normalizacao \texttt{unicodedata.normalize('NFKC')} para converter algarismos romanos e letras de largura total (\textit{Full-Width}) para ASCII padrao.
+    \item \textbf{Camada 2 --- Pool Prioritario Multi-Modelo Gemini (\texttt{gemini-3.5-flash-lite}, \texttt{gemini-3.5-flash}, \texttt{gemini-3.7-flash}):} Separamos as entidades criticas por categoria semantica (\textbf{310 nomes de corridas Graded}, \textbf{1.023 joqueis e treinadores} e \textbf{1.259 garanhoes/pais diretos}) e aplicamos prompts especializados por dominio com retorno estrito em JSON (\texttt{response\_mime\_type="application/json"}, \texttt{temperature=0.0}). Isso garantiu 100\% de fidelidade nos nomes historicos de corridas (ex.: \textit{Yayoi Sho}, \textit{Nakayama Kimpai}, \textit{Hanshin Daishoten}), joqueis (\textit{Yutaka Take}, \textit{Yuga Kawada}) e reprodutores (\textit{Deep Impact}, \textit{King Kamehameha}, \textit{Stay Gold}).
+    \item \textbf{Camada 3 --- Processamento Paralelo em Lote (\texttt{ThreadPoolExecutor}) + Regras de \textit{Kanmei}:} Para os 20.888 nomes remanescentes (matrizes de 3a a 5a geracao e proprietarios), combinamos workers concorrentes do pool Gemini com traducao vetorial em lote e expressoes regulares de correcao de \textit{Kanmei} (prefixos tradicionais de coudelarias japonesas, como \textit{Symboli}, \textit{Mejiro}, \textit{Narita}, \textit{Daiwa}, \textit{Meisho}, \textit{Nihon Pillow}). O cache final (\texttt{data/gemini\_cache.json}) atingiu \textbf{29.159 entradas validadas}, com zero caracteres japoneses residuais.
+\end{enumerate}
+
+\subsection{Problema 7: Sanitizacao Estrutural Pos-Extracao (Deslocamento de Colunas 2006--2018 e Imputacao de Metadados)}
+A auditoria profunda nos registros brutos do SQLite revelou ainda tres anomalias estruturais silenciosas oriundas das mudancas de layout do portal da JRA ao longo de 24 anos, todas integralmente corrigidas pelo modulo \texttt{src/clean\_data.py}:
+\begin{enumerate}
+    \item \textbf{Realinhamento Vetorial de 25.014 Entradas (2004--2018):} Entre meados de 2006 e 2018, as tabelas de resultados da JRA fundiram as colunas de Sexo e Idade em uma unica celula (\texttt{Sex+Age}, ex.: \texttt{Male4}), deslocando os indices subsequentes do parser HTML em uma posicao. Como consequencia, o nome do joquei havia sido armazenado na coluna \texttt{finish\_time}, o tempo final na coluna \texttt{margin}, o treinador na coluna \texttt{odds}, a variacao de peso na coluna \texttt{trainer} e o peso base dentro de parenteses na coluna \texttt{horse\_weight}. Desenvolvemos um algoritmo de reconstrucao in-place que desmembrou o par Sexo/Idade e realinhou perfeitamente todas as 25.014 linhas, elevando a cobertura de Joqueis, Treinadores, Idade e Peso de 25\% para \textbf{100\% (33.409/33.409)}.
+    \item \textbf{Expurgo de Registros Espurios de Tabelas de Rateio (2004):} Em duas provas de 2004, tabelas secundarias de apostas (\textit{Quinella}, \textit{Exacta}, numeros \texttt{6} a \texttt{15}, \texttt{02-07}, \texttt{02-11}) haviam sido capturadas como participantes, gerando 15 falsos cavalos. Todos foram expurgados em cascata das quatro tabelas relacionais.
+    \item \textbf{Recuperacao de Superficies de Areia (\textit{Dirt}) e Obstaculos (\textit{Obstacle}) e Imputacao de \textit{Grade}:} Nos sumarios anuais da JRA, provas de areia e obstaculos utilizam abreviacoes de um unico caractere japones em vez da palavra completa, fazendo com que 1.099 corridas ficassem com \texttt{surface} vazio e 1.834 corridas de 2002--2015 ficassem sem \texttt{grade}. Utilizando normalizacao NFKC e auto-juncao historica pelo nome canonico da prova, imputamos com 100\% de exatidao o \texttt{grade} (\texttt{G1}, \texttt{G2}, \texttt{G3}), o \texttt{grade\_weight} ($1.0$, $0.7$, $0.5$), a \texttt{surface} (\texttt{Turf}, \texttt{Dirt}, \texttt{Obstacle}) e a \texttt{distance} em todas as \textbf{3.216 corridas} (validacao final: \textbf{0 erros e 0 avisos}).
+\end{enumerate}
 
 \section{Considerações Finais e Expansão Futura de IA}
 O desenvolvimento prático e analítico desta arquitetura provou incontestavelmente a necessidade premente de acoplar noções clássicas de estruturas computacionais com extrações severas de domínios caóticos, fragmentados e repletos de ruídos oriundos da internet legada dos anos 2000.

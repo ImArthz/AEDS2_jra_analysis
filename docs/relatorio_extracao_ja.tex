@@ -201,6 +201,51 @@ WEATHER_MAP = {
 
 このアプローチの素晴らしさと疑いのない成功は、出力結果で視覚化されます。JRAでのキャリアでごくわずかなレースにしか参加せず、生涯で一度も1着になったことがない（SQLおよびCSVテーブルでは、失敗と見なされ、ランキングの底辺である30,000位に残される）という弱者の馬が、非常に高い$PR$と*固有ベクトル中心性*を持つ真に伝説的で神話的な馬の尻尾の背後にあるファネルを通過して、繰り返し2着と3着に到達した場合、アルゴリズムは流れ、これらの巨大で密な頂点の権威を反射によって間接的に吸収します。弱者は、勝利がゼロであっても、システムテーブルの\textit{PageRank}のトップにランクされ、アルゴリズムは、この馬が身体的に並外れており、スポーツの不屈の伝説と年代順に同じ時代に生まれたというひどい不運のためだけに金を欠いていたことを数学的に証明します。グラフは才能の仮面を剥ぎ取り、「データ形式のダイヤモンド」を抽出します。
 
+\section{ハイブリッド意味翻訳エンジニアリング（AI＋辞書）と構造的異常の深層クレンジング}
+
+国際的な学術公開（\textit{Zenodo}標準）および機械学習モデルのトレーニングに向けてデータセットを準備する過程で、単純な自動音訳（ローマ字変換）には深刻な言語的・構造的欠陥があることが詳細な監査によって判明しました。本セクションでは、直面した7つの重大な翻訳およびデータクレンジングの課題と、それらを解決するために設計されたハイブリッドアーキテクチャについて詳述します。
+
+\subsection{課題1：カタカナ外来語（馬名）における純粋な音訳（\texttt{pykakasi}）の崩壊}
+日本の競馬エコシステムにおいて、サラブレッドの馬名は公式に\textit{カタカナ}で登録されます。これは英語・フランス語・イタリア語などの外来語を日本語の音韻体系（開音節化のための母音挿入や、流音$/l/$と$/r/$の非区別）に適合させたものです。
+初期パイプラインが漢字かな交じり文をヘボン式ローマ字に変換する\texttt{pykakasi}ライブラリを適用した結果、カタカナ音節がそのまま文字通りにローマ字化され、国際的に判読不能な文字列が生成されました：
+\begin{itemize}
+    \item \texttt{ディープインパクト} $\to$ \texttt{"Diipuinpakuto"}（正：\textbf{Deep Impact}）
+    \item \texttt{アドマイヤコジーン} $\to$ \texttt{"Adomaiyakojiin"}（正：\textbf{Admire Cozzene}）
+    \item \texttt{ディヴァインライト} $\to$ \texttt{"Divainraito"}（正：\textbf{Divine Light}）
+    \item \texttt{ダービーレグノ} $\to$ \texttt{"Daabiireguno"}（正：\textbf{Derby Legno}）
+    \item \texttt{オルフェーヴル}（\textbf{Orfevre}）や\texttt{ウオッカ}（\textbf{Vodka}）も公式の国際表記を完全に喪失していました。
+\end{itemize}
+さらに、JBIS内の輸入祖先馬は英語表記とカタカナ表記が混在しているため、音訳された馬名は有向非巡回グラフ（DAG）内で同一の生物学的頂点を2つの別ノードに分裂させる原因となっていました。
+
+\subsection{課題2：人名（騎手・調教師・馬主の漢字表記）における音読み・訓読み・名乗りの曖昧性}
+カタカナで表記される馬名とは異なり、日本人騎手や調教師の名前は\textit{漢字}で記録されます。日本の人名には特殊な読み（\textit{名乗り}）が多用されるため、ドメイン文脈を持たない汎用統計翻訳エンジンは、伝説的騎手である\texttt{武豊}（\textbf{Yutaka Take}）を音読みで\texttt{"Taketoyo"}と誤訳しました。また、\texttt{Ｃ．ルメール}（\textbf{C. Lemaire}）や\texttt{Ｍ．デムーロ}（\textbf{M. Demuro}）などの全角文字表記の外国人騎手名も正規化が必要でした。
+
+\subsection{課題3：法人略称および生物学的分類（毛色）の意味的汚染}
+\texttt{horses}テーブルの\texttt{owner}（馬主）および\texttt{breeder}（生産牧場）列には、\texttt{(有)}（有限会社）や\texttt{(株)}（株式会社）といった法人略称が含まれています。\texttt{pykakasi}は括弧内の\texttt{有}を訓読みの\texttt{"Ari"}、\texttt{株}を\texttt{"Kabu"}と直訳し、\textbf{Shadai Race Horse Co., Ltd.}とすべき箇所を\texttt{"(Ari) Shadaireesuhoosu"}と出力していました。
+同様に、毛色（\texttt{color}）属性も専門辞書ではなくローマ字変換を通過していたため、国際標準の\textbf{Bay}（鹿毛）、\textbf{Chestnut}（栗毛）、\textbf{Grey}（芦毛）、\textbf{Dark Bay}（黒鹿毛）ではなく、\texttt{"Kage"}、\texttt{"Kurige"}、\texttt{"Ashige"}というローマ字文字列になっていました。
+
+\subsection{課題4：部分翻訳によるリレーショナル非対称性（\texttt{race\_entries} 対 \texttt{horses}）}
+初期の\texttt{translate\_db.py}では、\texttt{horses}および\texttt{pedigree}テーブルの馬名は翻訳されていたものの、ファクトテーブルである\texttt{race\_entries}の\texttt{horse\_name}、\texttt{jockey}、\texttt{trainer}列は日本語のまま残されており、主キーの一部である\texttt{race\_id}にも漢字（例：\texttt{2002\_中山\_弥生賞}）が残っていました。この非対称性により、英語CSV（\texttt{data/csv\_en/}）間での\texttt{JOIN}結合が完全に破綻していました。
+
+\subsection{課題5：\texttt{pedigree\_tree}（504,074ノード）におけるAPIリクエストの浪費と国名サフィックスの衝突}
+データベース全体のユニークな固有名詞は\textbf{39,533件}存在しましたが、そのうち\textbf{15,350件（38.8\%）は既に英語（ASCII）表記}の海外祖先馬（例：\texttt{"Northern Dancer(CAN)"}）でした。また、\texttt{サンデーサイレンス}と\texttt{サンデーサイレンス(USA)}のように国名サフィックスの有無による重複も多数存在しました。正規表現によって日本語文字を含む文字列のみを抽出し、国名サフィックス\texttt{(USA)}等を分離してベース名のみを翻訳・再結合するアルゴリズムにより、翻訳対象を\textbf{23,511件}のユニークな日本語ベース文字列へと大幅に圧縮しました。
+
+\subsection{課題6：3層ハイブリッド翻訳エンジン（\texttt{hybrid\_translator.py}）のアーキテクチャ}
+レート制限（HTTP 429/503）を回避しつつ最高精度で23,511件を翻訳するため、以下の3層ハイブリッドエンジンを構築しました：
+\begin{enumerate}
+    \item \textbf{第1層：$O(1)$静的ドメイン辞書とUnicode NFKC正規化：} 競馬場（\texttt{TRACK\_MAP}）、馬場・天候、性別、毛色（\texttt{COLOR\_MAP}）の即時変換および全角英数字・ローマ数字の半角正規化。
+    \item \textbf{第2層：Geminiマルチモデル優先プール（\texttt{gemini-3.5-flash-lite}, \texttt{gemini-3.5-flash}, \texttt{gemini-3.7-flash}）：} \textbf{重賞競走名（310件）}、\textbf{騎手・調教師（1,023名）}、および\textbf{主要種牡馬（1,259頭）}をカテゴリ別の専門プロンプトと厳密なJSONスキーマ出力で優先翻訳し、人名の名乗り読みや公式英語レース名を100\%正確に解決しました。
+    \item \textbf{第3層：並列バッチ処理（\texttt{ThreadPoolExecutor}）と冠名（Kanmei）補正ルール：} 残りの20,888件（第3〜第5世代の繁殖牝馬や馬主名）をマルチスレッドで高速翻訳し、\textit{Symboli}、\textit{Mejiro}、\textit{Narita}、\textit{Daiwa}、\textit{Meisho}、\textit{Nihon Pillow}等の伝統的冠名を正規表現で補正しました。最終的に\texttt{data/gemini\_cache.json}には\textbf{29,159件}の完全な英語辞書が構築され、日本語文字の残存はゼロ（0件）となりました。
+\end{enumerate}
+
+\subsection{課題7：抽出後の構造的データクレンジング（2006〜2018年の列ズレ復元とメタデータ補完）}
+さらに\texttt{src/clean\_data.py}において、JRAサイトの年代別HTMLレイアウト変更に起因する3つの構造的異常を完全に修復しました：
+\begin{enumerate}
+    \item \textbf{25,014件の出走レコードの列アライメント復元（2004〜2018年）：} 2006年半ばから2018年にかけて、JRAの成績表HTMLが「性別」と「馬齢」を1つの列（\texttt{性齢}、例：\texttt{牡4}）に統合したため、パーサーの列インデックスが1列ずれ、騎手名が\texttt{finish\_time}列に、走破タイムが\texttt{margin}列に、調教師名が\texttt{odds}列に、馬体重増減が\texttt{trainer}列に格納されていました。これらを数学的に分解・再配置する復元アルゴリズムにより、全33,409件において騎手・調教師・馬齢・馬体重のカバー率を\textbf{100\%}に回復しました。
+    \item \textbf{払戻金テーブル由来のノイズ行（15件）の完全除去：} 2004年の2つのレースで馬単・ワイド等の払戻表が誤って出走馬として抽出されていた異常（15件）を全テーブルからカスケード削除しました。
+    \item \textbf{ダート・障害コースおよびグレード（G1/G2/G3）の100\%補完：} JRA一覧表の略記（「ダ」「障」）により空白となっていたコース種別および2002〜2015年のグレードをNFKC正規化とレース名自己結合によって補完し、全\textbf{3,216レース}で100\%の完全性を達成しました（検証結果：\textbf{エラー0件、警告0件}）。
+\end{enumerate}
+
 \section{最終的な考慮事項と将来のAIの拡張}
 このアーキテクチャの実用的かつ分析的な開発は、計算構造の古典的な概念を、2000年代のレガシーインターネットに由来するノイズに満ちた、混沌として断片化されたドメインの厳しい抽出と結びつける緊急の必要性を明白に証明しました。
 統合された結果は、QAによって検証された3万3000以上のスポーツエントリと、セマンティックグラフで個別にマッピングされた8000のノードを上回りました。

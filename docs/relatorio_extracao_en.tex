@@ -202,7 +202,7 @@ Where:
 
 The brilliance and unquestionable success of this approach is visualized in the output results. An underdog Horse that participated in very few races in its JRA career, never having reached 1st place in its entire life (which in SQL and CSV Tables would leave it at the bottom of the global ranking at position \#30,000, deemed a failure), if that horse repeatedly arrived in 2nd and 3rd position crossing the funnel behind the tails of truly legendary and mythical horses of extremely high $PR$ and *EigenVector Centrality*, the algorithm flows and indirectly absorbs by reflection the authority of these gigantic dense vertices. The Underdog, even with ZERO wins, is ranked at the top of the system tables' \textit{PageRank}, and the algorithm mathematically proves that this horse was physically extraordinary and only lacked gold due to the terrible bad luck of being born chronologically in the same era as the indomitable legends of the sport. The graph unmasks talent and extracts "diamonds in data format".
 
-﻿
+
 \section{Final Sprint: 36-Hour Continuous Extraction and Architectural Resilience}
 
 The transition from a theoretical extraction script to a massive, uninterrupted data pipeline revealed the harsh realities of real-world network instability and legacy database anomalies. The definitive extraction phase commenced on a Sunday at approximately 15:00 and concluded successfully on Tuesday at 01:00, totaling nearly 36 hours of relentless execution. This long-running marathon necessitated the implementation of advanced software engineering patterns to ensure the pipeline's survival.
@@ -210,25 +210,78 @@ The transition from a theoretical extraction script to a massive, uninterrupted 
 \subsection{Resilience Against Network Drops and Semantic Collisions}
 During the execution, the script encountered severe obstacles that would have fatally crashed a standard sequential scraper. We cataloged database \textit{IntegrityErrors} specifically stemming from \textit{UNIQUE} constraint violations in primary keys. This occurred because the official JRA data contains multiple orthographic spelling variations for the exact same horse. When the JBIS API resolved these variations, it correctly returned the same biological ID. To prevent the pipeline from halting, we engineered an intelligent \textbf{Global Try-Catch Shield} paired with a programmatic SQL \textit{Merge Protocol}. Upon detecting an \texttt{IntegrityError}, the algorithm dynamically intercepted the exception, rerouted all foreign keys (Race Entries) from the duplicated alias to the original registered \texttt{horse\_id}, deleted the duplicate from memory, and seamlessly proceeded without losing the 30+ hours of accumulated progress.
 
-Furthermore, out of the 8,224 processed horses, exactly 39 units suffered from \textit{Connection Time-Outs} during the dead of night. Through precise SQL querying, these isolated nodes were identified and re-scraped individually at the end of the batch, achieving a 100\% scraping success rate. A microscopic anomaly was also documented: 8 official JRA graded horses literally possessed empty pedigree trees in the original JBIS database. This validates the mathematical precision of our extraction.
+Furthermore, out of the 8,209 processed horses, exactly 39 units suffered from \textit{Connection Time-Outs} during the dead of night. Through precise SQL querying, these isolated nodes were identified and re-scraped individually at the end of the batch, achieving a 100\% scraping success rate. A microscopic anomaly was also documented: 8 official JRA graded horses literally possessed empty pedigree trees in the original JBIS database. This validates the mathematical precision of our extraction.
 
 \subsection{Linguistic Normalization and O(1) Memoization Optimization}
 A critical requirement for internationalizing the dataset and preparing it for Artificial Intelligence consumption was the complete eradication of Japanese characters from the textual columns. To accomplish this, we integrated the \texttt{pykakasi} linguistic library, strictly translating every proper noun into \textit{Hepburn Romaji}.
 
-However, applying this linguistic transformation sequentially to the massive \texttt{pedigree\_tree} table---which swelled to an astounding \textbf{504,206 relational ancestor nodes}---introduced a severe computational bottleneck. We mitigated this by injecting a \textit{Dynamic Programming Memoization} layer (\texttt{functools.lru\_cache}). Since the half-million nodes actually originate from a much smaller pool of repeating biological ancestors, caching the translation in an O(1) Hash Map structure slashed the translation timeline from an estimated 30+ minutes to less than 30 seconds.
+However, applying this linguistic transformation sequentially to the massive \texttt{pedigree\_tree} table---which swelled to an astounding \textbf{504,074 relational ancestor nodes}---introduced a severe computational bottleneck. We mitigated this by injecting a \textit{Dynamic Programming Memoization} layer (\texttt{functools.lru\_cache}). Since the half-million nodes actually originate from a much smaller pool of repeating biological ancestors, caching the translation in an O(1) Hash Map structure slashed the translation timeline from an estimated 30+ minutes to less than 30 seconds.
 
 \subsection{Formal Validation Report}
 The final validation script parsed the exported English CSV dataset in O(N) using Pandas, taking a mere 2.4 seconds to confirm the absolute structural integrity of the relational network. The conclusive counts assert the robustness of the graph preparation:
 \begin{itemize}
-    \item \textbf{Total Graded Races:} 3,217
-    \item \textbf{Total Race Entries (Edges):} 33,424
-    \item \textbf{Unique Horses (Vertices):} 8,224
-    \item \textbf{Direct Pedigrees:} 8,216
-    \item \textbf{Total Genealogical Tree Nodes:} 504,206
+    \item \textbf{Total Graded Races:} 3,216
+    \item \textbf{Total Race Entries (Edges):} 33,409
+    \item \textbf{Unique Horses (Vertices):} 8,209
+    \item \textbf{Direct Pedigrees:} 8,202
+    \item \textbf{Total Genealogical Tree Nodes:} 504,074
 \end{itemize}
-The validation confirmed zero ghost references (0 broken Foreign Keys) across all 33,424 entries, ensuring a mathematically perfect environment for the forthcoming PageRank and Directed Acyclic Graph (DAG) implementations.
+The validation confirmed zero ghost references (0 broken Foreign Keys) across all 33,409 entries, ensuring a mathematically perfect environment for the forthcoming PageRank and Directed Acyclic Graph (DAG) implementations.
 
 
+
+\section{Hybrid Semantic Translation Engineering (AI + Lexicon) and Deep Structural Sanitization}
+
+While preparing the dataset for international scientific publication (\textit{Zenodo} standard) and Machine Learning model training, a thorough audit revealed that naive automated phonetic transliteration suffered from severe linguistic and structural flaws. This section documents the seven critical translation and data sanitization challenges encountered and the hybrid architecture engineered to resolve them.
+
+\subsection{Challenge 1: Failure of Pure Phonetic Transliteration (\texttt{pykakasi}) on Katakana Loanwords (\textit{Gairaigo})}
+In the Japanese horse racing ecosystem, thoroughbred horse names are officially registered in the \textit{Katakana} syllabary, which phonetically adapts foreign words (English, French, Italian, German) to Japanese phonotactics---characterized by open syllables (insertion of epenthetic vowels) and the absence of distinction between the liquid consonants $/l/$ and $/r/$.
+When the preliminary pipeline applied the \texttt{pykakasi} library (designed to convert Kanji into \textit{Hepburn Romaji}), the algorithm performed a literal phonetic transliteration of the Katakana syllables, producing strings that are unrecognizable internationally:
+\begin{itemize}
+    \item \textit{Deep Impact} was corrupted into \texttt{"Diipuinpakuto"};
+    \item \textit{Admire Cozzene} became \texttt{"Adomaiyakojiin"};
+    \item \textit{Divine Light} turned into \texttt{"Divainraito"};
+    \item \textit{Derby Legno} became \texttt{"Daabiireguno"};
+    \item \textit{Orfevre} and \textit{Vodka} completely lost their official international spelling.
+\end{itemize}
+Beyond compromising the scientific readability of graphs and reports, this distortion prevented cross-referencing the database with international equine genealogy records, where imported ancestors appeared either in original English or in phonetic Romaji, fragmenting the same biological vertex into two distinct nodes in the Directed Acyclic Graph (DAG).
+
+\subsection{Challenge 2: Reading Ambiguity (\textit{Onyomi}, \textit{Kunyomi}, and \textit{Nanori}) in Human Proper Names (Kanji)}
+Unlike racehorses (written in Katakana), the names of Japanese jockeys, trainers, and individual owners are recorded in \textit{Kanji} ideograms. In Japanese, human proper names frequently employ special readings (\textit{Nanori}) that diverge from standard Sino-Japanese readings (\textit{Onyomi}).
+Generic statistical translators lacking domain context erroneously converted the name of legendary jockey \textit{Yutaka Take} into \texttt{"Taketoyo"} (compound \textit{Onyomi} reading), and failed to standardize international jockeys licensed by the JRA (whose names appear in full-width characters such as \texttt{C. Lemaire} and \texttt{M. Demuro}).
+
+\subsection{Challenge 3: Semantic Pollution of Corporate Abbreviations and Biological Taxonomy (Coat Colors)}
+In the master \texttt{horses} table, the \texttt{owner} and \texttt{breeder} attributes contain abbreviated Japanese legal designations in parentheses, notably \textit{Yugen Gaisha} (Limited Company) and \textit{Kabushiki Gaisha} (Joint-Stock Corporation).
+Upon encountering the isolated ideogram for \textit{Yugen} in parentheses, the phonetic engine \texttt{pykakasi} applied its native verbal reading (\textit{Kunyomi}: \texttt{"Ari"}), and for \textit{Kabushiki} applied \texttt{"Kabu"}, yielding absurd strings such as \texttt{"(Ari) Shadaireesuhoosu"} and \texttt{"(Kabu) Daabiisha"} instead of the official corporate names \textbf{Shadai Race Horse Co., Ltd.} and \textbf{Darby Co., Ltd.}.
+
+Similarly, the biological attribute \texttt{color} (equine coat color) had been passed to the phonetic converter rather than a taxonomic dictionary, generating Japanese Romaji categories (\texttt{"Kage"}, \texttt{"Kurige"}, \texttt{"Ashige"}, \texttt{"Kurokage"}) in the English database instead of the international equine standards: \textbf{Bay}, \textbf{Chestnut}, \textbf{Grey}, \textbf{Dark Bay}, \textbf{Dark Chestnut}, \textbf{Brown}, \textbf{Black}, and \textbf{White}.
+
+\subsection{Challenge 4: Relational Asymmetry in Partial Translation (\texttt{race\_entries} vs. \texttt{horses})}
+In the initial version of \texttt{translate\_db.py}, the \texttt{horses}, \texttt{pedigree}, and \texttt{pedigree\_tree} tables had their proper nouns translated, whereas the fact table \texttt{race\_entries} left \texttt{horse\_name}, \texttt{jockey}, and \texttt{trainer} in original Japanese characters, and retained Kanji characters inside the composite \texttt{race\_id}.
+This asymmetry broke relational joins (\texttt{INNER JOIN ON race\_entries.horse\_name = horses.name}) across the English CSV files (\texttt{data/csv\_en/}), rendering direct name-based analytical queries impossible.
+
+\subsection{Challenge 5: Request Waste and Country-Suffix Collisions in \texttt{pedigree\_tree}}
+Scanning all five database tables identified \textbf{39,533 unique strings} as translation candidates. Sending this volume sequentially to a Large Language Model (LLM) API created two major bottlenecks:
+\begin{enumerate}
+    \item \textbf{Redundant ASCII Strings:} Due to Japan's historical importation of American and European stallions and broodmares, \textbf{15,350 of the 39,533 strings (38.8\%) were already in English/ASCII} in the JBIS database (e.g., \texttt{"Northern Dancer(CAN)"}, \texttt{"Comedy King(GB)"}). Sending these strings wasted nearly half of the API quota and tokens.
+    \item \textbf{Country-Suffix Duplication:} The same ancestor appeared multiple times with and without country-of-origin suffixes (e.g., the Katakana name of \textit{Sunday Silence} both standalone and with \texttt{(USA)}). By decoupling the suffix \texttt{(\textbackslash([A-Z]\{2,4\}\textbackslash)\$)} via Regular Expression prior to cache lookup, translating only the base stem, and reattaching the suffix in post-processing, we reduced the actual translation workload to \textbf{23,511 unique Japanese stems}.
+\end{enumerate}
+
+\subsection{Challenge 6: The 3-Tier Hybrid Translation Engine Architecture (\texttt{hybrid\_translator.py})}
+To translate all 23,511 Japanese stems with domain-expert accuracy and without hitting rate limits (\textit{HTTP 429 Resource Exhausted} or \textit{HTTP 503 Unavailable}), we engineered a three-tier hybrid architecture:
+\begin{enumerate}
+    \item \textbf{Tier 1 --- $O(1)$ Deterministic Dictionaries and Unicode NFKC Normalization:} Instant mapping of racecourses (\texttt{TRACK\_MAP}), surfaces (\texttt{SURFACE\_MAP}), track going (\texttt{GOING\_MAP}), weather (\texttt{WEATHER\_MAP}), sex (\texttt{SEX\_MAP}), and coat colors (\texttt{COLOR\_MAP}), combined with \texttt{unicodedata.normalize('NFKC')} to convert full-width Roman numerals and letters into standard ASCII.
+    \item \textbf{Tier 2 --- Priority Multi-Model Gemini Pool (\texttt{gemini-3.5-flash-lite}, \texttt{gemini-3.5-flash}, \texttt{gemini-3.7-flash}):} We partitioned critical entities by semantic category (\textbf{310 Graded race names}, \textbf{1,023 jockeys and trainers}, and \textbf{1,259 direct sires}) and applied domain-specialized prompts with strict JSON schema output (\texttt{response\_mime\_type="application/json"}, \texttt{temperature=0.0}). This guaranteed 100\% fidelity on historical race names (\textit{Yayoi Sho}, \textit{Nakayama Kimpai}, \textit{Hanshin Daishoten}), people (\textit{Yutaka Take}, \textit{Yuga Kawada}), and stallions (\textit{Deep Impact}, \textit{King Kamehameha}, \textit{Stay Gold}).
+    \item \textbf{Tier 3 --- Parallel Batch Processing (\texttt{ThreadPoolExecutor}) + \textit{Kanmei} Crown Rules:} For the remaining 20,888 names (3rd-to-5th generation dams and owners), we combined concurrent Gemini workers with high-throughput batch translation and regex post-processing for traditional Japanese crown prefixes (\textit{Kanmei}, such as \textit{Symboli}, \textit{Mejiro}, \textit{Narita}, \textit{Daiwa}, \textit{Meisho}, \textit{Nihon Pillow}). The final cache (\texttt{data/gemini\_cache.json}) reached \textbf{29,159 validated entries} with zero residual Japanese characters.
+\end{enumerate}
+
+\subsection{Challenge 7: Post-Extraction Structural Sanitization (2006--2018 Column Shift and Metadata Imputation)}
+Deep auditing of the raw SQLite records also uncovered three silent structural anomalies caused by layout changes on the JRA portal across 24 years, all fully resolved by \texttt{src/clean\_data.py}:
+\begin{enumerate}
+    \item \textbf{Vector Realignment of 25,014 Entries (2004--2018):} Between mid-2006 and 2018, JRA result tables merged the Sex and Age columns into a single cell (\texttt{Sex+Age}, e.g., \texttt{Male4}), shifting subsequent HTML parser column indices by one position. Consequently, the jockey's name was stored in \texttt{finish\_time}, the actual finish time in \texttt{margin}, the trainer in \texttt{odds}, the weight change in \texttt{trainer}, and the base weight inside parentheses in \texttt{horse\_weight}. We built an in-place reconstruction algorithm that split the Sex/Age pair and realigned all 25,014 rows, raising Jockey, Trainer, Age, and Weight coverage from 25\% to \textbf{100\% (33,409/33,409)}.
+    \item \textbf{Purging Spurious Betting-Payout Rows (2004):} In two 2004 races, secondary betting payout tables (\textit{Quinella}, \textit{Exacta}, numbers \texttt{6} to \texttt{15}, \texttt{02-07}, \texttt{02-11}) had been captured as runners, creating 15 bogus horses. All were cascaded out across all four relational tables.
+    \item \textbf{Recovery of \textit{Dirt} and \textit{Obstacle} Surfaces and \textit{Grade} Imputation:} On JRA annual summary pages, dirt and jump races use single-character Japanese abbreviations rather than full words, leaving 1,099 races with an empty \texttt{surface} and 1,834 races (2002--2015) without a \texttt{grade}. Using NFKC normalization and historical self-joins on the canonical race name, we imputed with 100\% accuracy the \texttt{grade} (\texttt{G1}, \texttt{G2}, \texttt{G3}), \texttt{grade\_weight} ($1.0$, $0.7$, $0.5$), \texttt{surface} (\texttt{Turf}, \texttt{Dirt}, \texttt{Obstacle}), and \texttt{distance} across all \textbf{3,216 races} (final validation: \textbf{0 errors, 0 warnings}).
+\end{enumerate}
 
 \section{Final Considerations and Future AI Expansion}
 The practical and analytical development of this architecture incontestably proved the pressing need to couple classic notions of computational structures with severe extractions of chaotic, fragmented domains replete with noises originating from the legacy internet of the 2000s.
