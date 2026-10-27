@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+  <a href="https://doi.org/10.5281/zenodo.23681764"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23681764.svg" alt="Zenodo DOI"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.13%2B-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="SQLite" src="https://img.shields.io/badge/SQLite3-3NF_%2B_WAL-003B57?style=flat-square&logo=sqlite&logoColor=white">
   <img alt="Gemini AI" src="https://img.shields.io/badge/Gemini_AI-Hybrid_Translator_(29.1k_Terms)-8E75B2?style=flat-square&logo=googlegemini&logoColor=white">
@@ -252,6 +253,24 @@ python src/ml_analysis.py
 
 # 5. Executar o pipeline completo via CLI
 python src/run_pipeline.py --start-year 2002 --end-year 2025 --analyze
+```
+
+---
+
+## 📚 Como Citar este Dataset (Zenodo DOI)
+
+Se você utilizar este banco de dados, os grafos ou o código em pesquisas acadêmicas, cite através do DOI oficial arquivado no **Zenodo** ([`10.5281/zenodo.23681764`](https://doi.org/10.5281/zenodo.23681764)):
+
+```bibtex
+@dataset{mendonca_2026_jra_jbis,
+  author       = {Mendonça, Arthur De Oliveira},
+  title        = {{JRA Graded Races (2002-2025) \& JBIS 5-Generation Pedigree Dataset (Bilingual JA/EN + Graph Networks \& ML)}},
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {v2.0.0},
+  doi          = {10.5281/zenodo.23681764},
+  url          = {https://doi.org/10.5281/zenodo.23681764}
+}
 ```
 
 ---
