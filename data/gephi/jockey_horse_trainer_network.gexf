@@ -1,0 +1,4449 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2026-10-26">
+    <creator>NetworkX 3.7</creator>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <attributes mode="static" class="edge">
+      <attribute id="2" title="interaction" type="string" />
+    </attributes>
+    <attributes mode="static" class="node">
+      <attribute id="0" title="entity_type" type="string" />
+      <attribute id="1" title="size_metric" type="double" />
+    </attributes>
+    <nodes>
+      <node id="Jockey: Yutaka Yoshida" label="Yutaka Yoshida">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="408.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: San Carlo" label="San Carlo">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="145.32" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yoshitomi Shibata" label="Yoshitomi Shibata">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="473.5" />
+        </attvalues>
+      </node>
+      <node id="Horse: Nakayama Knight" label="Nakayama Knight">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="96.954" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Masaru Honda" label="Masaru Honda">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="82.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Mysore Sound" label="Mysore Sound">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="59.88" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Katsuharu Tanaka" label="Katsuharu Tanaka">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="433.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Balance of Games" label="Balance of Games">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="134.369" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Koshiro Take" label="Koshiro Take">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="271.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meisho Mambo" label="Meisho Mambo">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="75.088" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yasunari Iwata" label="Yasunari Iwata">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="608.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Let's Gordon Ki" label="Let's Gordon Ki">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="180.20700000000002" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kenichi Ikezoe" label="Kenichi Ikezoe">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="559.9" />
+        </attvalues>
+      </node>
+      <node id="Horse: Yamakatsu Ace" label="Yamakatsu Ace">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="149.74099999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sweep Tosho" label="Sweep Tosho">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="174.865" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yasuhiko Yasuda" label="Yasuhiko Yasuda">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="30.699999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fast Vertical" label="Fast Vertical">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="109.98599999999999" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Fuyuki Igarashi" label="Fuyuki Igarashi">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="32.5" />
+        </attvalues>
+      </node>
+      <node id="Horse: Cosmo Bulk" label="Cosmo Bulk">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="167.33499999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Dream Journey" label="Dream Journey">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="152.954" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Masaki Katsuura" label="Masaki Katsuura">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="283.3" />
+        </attvalues>
+      </node>
+      <node id="Horse: Telegnosis" label="Telegnosis">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="143.086" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Masami Matsuoka" label="Masami Matsuoka">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="355.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Kits" label="Meinel Kits">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="100.75" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hiroshi Sakuma" label="Hiroshi Sakuma">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="33.099999999999994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tm Toppa Zure" label="Tm Toppa Zure">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="77.224" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hideaki Miyuki" label="Hideaki Miyuki">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="471.7" />
+        </attvalues>
+      </node>
+      <node id="Horse: Gallant Arrow" label="Gallant Arrow">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="51.132" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hiroki Goto" label="Hiroki Goto">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="377.6" />
+        </attvalues>
+      </node>
+      <node id="Horse: Air Shady" label="Air Shady">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="130.964" />
+        </attvalues>
+      </node>
+      <node id="Horse: Toushou Scirocco" label="Toushou Scirocco">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="62.558" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yuichi Fukunaga" label="Yuichi Fukunaga">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="703.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meisho Bowler" label="Meisho Bowler">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="94.148" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Takuya Ono" label="Takuya Ono">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="163.1" />
+        </attvalues>
+      </node>
+      <node id="Horse: Snow Dragon" label="Snow Dragon">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="93.611" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yusuke Fujioka" label="Yusuke Fujioka">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="316.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: One Carat" label="One Carat">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="64.19200000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Tetsuzo Sato" label="Tetsuzo Sato">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="229.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tap Dance City" label="Tap Dance City">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="142.601" />
+        </attvalues>
+      </node>
+      <node id="Horse: Inti Raymi" label="Inti Raymi">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="88.66" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Tomoharu Bushizawa" label="Tomoharu Bushizawa">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="119.8" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tosho Knight" label="Tosho Knight">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="82.401" />
+        </attvalues>
+      </node>
+      <node id="Horse: My Na Sabel" label="My Na Sabel">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="90.87" />
+        </attvalues>
+      </node>
+      <node id="Horse: Admire Deus" label="Admire Deus">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="91.48899999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sea Is Tosho" label="Sea Is Tosho">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="86.11000000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Ryo Takakura" label="Ryo Takakura">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="70.6" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fragarach" label="Fragarach">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="67.74" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yutaka Take" label="Yutaka Take">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="713.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: Admire Groove" label="Admire Groove">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="95.91" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Goken Namba" label="Goken Namba">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="44.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sunray Duke" label="Sunray Duke">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="89.28800000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Earnestly" label="Earnestly">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="89.486" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Shinichiro Akiyama" label="Shinichiro Akiyama">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="313.3" />
+        </attvalues>
+      </node>
+      <node id="Horse: Karen Blackhill" label="Karen Blackhill">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="103.049" />
+        </attvalues>
+      </node>
+      <node id="Horse: Super Hornet" label="Super Hornet">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="110.596" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Tadashi Kosaka" label="Tadashi Kosaka">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="70.3" />
+        </attvalues>
+      </node>
+      <node id="Horse: Kouei Try" label="Kouei Try">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="77.901" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Masayoshi Ebina" label="Masayoshi Ebina">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="614.6" />
+        </attvalues>
+      </node>
+      <node id="Horse: Apapane" label="Apapane">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="87.301" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kaoruhiko Watanabe" label="Kaoruhiko Watanabe">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="95.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tamamo Hot Play" label="Tamamo Hot Play">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="82.54899999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Orfevre" label="Orfevre">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="154.093" />
+        </attvalues>
+      </node>
+      <node id="Horse: Shadow Gate" label="Shadow Gate">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="53.08" />
+        </attvalues>
+      </node>
+      <node id="Horse: Arcosenora" label="Arcosenora">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="46.717000000000006" />
+        </attvalues>
+      </node>
+      <node id="Horse: Glass Bomber" label="Glass Bomber">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="48.949" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yuichi Shibayama" label="Yuichi Shibayama">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="216.7" />
+        </attvalues>
+      </node>
+      <node id="Horse: Daisho Jet" label="Daisho Jet">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="50.67700000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Shun Hamanaka" label="Shun Hamanaka">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="337.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Mickey Queen" label="Mickey Queen">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="167.63400000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Shinji Fujita" label="Shinji Fujita">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="397.6" />
+        </attvalues>
+      </node>
+      <node id="Horse: Hiruno d'Amour" label="Hiruno d'Amour">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="76.639" />
+        </attvalues>
+      </node>
+      <node id="Horse: Nouvelle Colt" label="Nouvelle Colt">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="113.431" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Osamu Ishibashi" label="Osamu Ishibashi">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="253.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Garbo" label="Garbo">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="109.862" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Koichi Tsunoda" label="Koichi Tsunoda">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="107.1" />
+        </attvalues>
+      </node>
+      <node id="Horse: Hishi Miracle" label="Hishi Miracle">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="66.528" />
+        </attvalues>
+      </node>
+      <node id="Horse: Kitasan Black" label="Kitasan Black">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="287.125" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hiroshi Kitamura" label="Hiroshi Kitamura">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="423.9" />
+        </attvalues>
+      </node>
+      <node id="Horse: Daiwa Falcon" label="Daiwa Falcon">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="56.383" />
+        </attvalues>
+      </node>
+      <node id="Horse: Still in Love" label="Still in Love">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="57.944" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Mitsuki Kaneko" label="Mitsuki Kaneko">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="34.5" />
+        </attvalues>
+      </node>
+      <node id="Horse: Telegenic" label="Telegenic">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="54.698" />
+        </attvalues>
+      </node>
+      <node id="Horse: Isla Bonita" label="Isla Bonita">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="209.34300000000002" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hirofumi Shii" label="Hirofumi Shii">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="502.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Yamanin Shukuru" label="Yamanin Shukuru">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="74.95700000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yuga Kawada" label="Yuga Kawada">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="456.5" />
+        </attvalues>
+      </node>
+      <node id="Horse: Admire Fuji" label="Admire Fuji">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="126.199" />
+        </attvalues>
+      </node>
+      <node id="Horse: Laurel Guerreiro" label="Laurel Guerreiro">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="106.387" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tokai Paradise" label="Tokai Paradise">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="62.522999999999996" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Ryuji Wada" label="Ryuji Wada">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="419.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Mickey Rocket" label="Mickey Rocket">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="156.302" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Norihiro Yokoyama" label="Norihiro Yokoyama">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="616.9" />
+        </attvalues>
+      </node>
+      <node id="Horse: One and Only" label="One and Only">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="126.92999999999999" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Futoshi Komaki" label="Futoshi Komaki">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="382.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Golden Cast" label="Golden Cast">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="44.859" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fame Game" label="Fame Game">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="107.804" />
+        </attvalues>
+      </node>
+      <node id="Horse: Decipher" label="Decipher">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="124.88799999999999" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hiroyuki Uchida" label="Hiroyuki Uchida">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="437.1" />
+        </attvalues>
+      </node>
+      <node id="Horse: Virsina" label="Virsina">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="114.96000000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Mamoru Ishibashi" label="Mamoru Ishibashi">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="67.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meisho Samson" label="Meisho Samson">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="176.72899999999998" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Mikio Matsunaga" label="Mikio Matsunaga">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="117.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Heavenly Romance" label="Heavenly Romance">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="77.011" />
+        </attvalues>
+      </node>
+      <node id="Horse: Mikki Isle" label="Mikki Isle">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="100.94" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Tomonori Kanaori" label="Tomonori Kanaori">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="23.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Cool Joy" label="Cool Joy">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="48.659" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Mitsuaki Hayashi" label="Mitsuaki Hayashi">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="55.5" />
+        </attvalues>
+      </node>
+      <node id="Horse: Up to Date" label="Up to Date">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="145.901" />
+        </attvalues>
+      </node>
+      <node id="Horse: Gold Ship" label="Gold Ship">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="238.51500000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Manabu Sakai" label="Manabu Sakai">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="152.3" />
+        </attvalues>
+      </node>
+      <node id="Horse: Nihon Piro Hours" label="Nihon Piro Hours">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="86.41400000000002" />
+        </attvalues>
+      </node>
+      <node id="Horse: Field Bear" label="Field Bear">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="36.501000000000005" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Eiko Kawasu" label="Eiko Kawasu">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="78.1" />
+        </attvalues>
+      </node>
+      <node id="Horse: Red Allion" label="Red Allion">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="62.034000000000006" />
+        </attvalues>
+      </node>
+      <node id="Horse: Hakusan Moon" label="Hakusan Moon">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="74.48" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kosei Miura" label="Kosei Miura">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="275.9" />
+        </attvalues>
+      </node>
+      <node id="Horse: Smile Jack" label="Smile Jack">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="132.73" />
+        </attvalues>
+      </node>
+      <node id="Horse: Smart Layer" label="Smart Layer">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="163.13600000000002" />
+        </attvalues>
+      </node>
+      <node id="Horse: Reach the Crown" label="Reach the Crown">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="68.306" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Shinji Kawashima" label="Shinji Kawashima">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="107.8" />
+        </attvalues>
+      </node>
+      <node id="Horse: Ausumiharuka" label="Ausumiharuka">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="63.888999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Absolute" label="Absolute">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="35.507" />
+        </attvalues>
+      </node>
+      <node id="Horse: Company" label="Company">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="197.202" />
+        </attvalues>
+      </node>
+      <node id="Horse: Apollo Dolce" label="Apollo Dolce">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="38.565" />
+        </attvalues>
+      </node>
+      <node id="Horse: Deep Impact" label="Deep Impact">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="116.756" />
+        </attvalues>
+      </node>
+      <node id="Horse: Marble Chief" label="Marble Chief">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="40.7" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Katsumi Ando" label="Katsumi Ando">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="376.8" />
+        </attvalues>
+      </node>
+      <node id="Horse: Daiwa Major" label="Daiwa Major">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="213.86399999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Air Spinel" label="Air Spinel">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="155.214" />
+        </attvalues>
+      </node>
+      <node id="Horse: Hoola Bride" label="Hoola Bride">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="57.271" />
+        </attvalues>
+      </node>
+      <node id="Horse: Matsurida Gogh" label="Matsurida Gogh">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="114.60300000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Whale Capture" label="Whale Capture">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="135.687" />
+        </attvalues>
+      </node>
+      <node id="Jockey: M. Demuro" label="M. Demuro">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="307.7" />
+        </attvalues>
+      </node>
+      <node id="Horse: Queen's Ring" label="Queen's Ring">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="137.513" />
+        </attvalues>
+      </node>
+      <node id="Horse: Silk Famous" label="Silk Famous">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="86.509" />
+        </attvalues>
+      </node>
+      <node id="Horse: Last Impact" label="Last Impact">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="142.981" />
+        </attvalues>
+      </node>
+      <node id="Horse: Chakra" label="Chakra">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="69.32900000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Keita Tosaki" label="Keita Tosaki">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="290.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Rouge Back" label="Rouge Back">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="125.246" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sunningdale" label="Sunningdale">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="49.691" />
+        </attvalues>
+      </node>
+      <node id="Horse: Maruka Schenk" label="Maruka Schenk">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="86.55099999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Suzuka Phoenix" label="Suzuka Phoenix">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="93.10000000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fenomeno" label="Fenomeno">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="137.533" />
+        </attvalues>
+      </node>
+      <node id="Horse: Broad Street" label="Broad Street">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="81.605" />
+        </attvalues>
+      </node>
+      <node id="Horse: Line Craft" label="Line Craft">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="89.812" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hokuto Miyazaki" label="Hokuto Miyazaki">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="24.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: Seraphic Romp" label="Seraphic Romp">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="34.339" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hayato Yoshida" label="Hayato Yoshida">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="232.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: Gold Actor" label="Gold Actor">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="136.483" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Keisuke Dazai" label="Keisuke Dazai">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="130.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fuminoi Margin" label="Fuminoi Margin">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="57.385999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sandalfon" label="Sandalfon">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="31.375" />
+        </attvalues>
+      </node>
+      <node id="Horse: Hit the Target" label="Hit the Target">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="135.88400000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Let's Go Kirishima" label="Let's Go Kirishima">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="43.901" />
+        </attvalues>
+      </node>
+      <node id="Horse: Ashin Forward" label="Ashin Forward">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="67.218" />
+        </attvalues>
+      </node>
+      <node id="Horse: Asakusa Kings" label="Asakusa Kings">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="88.054" />
+        </attvalues>
+      </node>
+      <node id="Horse: Eishin Apollon" label="Eishin Apollon">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="56.497" />
+        </attvalues>
+      </node>
+      <node id="Horse: Rikiai Taikan" label="Rikiai Taikan">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="61.18000000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fine Motion" label="Fine Motion">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="52.577999999999996" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Shinichi Ishigami" label="Shinichi Ishigami">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="50.6" />
+        </attvalues>
+      </node>
+      <node id="Horse: Ojuchosan" label="Ojuchosan">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="116.465" />
+        </attvalues>
+      </node>
+      <node id="Horse: Wonder Acute" label="Wonder Acute">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="130.857" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Katsuyoshi Tsuneishi" label="Katsuyoshi Tsuneishi">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="18.5" />
+        </attvalues>
+      </node>
+      <node id="Horse: Ausmi Cosmo" label="Ausmi Cosmo">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="69.269" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Jiro Ono" label="Jiro Ono">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="89.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Yukino Sun Royal" label="Yukino Sun Royal">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="41.619" />
+        </attvalues>
+      </node>
+      <node id="Horse: Shonan Pantle" label="Shonan Pantle">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="28.619" />
+        </attvalues>
+      </node>
+      <node id="Horse: Bb Garudan" label="Bb Garudan">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="51.004" />
+        </attvalues>
+      </node>
+      <node id="Horse: Asuka No Roman" label="Asuka No Roman">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="85.533" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kazuma Mori" label="Kazuma Mori">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="34.199999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Line Spirit" label="Line Spirit">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="49.36" />
+        </attvalues>
+      </node>
+      <node id="Horse: Cheval Grand" label="Cheval Grand">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="240.744" />
+        </attvalues>
+      </node>
+      <node id="Horse: Lohengrin" label="Lohengrin">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="108.665" />
+        </attvalues>
+      </node>
+      <node id="Horse: Kanoyazakura" label="Kanoyazakura">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="57.657999999999994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Denim and Ruby" label="Denim and Ruby">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="142.758" />
+        </attvalues>
+      </node>
+      <node id="Horse: Roman Legend" label="Roman Legend">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="82.15" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sakura Gospel" label="Sakura Gospel">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="57.096999999999994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sunray Jasper" label="Sunray Jasper">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="51.969" />
+        </attvalues>
+      </node>
+      <node id="Jockey: C. Lemaire" label="C. Lemaire">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="298.8" />
+        </attvalues>
+      </node>
+      <node id="Horse: Satono Diamond" label="Satono Diamond">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="172.486" />
+        </attvalues>
+      </node>
+      <node id="Horse: Daiwa Scarlet" label="Daiwa Scarlet">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="124.972" />
+        </attvalues>
+      </node>
+      <node id="Horse: Keeneland Swan" label="Keeneland Swan">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="42.539" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fine Grain" label="Fine Grain">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="60.428" />
+        </attvalues>
+      </node>
+      <node id="Horse: Dasher Go Go" label="Dasher Go Go">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="54.423" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Daichi Shibata" label="Daichi Shibata">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="194.7" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Medalist" label="Meinel Medalist">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="28.281" />
+        </attvalues>
+      </node>
+      <node id="Horse: Asakadi Feet" label="Asakadi Feet">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="70.594" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Akihide Tsumura" label="Akihide Tsumura">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="158.2" />
+        </attvalues>
+      </node>
+      <node id="Horse: Creel Passion" label="Creel Passion">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="47.839999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Shonan Mighty" label="Shonan Mighty">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="86.898" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Frost" label="Meinel Frost">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="89.22399999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Vodka" label="Vodka">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="244.33499999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Mickey Dream" label="Mickey Dream">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="54.869" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tamamo Best Play" label="Tamamo Best Play">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="83.622" />
+        </attvalues>
+      </node>
+      <node id="Horse: To the Glory" label="To the Glory">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="113.787" />
+        </attvalues>
+      </node>
+      <node id="Horse: Maria Light" label="Maria Light">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="128.56400000000002" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Takaya Ueno" label="Takaya Ueno">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="48.7" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Fiesta" label="Meinel Fiesta">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="32.766000000000005" />
+        </attvalues>
+      </node>
+      <node id="Horse: Namura Crescent" label="Namura Crescent">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="75.839" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hatsuhiro Kobata" label="Hatsuhiro Kobata">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="113.6" />
+        </attvalues>
+      </node>
+      <node id="Horse: Win Blaze" label="Win Blaze">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="31.476000000000003" />
+        </attvalues>
+      </node>
+      <node id="Horse: Asahi Rising" label="Asahi Rising">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="75.702" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kazuma Takano" label="Kazuma Takano">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="16.8" />
+        </attvalues>
+      </node>
+      <node id="Horse: Seiei" label="Seiei">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="31.477" />
+        </attvalues>
+      </node>
+      <node id="Horse: Daiwa Maggiore" label="Daiwa Maggiore">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="95.63900000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Grand City" label="Grand City">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="55.378" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Teruo Eda" label="Teruo Eda">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="246.1" />
+        </attvalues>
+      </node>
+      <node id="Horse: Yamanin Alabasta" label="Yamanin Alabasta">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="57.699" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Toru Munakata" label="Toru Munakata">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="20.3" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meineloper" label="Meineloper">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="36.907000000000004" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yusaku Kokubun" label="Yusaku Kokubun">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="51.5" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tea Half" label="Tea Half">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="58.968999999999994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Belle Lumiere" label="Belle Lumiere">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="30.901" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tosenler" label="Tosenler">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="132.464" />
+        </attvalues>
+      </node>
+      <node id="Horse: That's the Plenty" label="That's the Plenty">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="81.573" />
+        </attvalues>
+      </node>
+      <node id="Horse: Camphor Vest" label="Camphor Vest">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="72.28399999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Reginetta" label="Reginetta">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="52.193" />
+        </attvalues>
+      </node>
+      <node id="Horse: Eishin Flash" label="Eishin Flash">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="169.71900000000002" />
+        </attvalues>
+      </node>
+      <node id="Horse: Venture Nine" label="Venture Nine">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="30.154" />
+        </attvalues>
+      </node>
+      <node id="Horse: Kongourixio" label="Kongourixio">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="70.664" />
+        </attvalues>
+      </node>
+      <node id="Horse: Daring Heart" label="Daring Heart">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="81.197" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Milano" label="Meinel Milano">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="52.592" />
+        </attvalues>
+      </node>
+      <node id="Horse: Wonder Speed" label="Wonder Speed">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="43.71000000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Clarent" label="Clarent">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="157.45499999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Germinal" label="Germinal">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="37.854" />
+        </attvalues>
+      </node>
+      <node id="Horse: Admire Max" label="Admire Max">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="67.982" />
+        </attvalues>
+      </node>
+      <node id="Horse: Belcanto" label="Belcanto">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="51.653000000000006" />
+        </attvalues>
+      </node>
+      <node id="Horse: Lis Gracieux" label="Lis Gracieux">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="177.06199999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Deep Sky" label="Deep Sky">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="84.85" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meiner Scherzi" label="Meiner Scherzi">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="66.167" />
+        </attvalues>
+      </node>
+      <node id="Horse: Almawaioli" label="Almawaioli">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="30.232999999999997" />
+        </attvalues>
+      </node>
+      <node id="Horse: Sakura Mega Wonder" label="Sakura Mega Wonder">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="112.60400000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Satonoalazine" label="Satonoalazine">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="129.59799999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Grand Prix Boss" label="Grand Prix Boss">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="158.323" />
+        </attvalues>
+      </node>
+      <node id="Horse: Blue Concord" label="Blue Concord">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="82.75800000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Robe Decollete" label="Robe Decollete">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="39.327" />
+        </attvalues>
+      </node>
+      <node id="Horse: Durandal" label="Durandal">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="61.623999999999995" />
+        </attvalues>
+      </node>
+      <node id="Horse: Karen Mirotic" label="Karen Mirotic">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="105.02700000000002" />
+        </attvalues>
+      </node>
+      <node id="Horse: Eftimaia" label="Eftimaia">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="30.192999999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Win Bright" label="Win Bright">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="70.964" />
+        </attvalues>
+      </node>
+      <node id="Horse: Shingen" label="Shingen">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="47.769000000000005" />
+        </attvalues>
+      </node>
+      <node id="Horse: Fusaichi Pandora" label="Fusaichi Pandora">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="96.213" />
+        </attvalues>
+      </node>
+      <node id="Horse: Admire Kiss" label="Admire Kiss">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="90.87199999999999" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yusuke Eda" label="Yusuke Eda">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="21.3" />
+        </attvalues>
+      </node>
+      <node id="Horse: Open Garden" label="Open Garden">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="47.421" />
+        </attvalues>
+      </node>
+      <node id="Horse: Denkouange" label="Denkouange">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="104.92699999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Agnes Raspberry" label="Agnes Raspberry">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="45.523999999999994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Spring Sander" label="Spring Sander">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="29.790999999999997" />
+        </attvalues>
+      </node>
+      <node id="Horse: Oken Bruce Lee" label="Oken Bruce Lee">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="93.71600000000001" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Naoto Ito" label="Naoto Ito">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="11.0" />
+        </attvalues>
+      </node>
+      <node id="Horse: Smart Boy" label="Smart Boy">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="19.187" />
+        </attvalues>
+      </node>
+      <node id="Horse: Win Fabulous" label="Win Fabulous">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="38.683" />
+        </attvalues>
+      </node>
+      <node id="Horse: Marca Phoenix" label="Marca Phoenix">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="47.535999999999994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Kizuna" label="Kizuna">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="89.056" />
+        </attvalues>
+      </node>
+      <node id="Horse: Silk Port" label="Silk Port">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="83.484" />
+        </attvalues>
+      </node>
+      <node id="Horse: Akiko Hourai" label="Akiko Hourai">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="29.607" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kumazawa Important Cultural Heritage" label="Kumazawa Important Cultural Heritage">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="179.7" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tm Precure" label="Tm Precure">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="64.355" />
+        </attvalues>
+      </node>
+      <node id="Horse: Win Krueger" label="Win Krueger">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="40.392" />
+        </attvalues>
+      </node>
+      <node id="Horse: Derby Legno" label="Derby Legno">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="55.972" />
+        </attvalues>
+      </node>
+      <node id="Horse: Neo Universe" label="Neo Universe">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="90.64399999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Red Desire" label="Red Desire">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="61.760999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Nevabuchon" label="Nevabuchon">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="98.02799999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Provenage" label="Provenage">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="31.410999999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Baazel River" label="Baazel River">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="56.132999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Delta Blues" label="Delta Blues">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="91.256" />
+        </attvalues>
+      </node>
+      <node id="Horse: Eishin Preston" label="Eishin Preston">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="35.85" />
+        </attvalues>
+      </node>
+      <node id="Horse: Majin Prosper" label="Majin Prosper">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="54.242999999999995" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Lacrima" label="Meinel Lacrima">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="70.006" />
+        </attvalues>
+      </node>
+      <node id="Horse: Air Messiah" label="Air Messiah">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="55.183" />
+        </attvalues>
+      </node>
+      <node id="Horse: Rose Kingdom" label="Rose Kingdom">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="110.452" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tall Poppy" label="Tall Poppy">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="31.650999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tsurumaru Boy" label="Tsurumaru Boy">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="109.60900000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Swift Current" label="Swift Current">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="60.81699999999999" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kohei Matsuyama" label="Kohei Matsuyama">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="182.9" />
+        </attvalues>
+      </node>
+      <node id="Horse: Smart Gear" label="Smart Gear">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="68.876" />
+        </attvalues>
+      </node>
+      <node id="Horse: Shimbori Grand" label="Shimbori Grand">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="89.24300000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Hiruno Deibaro" label="Hiruno Deibaro">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="41.452999999999996" />
+        </attvalues>
+      </node>
+      <node id="Horse: Captain Thule" label="Captain Thule">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="64.314" />
+        </attvalues>
+      </node>
+      <node id="Horse: Lovely Day" label="Lovely Day">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="172.907" />
+        </attvalues>
+      </node>
+      <node id="Horse: Dia de la Novia" label="Dia de la Novia">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="91.742" />
+        </attvalues>
+      </node>
+      <node id="Horse: King's Trail" label="King's Trail">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="67.724" />
+        </attvalues>
+      </node>
+      <node id="Horse: Dance in the More" label="Dance in the More">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="47.753" />
+        </attvalues>
+      </node>
+      <node id="Horse: Crino Star O" label="Crino Star O">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="58.139" />
+        </attvalues>
+      </node>
+      <node id="Horse: Transcend" label="Transcend">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="66.53" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yoshiyuki Yokoyama" label="Yoshiyuki Yokoyama">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="42.1" />
+        </attvalues>
+      </node>
+      <node id="Horse: Merci A Time" label="Merci A Time">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="99.46799999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tanta Alegria" label="Tanta Alegria">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="68.018" />
+        </attvalues>
+      </node>
+      <node id="Horse: Yamanin Merveille" label="Yamanin Merveille">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="33.369" />
+        </attvalues>
+      </node>
+      <node id="Horse: Tosen Dandy" label="Tosen Dandy">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="31.063000000000002" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kota Fujioka" label="Kota Fujioka">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="178.7" />
+        </attvalues>
+      </node>
+      <node id="Horse: Silk Fortune" label="Silk Fortune">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="76.19200000000001" />
+        </attvalues>
+      </node>
+      <node id="Horse: Premium Box" label="Premium Box">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="36.488" />
+        </attvalues>
+      </node>
+      <node id="Horse: Soul Starling" label="Soul Starling">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="106.273" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Shogo Kikuchi" label="Shogo Kikuchi">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="16.900000000000002" />
+        </attvalues>
+      </node>
+      <node id="Horse: Battle Brave" label="Battle Brave">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="46.988" />
+        </attvalues>
+      </node>
+      <node id="Horse: Dee Majesty" label="Dee Majesty">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="80.297" />
+        </attvalues>
+      </node>
+      <node id="Horse: Yamakatsu Lily" label="Yamakatsu Lily">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="42.668" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Charles" label="Meinel Charles">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="37.256" />
+        </attvalues>
+      </node>
+      <node id="Horse: Orewa Matteruze" label="Orewa Matteruze">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="58.638000000000005" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meisho Beluga" label="Meisho Beluga">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="65.13" />
+        </attvalues>
+      </node>
+      <node id="Horse: Animate Bio" label="Animate Bio">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="58.281" />
+        </attvalues>
+      </node>
+      <node id="Horse: Eagle Cafe" label="Eagle Cafe">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="63.541999999999994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Venus Line" label="Venus Line">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="18.762" />
+        </attvalues>
+      </node>
+      <node id="Horse: Dia de la Madre" label="Dia de la Madre">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="53.51" />
+        </attvalues>
+      </node>
+      <node id="Horse: Noble Mars" label="Noble Mars">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="62.173" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Jun Takada" label="Jun Takada">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="75.4" />
+        </attvalues>
+      </node>
+      <node id="Horse: Leper Noel" label="Leper Noel">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="30.051000000000002" />
+        </attvalues>
+      </node>
+      <node id="Horse: Cosmo Phantom" label="Cosmo Phantom">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="38.994" />
+        </attvalues>
+      </node>
+      <node id="Horse: Real Steel" label="Real Steel">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="161.31699999999998" />
+        </attvalues>
+      </node>
+      <node id="Horse: Cosmo Robin" label="Cosmo Robin">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="24.742" />
+        </attvalues>
+      </node>
+      <node id="Horse: Meinel Honey" label="Meinel Honey">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="23.391000000000002" />
+        </attvalues>
+      </node>
+      <node id="Horse: Narita Crystal" label="Narita Crystal">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="42.229" />
+        </attvalues>
+      </node>
+      <node id="Horse: Nishinoshitan" label="Nishinoshitan">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="25.893" />
+        </attvalues>
+      </node>
+      <node id="Horse: Harp Star" label="Harp Star">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="60.891000000000005" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Kazuhiro Yamada" label="Kazuhiro Yamada">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="8.799999999999999" />
+        </attvalues>
+      </node>
+      <node id="Horse: Brilliant Road" label="Brilliant Road">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="16.425" />
+        </attvalues>
+      </node>
+      <node id="Horse: Mikino Banjo" label="Mikino Banjo">
+        <attvalues>
+          <attvalue for="0" value="Horse" />
+          <attvalue for="1" value="14.695" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yokichi Okubo" label="Yokichi Okubo">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="214.20000000000007" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kojiro Hashiguchi" label="Kojiro Hashiguchi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="438.4000000000001" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Shozo Sasaki" label="Shozo Sasaki">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="206.30000000000007" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kazuo Fujisawa" label="Kazuo Fujisawa">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="463.70000000000005" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Sakae Kunieda" label="Sakae Kunieda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="263.90000000000003" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kaneo Ikezoe" label="Kaneo Ikezoe">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="152.20000000000002" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yasutoshi Ikee" label="Yasutoshi Ikee">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="443.1" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Akio Tsurudome" label="Akio Tsurudome">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="94.30000000000001" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hiroshi Matsuda" label="Hiroshi Matsuda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="356.00000000000006" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yoshitada Munakata" label="Yoshitada Munakata">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="136.30000000000004" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kenji Yamauchi" label="Kenji Yamauchi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="187.30000000000004" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Mitsugu Kon" label="Mitsugu Kon">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="156.5" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Tsutomu Setoguchi" label="Tsutomu Setoguchi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="117.30000000000001" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Keiyu Ninomiya" label="Keiyu Ninomiya">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="178.1" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kenichi Fujioka" label="Kenichi Fujioka">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="196.9" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hideaki Fujiwara" label="Hideaki Fujiwara">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="364.59999999999997" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Mitsuru Hashida" label="Mitsuru Hashida">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="268.7" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yasuo Tomomichi" label="Yasuo Tomomichi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="239.2" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Katsuhiko Sumii" label="Katsuhiko Sumii">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="415.59999999999997" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Noriyuki Hori" label="Noriyuki Hori">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="305.79999999999995" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Futoshi Kojima" label="Futoshi Kojima">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="223.79999999999998" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Katsuichi Nishiura" label="Katsuichi Nishiura">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="174.89999999999998" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hidetaka Otonashi" label="Hidetaka Otonashi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="489.99999999999994" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yoshito Yahagi" label="Yoshito Yahagi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="349.3" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yuichi Kitamura" label="Yuichi Kitamura">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="192.4" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yasuro Ikee" label="Yasuro Ikee">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="237.4" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Masanori Ito" label="Masanori Ito">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="143.1" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Osamu Hirata" label="Osamu Hirata">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="114.1" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Katsumi Minai" label="Katsumi Minai">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="150.0" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yukio Okabe" label="Yukio Okabe">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="71.3" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Shoji Yamamoto" label="Shoji Yamamoto">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="43.199999999999996" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Ichizo Iwamoto" label="Ichizo Iwamoto">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="70.3" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kunihide Matsuda" label="Kunihide Matsuda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="243.79999999999998" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Tadashi Ishizaka" label="Tadashi Ishizaka">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="244.6" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Masato Nishizono" label="Masato Nishizono">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="249.29999999999998" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Toshiaki Shirai" label="Toshiaki Shirai">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="118.6" />
+        </attvalues>
+      </node>
+      <node id="Jockey: O. Peslier" label="O. Peslier">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="90.1" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Masatoshi Ando" label="Masatoshi Ando">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="40.9" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Yuji Iida" label="Yuji Iida">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="43.5" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Akihiro Iida" label="Akihiro Iida">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="37.599999999999994" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kiyotaka Tanaka" label="Kiyotaka Tanaka">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="106.79999999999998" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hiroyuki Uemura" label="Hiroyuki Uemura">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="90.5" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Shuji Kitahashi" label="Shuji Kitahashi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="48.89999999999999" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hideyuki Mori" label="Hideyuki Mori">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="300.2" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Noboru Takagi" label="Noboru Takagi">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="74.1" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Takashi Kubota" label="Takashi Kubota">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="79.39999999999999" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Matsuwaka Fuuma" label="Matsuwaka Fuuma">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="61.7" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Takahisa Tezuka" label="Takahisa Tezuka">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="167.1" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Ippo Sameshima" label="Ippo Sameshima">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="230.7" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Shuichi Asami" label="Shuichi Asami">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="179.2" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hiroyuki Uehara" label="Hiroyuki Uehara">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="179.79999999999998" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Takanori Kikuzawa" label="Takanori Kikuzawa">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="125.89999999999999" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Tomoyuki Umeda" label="Tomoyuki Umeda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="72.2" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Masahiro Horii" label="Masahiro Horii">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="128.5" />
+        </attvalues>
+      </node>
+      <node id="Jockey: R. Moore" label="R. Moore">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="58.3" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hiroaki Sugiura" label="Hiroaki Sugiura">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="85.0" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Shigeki Matsumoto" label="Shigeki Matsumoto">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="208.6" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yoshiyuki Arakawa" label="Yoshiyuki Arakawa">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="122.89999999999999" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Shinya Kitazawa" label="Shinya Kitazawa">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="55.8" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Shoichi Matsumoto" label="Shoichi Matsumoto">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="45.8" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Mitsuhiro Ogata" label="Mitsuhiro Ogata">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="82.19999999999999" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Ryuji Okubo" label="Ryuji Okubo">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="148.5" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yoshio Oki" label="Yoshio Oki">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="44.9" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Takayuki Yasuda" label="Takayuki Yasuda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="209.0" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Akihiko Nomura" label="Akihiko Nomura">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="63.6" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Iku Aizawa" label="Iku Aizawa">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="128.29999999999998" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Isao Yasuda" label="Isao Yasuda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="48.099999999999994" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Akira Shikado" label="Akira Shikado">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="48.9" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hisashi Shimizu" label="Hisashi Shimizu">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="95.4" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Tomohito Ozeki" label="Tomohito Ozeki">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="87.8" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Masaru Honda" label="Masaru Honda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="204.2" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Naosuke Sugai" label="Naosuke Sugai">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="206.7" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yuji Ito" label="Yuji Ito">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="52.8" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Hiroki Sakiyama" label="Hiroki Sakiyama">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="102.3" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kazuhide Sasada" label="Kazuhide Sasada">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="79.7" />
+        </attvalues>
+      </node>
+      <node id="Jockey: K. Desormeaux" label="K. Desormeaux">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="23.7" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kiyohiro Tadokoro" label="Kiyohiro Tadokoro">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="49.699999999999996" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Tadashi Nakao" label="Tadashi Nakao">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="74.9" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kazunori Tabe" label="Kazunori Tabe">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="32.5" />
+        </attvalues>
+      </node>
+      <node id="Jockey: Hironobu Tanabe" label="Hironobu Tanabe">
+        <attvalues>
+          <attvalue for="0" value="Jockey" />
+          <attvalue for="1" value="267.8" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Kazutaka Yasuda" label="Kazutaka Yasuda">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="20.199999999999992" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Masahiro Matsunaga" label="Masahiro Matsunaga">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="120.2" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Sadahiko Kawamura" label="Sadahiko Kawamura">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="62.199999999999996" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yoshihiro Hatakeyama" label="Yoshihiro Hatakeyama">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="104.7" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Yukihiro Kato" label="Yukihiro Kato">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="142.9" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Mikio Matsunaga" label="Mikio Matsunaga">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="256.5" />
+        </attvalues>
+      </node>
+      <node id="Trainer: Toru Miya" label="Toru Miya">
+        <attvalues>
+          <attvalue for="0" value="Trainer" />
+          <attvalue for="1" value="171.9" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="Jockey: Yutaka Yoshida" target="Horse: San Carlo" id="0" weight="32.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Yoshida" target="Horse: Toushou Scirocco" id="1" weight="15.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Yoshida" target="Horse: Shonan Pantle" id="2" weight="8.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Yoshida" target="Horse: Nishinoshitan" id="3" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Yoshida" target="Trainer: Yokichi Okubo" id="4" weight="140.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Yoshida" target="Trainer: Mitsuhiro Ogata" id="5" weight="20.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshitomi Shibata" target="Horse: Nakayama Knight" id="6" weight="19.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshitomi Shibata" target="Horse: Asahi Rising" id="7" weight="8.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshitomi Shibata" target="Horse: Meiner Scherzi" id="8" weight="7.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshitomi Shibata" target="Horse: Orewa Matteruze" id="9" weight="6.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshitomi Shibata" target="Trainer: Keiyu Ninomiya" id="10" weight="47.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshitomi Shibata" target="Trainer: Kazuo Fujisawa" id="11" weight="31.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshitomi Shibata" target="Trainer: Hidetaka Otonashi" id="12" weight="18.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaru Honda" target="Horse: Mysore Sound" id="13" weight="19.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaru Honda" target="Trainer: Katsuichi Nishiura" id="14" weight="36.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Horse: Balance of Games" id="15" weight="18.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Horse: Shadow Gate" id="16" weight="12.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Horse: Absolute" id="17" weight="10.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Horse: Eagle Cafe" id="18" weight="6.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Trainer: Yoshitada Munakata" id="19" weight="55.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Trainer: Futoshi Kojima" id="20" weight="37.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Trainer: Kazuo Fujisawa" id="21" weight="22.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuharu Tanaka" target="Trainer: Yukihiro Kato" id="22" weight="17.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Koshiro Take" target="Horse: Meisho Mambo" id="23" weight="18.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Koshiro Take" target="Horse: Fast Vertical" id="24" weight="10.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Koshiro Take" target="Horse: Rikiai Taikan" id="25" weight="9.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Koshiro Take" target="Horse: Win Krueger" id="26" weight="7.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Horse: Let's Gordon Ki" id="27" weight="18.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Horse: Admire Deus" id="28" weight="14.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Horse: Nouvelle Colt" id="29" weight="11.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Horse: Ashin Forward" id="30" weight="9.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Horse: Roman Legend" id="31" weight="8.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Horse: Delta Blues" id="32" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Horse: Dia de la Novia" id="33" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Hideaki Fujiwara" id="34" weight="45.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Katsuhiko Sumii" id="35" weight="37.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Hiroshi Matsuda" id="36" weight="32.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Mitsuru Hashida" id="37" weight="25.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Yasuo Tomomichi" id="38" weight="23.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Yasutoshi Ikee" id="39" weight="22.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Tomoyuki Umeda" id="40" weight="22.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Masato Nishizono" id="41" weight="19.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Naosuke Sugai" id="42" weight="18.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasunari Iwata" target="Trainer: Noriyuki Hori" id="43" weight="17.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Yamakatsu Ace" id="44" weight="17.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Sweep Tosho" id="45" weight="17.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Dream Journey" id="46" weight="16.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Sea Is Tosho" id="47" weight="13.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Orfevre" id="48" weight="12.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Marble Chief" id="49" weight="10.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Eishin Apollon" id="50" weight="9.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Asakadi Feet" id="51" weight="8.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Durandal" id="52" weight="7.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Karen Mirotic" id="53" weight="7.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Tall Poppy" id="54" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Horse: Meisho Beluga" id="55" weight="6.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Trainer: Kaneo Ikezoe" id="56" weight="65.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Trainer: Akio Tsurudome" id="57" weight="56.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Trainer: Yasutoshi Ikee" id="58" weight="41.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kenichi Ikezoe" target="Trainer: Kiyohiro Tadokoro" id="59" weight="17.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasuhiko Yasuda" target="Horse: Fast Vertical" id="60" weight="17.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yasuhiko Yasuda" target="Trainer: Isao Yasuda" id="61" weight="19.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Fuyuki Igarashi" target="Horse: Cosmo Bulk" id="62" weight="17.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Fuyuki Igarashi" target="Trainer: Kazunori Tabe" id="63" weight="17.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaki Katsuura" target="Horse: Telegnosis" id="64" weight="16.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaki Katsuura" target="Horse: Glass Bomber" id="65" weight="12.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaki Katsuura" target="Horse: Apollo Dolce" id="66" weight="10.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaki Katsuura" target="Horse: Almawaioli" id="67" weight="7.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaki Katsuura" target="Trainer: Hiroaki Sugiura" id="68" weight="22.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaki Katsuura" target="Trainer: Katsuichi Nishiura" id="69" weight="20.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masaki Katsuura" target="Trainer: Mitsuhiro Ogata" id="70" weight="19.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Horse: Meinel Kits" id="71" weight="16.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Horse: My Na Sabel" id="72" weight="14.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Horse: Meinel Frost" id="73" weight="8.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Horse: Win Bright" id="74" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Horse: Win Fabulous" id="75" weight="7.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Horse: Meinel Charles" id="76" weight="6.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Horse: Cosmo Phantom" id="77" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Trainer: Takahisa Tezuka" id="78" weight="24.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Trainer: Sakae Kunieda" id="79" weight="18.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masami Matsuoka" target="Trainer: Yoshihiro Hatakeyama" id="80" weight="17.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroshi Sakuma" target="Horse: Tm Toppa Zure" id="81" weight="16.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroshi Sakuma" target="Trainer: Akira Shikado" id="82" weight="19.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Gallant Arrow" id="83" weight="15.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Still in Love" id="84" weight="11.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Let's Go Kirishima" id="85" weight="9.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Fine Grain" id="86" weight="8.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Blue Concord" id="87" weight="7.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Derby Legno" id="88" weight="7.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Crino Star O" id="89" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Horse: Premium Box" id="90" weight="6.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Trainer: Shoichi Matsumoto" id="91" weight="20.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Trainer: Masato Nishizono" id="92" weight="20.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hideaki Miyuki" target="Trainer: Hiroki Sakiyama" id="93" weight="18.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Horse: Air Shady" id="94" weight="15.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Horse: Chakra" id="95" weight="9.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Horse: Lohengrin" id="96" weight="7.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Horse: Nevabuchon" id="97" weight="7.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Horse: Animate Bio" id="98" weight="6.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Trainer: Masanori Ito" id="99" weight="31.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Trainer: Sakae Kunieda" id="100" weight="31.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroki Goto" target="Trainer: Masahiro Horii" id="101" weight="22.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Meisho Bowler" id="102" weight="15.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Sunningdale" id="103" weight="9.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Maruka Schenk" id="104" weight="9.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Line Craft" id="105" weight="9.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Company" id="106" weight="9.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Cheval Grand" id="107" weight="8.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: To the Glory" id="108" weight="8.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Germinal" id="109" weight="7.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Admire Fuji" id="110" weight="7.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Sakura Mega Wonder" id="111" weight="7.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Robe Decollete" id="112" weight="7.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Fusaichi Pandora" id="113" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Marca Phoenix" id="114" weight="7.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Eishin Preston" id="115" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Majin Prosper" id="116" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Horse: Real Steel" id="117" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Tsutomu Setoguchi" id="118" weight="48.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Yasuo Tomomichi" id="119" weight="38.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Hideaki Fujiwara" id="120" weight="34.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Toshiaki Shirai" id="121" weight="28.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Kunihide Matsuda" id="122" weight="26.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Shuji Kitahashi" id="123" weight="26.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Noriyuki Hori" id="124" weight="25.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Katsuhiko Sumii" id="125" weight="23.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Yasutoshi Ikee" id="126" weight="23.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Hidetaka Otonashi" id="127" weight="19.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Mitsuru Hashida" id="128" weight="18.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Fukunaga" target="Trainer: Hiroshi Matsuda" id="129" weight="16.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Takuya Ono" target="Horse: Snow Dragon" id="130" weight="15.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Takuya Ono" target="Trainer: Noboru Takagi" id="131" weight="25.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yusuke Fujioka" target="Horse: One Carat" id="132" weight="15.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yusuke Fujioka" target="Horse: Super Hornet" id="133" weight="13.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yusuke Fujioka" target="Trainer: Kenichi Fujioka" id="134" weight="46.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yusuke Fujioka" target="Trainer: Yoshito Yahagi" id="135" weight="32.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tetsuzo Sato" target="Horse: Tap Dance City" id="136" weight="15.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tetsuzo Sato" target="Horse: Inti Raymi" id="137" weight="14.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tetsuzo Sato" target="Horse: Earnestly" id="138" weight="13.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tetsuzo Sato" target="Horse: Provenage" id="139" weight="7.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tetsuzo Sato" target="Trainer: Shozo Sasaki" id="140" weight="84.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tomoharu Bushizawa" target="Horse: Tosho Knight" id="141" weight="14.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tomoharu Bushizawa" target="Horse: Arcosenora" id="142" weight="12.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tomoharu Bushizawa" target="Horse: Venture Nine" id="143" weight="8.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tomoharu Bushizawa" target="Trainer: Kazutaka Yasuda" id="144" weight="17.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryo Takakura" target="Horse: Fragarach" id="145" weight="13.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryo Takakura" target="Horse: Noble Mars" id="146" weight="6.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Admire Groove" id="147" weight="13.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Kitasan Black" id="148" weight="11.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Smart Layer" id="149" weight="10.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Reach the Crown" id="150" weight="10.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Deep Impact" id="151" weight="10.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Air Spinel" id="152" weight="10.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Suzuka Phoenix" id="153" weight="9.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Fine Motion" id="154" weight="9.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Tosenler" id="155" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Admire Max" id="156" weight="7.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Belcanto" id="157" weight="7.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Lis Gracieux" id="158" weight="7.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Admire Kiss" id="159" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Kizuna" id="160" weight="7.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Air Messiah" id="161" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Rose Kingdom" id="162" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Meisho Samson" id="163" weight="6.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Horse: Narita Crystal" id="164" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Kojiro Hashiguchi" id="165" weight="48.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Mitsuru Hashida" id="166" weight="40.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Katsuhiko Sumii" id="167" weight="36.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Hidetaka Otonashi" id="168" weight="33.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Yasuro Ikee" id="169" weight="32.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Yasutoshi Ikee" id="170" weight="28.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Tadashi Ishizaka" id="171" weight="20.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Hisashi Shimizu" id="172" weight="18.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Hiroshi Matsuda" id="173" weight="18.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Yuji Ito" id="174" weight="18.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Kazuhide Sasada" id="175" weight="18.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yutaka Take" target="Trainer: Mikio Matsunaga" id="176" weight="16.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Goken Namba" target="Horse: Sunray Duke" id="177" weight="13.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Goken Namba" target="Horse: Sunray Jasper" id="178" weight="8.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinichiro Akiyama" target="Horse: Karen Blackhill" id="179" weight="13.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinichiro Akiyama" target="Horse: Field Bear" id="180" weight="10.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinichiro Akiyama" target="Horse: Venus Line" id="181" weight="6.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinichiro Akiyama" target="Trainer: Osamu Hirata" id="182" weight="31.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinichiro Akiyama" target="Trainer: Akihiko Nomura" id="183" weight="20.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tadashi Kosaka" target="Horse: Kouei Try" id="184" weight="12.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tadashi Kosaka" target="Horse: Baazel River" id="185" weight="7.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Apapane" id="186" weight="12.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Isla Bonita" id="187" weight="11.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Matsurida Gogh" id="188" weight="10.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Whale Capture" id="189" weight="10.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Fenomeno" id="190" weight="9.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Maria Light" id="191" weight="8.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Daiwa Maggiore" id="192" weight="8.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Eftimaia" id="193" weight="7.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Denkouange" id="194" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Dance in the More" id="195" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Tanta Alegria" id="196" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Horse: Dee Majesty" id="197" weight="6.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Trainer: Sakae Kunieda" id="198" weight="70.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Trainer: Keiyu Ninomiya" id="199" weight="30.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Trainer: Futoshi Kojima" id="200" weight="28.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Trainer: Kiyotaka Tanaka" id="201" weight="26.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Trainer: Takashi Kubota" id="202" weight="24.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Trainer: Yoshito Yahagi" id="203" weight="21.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Masayoshi Ebina" target="Trainer: Yoshiyuki Arakawa" id="204" weight="21.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kaoruhiko Watanabe" target="Horse: Tamamo Hot Play" id="205" weight="12.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kaoruhiko Watanabe" target="Trainer: Yoshio Oki" id="206" weight="20.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kaoruhiko Watanabe" target="Trainer: Katsumi Minai" id="207" weight="19.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Shibayama" target="Horse: Daisho Jet" id="208" weight="12.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Shibayama" target="Horse: Tokai Paradise" id="209" weight="11.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Shibayama" target="Horse: Shimbori Grand" id="210" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Shibayama" target="Horse: Yamanin Merveille" id="211" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Horse: Mickey Queen" id="212" weight="11.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Horse: Mikki Isle" id="213" weight="10.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Horse: Denim and Ruby" id="214" weight="8.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Horse: Shonan Mighty" id="215" weight="8.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Trainer: Hidetaka Otonashi" id="216" weight="31.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Trainer: Tadashi Ishizaka" id="217" weight="28.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Trainer: Yasutoshi Ikee" id="218" weight="23.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shun Hamanaka" target="Trainer: Katsuhiko Sumii" id="219" weight="17.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Horse: Hiruno d'Amour" id="220" weight="11.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Horse: Laurel Guerreiro" id="221" weight="11.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Horse: Broad Street" id="222" weight="9.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Horse: Kongourixio" id="223" weight="8.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Horse: Daring Heart" id="224" weight="8.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Horse: Shingen" id="225" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Horse: Transcend" id="226" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Trainer: Kenji Yamauchi" id="227" weight="54.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Trainer: Hideaki Fujiwara" id="228" weight="40.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Fujita" target="Trainer: Mitsugu Kon" id="229" weight="28.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Osamu Ishibashi" target="Horse: Garbo" id="230" weight="11.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Osamu Ishibashi" target="Trainer: Noriyuki Hori" id="231" weight="37.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Koichi Tsunoda" target="Horse: Hishi Miracle" id="232" weight="11.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Koichi Tsunoda" target="Horse: Agnes Raspberry" id="233" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroshi Kitamura" target="Horse: Daiwa Falcon" id="234" weight="11.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroshi Kitamura" target="Horse: Fame Game" id="235" weight="10.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroshi Kitamura" target="Horse: King's Trail" id="236" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroshi Kitamura" target="Trainer: Kazuo Fujisawa" id="237" weight="81.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroshi Kitamura" target="Trainer: Hiroyuki Uehara" id="238" weight="22.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Mitsuki Kaneko" target="Horse: Telegenic" id="239" weight="11.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Horse: Isla Bonita" target="Jockey: C. Lemaire" id="240" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Yamanin Shukuru" id="241" weight="11.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Decipher" id="242" weight="10.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Silk Famous" id="243" weight="10.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Asakusa Kings" id="244" weight="9.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Keeneland Swan" id="245" weight="8.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Vodka" id="246" weight="8.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Deep Sky" id="247" weight="7.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Spring Sander" id="248" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Red Desire" id="249" weight="7.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Horse: Hiruno Deibaro" id="250" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Trainer: Mitsugu Kon" id="251" weight="49.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Trainer: Katsuhiko Sumii" id="252" weight="31.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Trainer: Futoshi Kojima" id="253" weight="26.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Trainer: Shuichi Asami" id="254" weight="23.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Trainer: Ryuji Okubo" id="255" weight="20.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hirofumi Shii" target="Trainer: Hideyuki Mori" id="256" weight="18.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Horse: Admire Fuji" id="257" weight="11.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Horse: Last Impact" id="258" weight="10.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Horse: Dasher Go Go" id="259" weight="8.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Horse: Satonoalazine" id="260" weight="7.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Horse: Captain Thule" id="261" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Horse: Lovely Day" id="262" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Horse: Harp Star" id="263" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Trainer: Yasutoshi Ikee" id="264" weight="57.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Trainer: Hiroshi Matsuda" id="265" weight="50.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Trainer: Katsuhiko Sumii" id="266" weight="27.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuga Kawada" target="Trainer: Mitsuru Hashida" id="267" weight="20.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Horse: Mickey Rocket" id="268" weight="11.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Horse: Wonder Acute" id="269" weight="9.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Horse: Mickey Dream" id="270" weight="8.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Horse: Tamamo Best Play" id="271" weight="8.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Horse: Namura Crescent" id="272" weight="8.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Horse: Akiko Hourai" id="273" weight="7.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Trainer: Katsumi Minai" id="274" weight="31.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Trainer: Ichizo Iwamoto" id="275" weight="30.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Trainer: Hidetaka Otonashi" id="276" weight="30.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Ryuji Wada" target="Trainer: Sadahiko Kawamura" id="277" weight="17.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Horse: One and Only" id="278" weight="11.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Horse: Company" id="279" weight="10.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Horse: Lohengrin" id="280" weight="8.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Horse: Sakura Gospel" id="281" weight="8.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Horse: Tsurumaru Boy" id="282" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Horse: Swift Current" id="283" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Trainer: Kazuo Fujisawa" id="284" weight="58.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Trainer: Kojiro Hashiguchi" id="285" weight="32.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Trainer: Hideyuki Mori" id="286" weight="25.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Trainer: Hidetaka Otonashi" id="287" weight="25.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Trainer: Takanori Kikuzawa" id="288" weight="22.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Trainer: Masanori Ito" id="289" weight="21.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Norihiro Yokoyama" target="Trainer: Tomohito Ozeki" id="290" weight="18.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Horse: Golden Cast" id="291" weight="10.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Horse: Hit the Target" id="292" weight="9.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Horse: Kanoyazakura" id="293" weight="8.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Horse: Reginetta" id="294" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Horse: Wonder Speed" id="295" weight="8.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Horse: Clarent" id="296" weight="8.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Horse: Silk Port" id="297" weight="7.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Futoshi Komaki" target="Trainer: Kojiro Hashiguchi" id="298" weight="92.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Horse: Virsina" id="299" weight="10.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Horse: Gold Ship" id="300" weight="10.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Horse: Eishin Flash" id="301" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Horse: Grand Prix Boss" id="302" weight="7.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Horse: Oken Bruce Lee" id="303" weight="7.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Trainer: Yasuo Tomomichi" id="304" weight="34.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Trainer: Yoshito Yahagi" id="305" weight="21.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Trainer: Hideaki Fujiwara" id="306" weight="20.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Trainer: Katsuhiko Sumii" id="307" weight="17.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hiroyuki Uchida" target="Trainer: Hidetaka Otonashi" id="308" weight="16.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Mamoru Ishibashi" target="Horse: Meisho Samson" id="309" weight="10.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Mikio Matsunaga" target="Horse: Heavenly Romance" id="310" weight="10.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Mikio Matsunaga" target="Trainer: Shoji Yamamoto" id="311" weight="30.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tomonori Kanaori" target="Horse: Cool Joy" id="312" weight="10.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Tomonori Kanaori" target="Trainer: Shigeki Matsumoto" id="313" weight="17.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Mitsuaki Hayashi" target="Horse: Up to Date" id="314" weight="10.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Manabu Sakai" target="Horse: Nihon Piro Hours" id="315" weight="10.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Manabu Sakai" target="Horse: Hakusan Moon" id="316" weight="10.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Manabu Sakai" target="Horse: Hoola Bride" id="317" weight="10.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Manabu Sakai" target="Horse: Sandalfon" id="318" weight="9.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Manabu Sakai" target="Trainer: Masato Nishizono" id="319" weight="28.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Eiko Kawasu" target="Horse: Red Allion" id="320" weight="10.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kosei Miura" target="Horse: Smile Jack" id="321" weight="10.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Kawashima" target="Horse: Ausumiharuka" id="322" weight="10.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Kawashima" target="Horse: Belle Lumiere" id="323" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinji Kawashima" target="Trainer: Masatoshi Ando" id="324" weight="27.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Horse: Daiwa Major" id="325" weight="10.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Horse: Bb Garudan" id="326" weight="8.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Horse: Daiwa Scarlet" id="327" weight="8.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Horse: That's the Plenty" id="328" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Horse: Yamakatsu Lily" id="329" weight="6.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Trainer: Hiroshi Matsuda" id="330" weight="56.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Trainer: Kojiro Hashiguchi" id="331" weight="39.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Trainer: Kunihide Matsuda" id="332" weight="29.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Trainer: Ippo Sameshima" id="333" weight="23.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Trainer: Shigeki Matsumoto" id="334" weight="21.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsumi Ando" target="Trainer: Hidetaka Otonashi" id="335" weight="19.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: M. Demuro" target="Horse: Queen's Ring" id="336" weight="10.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: M. Demuro" target="Horse: Neo Universe" id="337" weight="7.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: M. Demuro" target="Trainer: Katsuhiko Sumii" id="338" weight="20.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Keita Tosaki" target="Horse: Rouge Back" id="339" weight="9.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Keita Tosaki" target="Trainer: Noriyuki Hori" id="340" weight="29.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Keita Tosaki" target="Trainer: Hideaki Fujiwara" id="341" weight="28.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hokuto Miyazaki" target="Horse: Seraphic Romp" id="342" weight="9.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hayato Yoshida" target="Horse: Gold Actor" id="343" weight="9.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Keisuke Dazai" target="Horse: Fuminoi Margin" id="344" weight="9.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Keisuke Dazai" target="Horse: Asuka No Roman" id="345" weight="8.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Keisuke Dazai" target="Horse: Mikino Banjo" id="346" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Keisuke Dazai" target="Trainer: Masaru Honda" id="347" weight="18.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shinichi Ishigami" target="Horse: Ojuchosan" id="348" weight="9.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuyoshi Tsuneishi" target="Horse: Ausmi Cosmo" id="349" weight="8.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Katsuyoshi Tsuneishi" target="Trainer: Tadashi Nakao" id="350" weight="17.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Jiro Ono" target="Horse: Yukino Sun Royal" id="351" weight="8.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kazuma Mori" target="Horse: Line Spirit" id="352" weight="8.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kazuma Mori" target="Trainer: Masahiro Matsunaga" id="353" weight="17.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: C. Lemaire" target="Horse: Satono Diamond" id="354" weight="8.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: C. Lemaire" target="Horse: Soul Starling" id="355" weight="6.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: C. Lemaire" target="Trainer: Kazuo Fujisawa" id="356" weight="28.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: C. Lemaire" target="Trainer: Yasutoshi Ikee" id="357" weight="26.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Daichi Shibata" target="Horse: Meinel Medalist" id="358" weight="8.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Daichi Shibata" target="Horse: Meinel Milano" id="359" weight="8.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Daichi Shibata" target="Horse: Meinel Lacrima" id="360" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Daichi Shibata" target="Horse: Cosmo Robin" id="361" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Daichi Shibata" target="Horse: Meinel Honey" id="362" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Akihide Tsumura" target="Horse: Creel Passion" id="363" weight="8.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Akihide Tsumura" target="Horse: Grand City" id="364" weight="8.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Akihide Tsumura" target="Horse: Tamamo Best Play" id="365" weight="7.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Akihide Tsumura" target="Trainer: Iku Aizawa" id="366" weight="20.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Takaya Ueno" target="Horse: Meinel Fiesta" id="367" weight="8.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hatsuhiro Kobata" target="Horse: Win Blaze" id="368" weight="8.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Hatsuhiro Kobata" target="Trainer: Yoshitada Munakata" id="369" weight="21.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kazuma Takano" target="Horse: Seiei" id="370" weight="8.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Teruo Eda" target="Horse: Yamanin Alabasta" id="371" weight="8.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Teruo Eda" target="Horse: Camphor Vest" id="372" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Teruo Eda" target="Horse: Tosen Dandy" id="373" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Toru Munakata" target="Horse: Meineloper" id="374" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yusaku Kokubun" target="Horse: Tea Half" id="375" weight="8.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yusaku Kokubun" target="Trainer: Katsuichi Nishiura" id="376" weight="20.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yusuke Eda" target="Horse: Open Garden" id="377" weight="7.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Naoto Ito" target="Horse: Smart Boy" id="378" weight="7.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kumazawa Important Cultural Heritage" target="Horse: Tm Precure" id="379" weight="7.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kohei Matsuyama" target="Horse: Smart Gear" id="380" weight="7.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yoshiyuki Yokoyama" target="Horse: Merci A Time" id="381" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kota Fujioka" target="Horse: Silk Fortune" id="382" weight="7.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kota Fujioka" target="Horse: Dia de la Madre" id="383" weight="6.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kota Fujioka" target="Trainer: Kenichi Fujioka" id="384" weight="21.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kota Fujioka" target="Trainer: Toru Miya" id="385" weight="16.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Shogo Kikuchi" target="Horse: Battle Brave" id="386" weight="6.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Jun Takada" target="Horse: Leper Noel" id="387" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Kazuhiro Yamada" target="Horse: Brilliant Road" id="388" weight="6.6">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Horse Ride" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Kojiro Hashiguchi" target="Jockey: Hiroyuki Uemura" id="389" weight="26.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Kazuo Fujisawa" target="Jockey: Yukio Okabe" id="390" weight="30.8">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Kazuo Fujisawa" target="Jockey: O. Peslier" id="391" weight="27.3">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Kazuo Fujisawa" target="Jockey: K. Desormeaux" id="392" weight="17.7">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Hiroshi Matsuda" target="Jockey: Hironobu Tanabe" id="393" weight="17.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Mitsuru Hashida" target="Jockey: Shinya Kitazawa" id="394" weight="21.4">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Noriyuki Hori" target="Jockey: R. Moore" id="395" weight="22.2">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Hidetaka Otonashi" target="Jockey: Yuichi Kitamura" id="396" weight="32.9">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Trainer: Hidetaka Otonashi" target="Jockey: Matsuwaka Fuuma" id="397" weight="24.5">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuichi Kitamura" target="Trainer: Takayuki Yasuda" id="398" weight="20.1">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+      <edge source="Jockey: Yuji Iida" target="Trainer: Akihiro Iida" id="399" weight="27.0">
+        <attvalues>
+          <attvalue for="2" value="Jockey-Trainer Team" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

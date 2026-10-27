@@ -113,10 +113,21 @@ As linhagens paternas mais dominantes da era moderna do turfe japonês, liderada
 </p>
 
 ### 💰 Top 10 Cavalos por Premiação Acumulada na Carreira
-Os maiores ganhadores financeiros registrados no banco de dados (em centenas de milhões de Ienes — *Oku-Yen*):
+Os maiores ganhadores financeiros registrados no banco de dados (em centenas de milhões de Ienes — *Oku-Yen*), liderados por **Almond Eye** (¥19.15B) e **Kitasan Black** (¥18.77B):
 
 <p align="center">
   <img src="docs/assets/top_earners.png" alt="Top 10 Earners" width="85%">
+</p>
+
+### 🕸️ Rede de Competição Esportiva (PageRank $d = 0.85$) & Fluxo Genealógico (DAG 5 Gerações)
+Modelagem em grafos exportada para o **Gephi** (`data/gephi/*.gexf`) demonstrando a autoridade competitiva via *PageRank* e a transmissão dinástica de linhagens paternas:
+
+<p align="center">
+  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
+</p>
+
+<p align="center">
+  <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
 </p>
 
 ---

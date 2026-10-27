@@ -111,10 +111,21 @@
 </p>
 
 ### 💰 生涯獲得賞金トップ10 競走馬
-データベース内の生涯獲得賞金（億円単位）トップ10：
+データベース内の生涯獲得賞金（億円単位）トップ10（1位：**アーモンドアイ** 19.15億円、2位：**キタサンブラック** 18.77億円）：
 
 <p align="center">
   <img src="docs/assets/top_earners_ja.png" alt="生涯獲得賞金トップ10競走馬" width="85%">
+</p>
+
+### 🕸️ 競走ネットワーク（PageRank $d = 0.85$）＆ 5代血統有向非巡回グラフ（DAG）
+**Gephi**（`data/gephi/*.gexf`）向けにエクスポートされた競走威信ネットワークおよび血統継承グラフ：
+
+<p align="center">
+  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
+</p>
+
+<p align="center">
+  <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
 </p>
 
 ---

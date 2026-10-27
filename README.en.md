@@ -113,10 +113,21 @@ The most dominant paternal bloodlines in modern Japanese turf history, led by **
 </p>
 
 ### 💰 Top 10 Racehorses by Lifetime Earnings
-The highest-earning thoroughbreds recorded in the database (in 100 Million JPY — *Oku-Yen*):
+The highest-earning thoroughbreds recorded in the database (in 100 Million JPY — *Oku-Yen*), led by **Almond Eye** (¥19.15B) and **Kitasan Black** (¥18.77B):
 
 <p align="center">
   <img src="docs/assets/top_earners.png" alt="Top 10 Earners" width="85%">
+</p>
+
+### 🕸️ Elite Competition Network (PageRank $d = 0.85$) & 5-Generation Lineage DAG
+Graph networks exported for **Gephi** (`data/gephi/*.gexf`) illustrating competitive prestige transfer via *PageRank* and royal bloodline transmission:
+
+<p align="center">
+  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
+</p>
+
+<p align="center">
+  <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
 </p>
 
 ---
