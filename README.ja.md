@@ -117,15 +117,48 @@
   <img src="docs/assets/top_earners_ja.png" alt="生涯獲得賞金トップ10競走馬" width="85%">
 </p>
 
-### 🕸️ 競走ネットワーク（PageRank $d = 0.85$）＆ 5代血統有向非巡回グラフ（DAG）
-**Gephi**（`data/gephi/*.gexf`）向けにエクスポートされた競走威信ネットワークおよび血統継承グラフ：
+### 🕸️ Gephi グラフネットワーク（画像をクリックすると無限ズーム可能なベクターPDFが開きます！）
+**Gephi**（`data/gephi/*.gexf` および `*.pdf`）で可視化された複雑ネットワークです。**ヒント：** *各画像をクリックするとオリジナルのベクター `.pdf` が開き、最大1600%まで拡大して各競走馬名を確認できます！*
 
-<p align="center">
-  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
-</p>
+<div align="center">
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <b>1. 競走ネットワーク — PageRank トップ150（種牡馬系統別）</b><br>
+      <a href="data/gephi/competition_network_top150.pdf">
+        <img src="docs/assets/gephi_competition_top150.png" alt="Gephi Top 150 Competition" width="96%">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <b>2. 時代別ライバル関係フロー — トップ500（2002–2025年）</b><br>
+      <a href="data/gephi/competition_network_top500.pdf">
+        <img src="docs/assets/gephi_competition_top500.png" alt="Gephi Top 500 Era" width="96%">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>3. 5代血統有向非巡回グラフ（DAG — 4,475ノード）</b><br>
+      <a href="data/gephi/lineage_dag_elite.pdf">
+        <img src="docs/assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" width="96%">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <b>4. 三部ネットワーク — 騎手 ↔ 競走馬 ↔ 調教師</b><br>
+      <a href="data/gephi/jockey_horse_trainer_network.pdf">
+        <img src="docs/assets/gephi_jockey_horse_trainer.png" alt="Gephi Jockey Horse Trainer" width="96%">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
 
+### 📊 5代血統ダイナスティ階層図 ＆ PageRank サブグラフ
 <p align="center">
   <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
+</p>
+<p align="center">
+  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
 ---

@@ -119,15 +119,48 @@ Os maiores ganhadores financeiros registrados no banco de dados (em centenas de 
   <img src="docs/assets/top_earners.png" alt="Top 10 Earners" width="85%">
 </p>
 
-### 🕸️ Rede de Competição Esportiva (PageRank $d = 0.85$) & Fluxo Genealógico (DAG 5 Gerações)
-Modelagem em grafos exportada para o **Gephi** (`data/gephi/*.gexf`) demonstrando a autoridade competitiva via *PageRank* e a transmissão dinástica de linhagens paternas:
+### 🕸️ Modelagem em Grafos no Gephi (Clique nas imagens para abrir o PDF Vetorial com Zoom Infinito!)
+Redes complexas modeladas e exportadas via **Gephi** (`data/gephi/*.gexf` e `*.pdf`). **Dica:** *Clique sobre qualquer grafo abaixo para abrir o arquivo `.pdf` vetorial original e dar zoom de até 1600% nos nomes dos cavalos!*
 
-<p align="center">
-  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
-</p>
+<div align="center">
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <b>1. Rede de Competição — Top 150 PageRank (por Linhagem)</b><br>
+      <a href="data/gephi/competition_network_top150.pdf">
+        <img src="docs/assets/gephi_competition_top150.png" alt="Gephi Top 150 Competition" width="96%">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <b>2. Fluxo Temporal de Rivalidades — Top 500 (por Era 2002–2025)</b><br>
+      <a href="data/gephi/competition_network_top500.pdf">
+        <img src="docs/assets/gephi_competition_top500.png" alt="Gephi Top 500 Era" width="96%">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>3. Galáxia Genealógica — DAG 5 Gerações (4.475 Nós)</b><br>
+      <a href="data/gephi/lineage_dag_elite.pdf">
+        <img src="docs/assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" width="96%">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <b>4. Rede Tripartida — Jóqueis ↔ Cavalos ↔ Treinadores</b><br>
+      <a href="data/gephi/jockey_horse_trainer_network.pdf">
+        <img src="docs/assets/gephi_jockey_horse_trainer.png" alt="Gephi Jockey Horse Trainer" width="96%">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
 
+### 📊 Diagrama Hierárquico das Dinastias Reais (5 Gerações) & Subgrafo PageRank
 <p align="center">
   <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
+</p>
+<p align="center">
+  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
 ---

@@ -119,15 +119,48 @@ The highest-earning thoroughbreds recorded in the database (in 100 Million JPY �
   <img src="docs/assets/top_earners.png" alt="Top 10 Earners" width="85%">
 </p>
 
-### 🕸️ Elite Competition Network (PageRank $d = 0.85$) & 5-Generation Lineage DAG
-Graph networks exported for **Gephi** (`data/gephi/*.gexf`) illustrating competitive prestige transfer via *PageRank* and royal bloodline transmission:
+### 🕸️ Gephi Graph Networks (Click any image to open the Vector PDF with Infinite Zoom!)
+Complex networks rendered in **Gephi** (`data/gephi/*.gexf` and `*.pdf`). **Tip:** *Click any graph below to open the original vector `.pdf` and zoom up to 1600% into individual racehorse names!*
 
-<p align="center">
-  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
-</p>
+<div align="center">
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <b>1. Competition Network — Top 150 PageRank (by Sire Line)</b><br>
+      <a href="data/gephi/competition_network_top150.pdf">
+        <img src="docs/assets/gephi_competition_top150.png" alt="Gephi Top 150 Competition" width="96%">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <b>2. Temporal Rivalry Flow — Top 500 (by Era 2002–2025)</b><br>
+      <a href="data/gephi/competition_network_top500.pdf">
+        <img src="docs/assets/gephi_competition_top500.png" alt="Gephi Top 500 Era" width="96%">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>3. Genealogical Galaxy — 5-Gen Lineage DAG (4,475 Nodes)</b><br>
+      <a href="data/gephi/lineage_dag_elite.pdf">
+        <img src="docs/assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" width="96%">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <b>4. Tripartite Network — Jockeys ↔ Horses ↔ Trainers</b><br>
+      <a href="data/gephi/jockey_horse_trainer_network.pdf">
+        <img src="docs/assets/gephi_jockey_horse_trainer.png" alt="Gephi Jockey Horse Trainer" width="96%">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
 
+### 📊 5-Generation Royal Bloodline Flow & PageRank Subgraph
 <p align="center">
   <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
+</p>
+<p align="center">
+  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
 ---
