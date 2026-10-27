@@ -52,7 +52,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.create_tag.outputs.tag }}
-          name: "Relatorios JRA/JBIS ${{ steps.create_tag.outputs.tag }}"
+          name: "JRA Graded Races (2002-2025) & JBIS 5-Gen Pedigree Dataset (${{ steps.create_tag.outputs.tag }})"
+          body: |
+            Official release of the **JRA Graded Races (2002–2025) & JBIS 5-Generation Pedigree Dataset** (Japanese & 100% English Translated CSVs, Gephi Graph Networks, PageRank, Wright's Inbreeding $F_X$, K-Means++ PCA & Random Forest Analysis, and Compiled LaTeX Technical Reports in PT-BR, EN, and JA).
           files: |
             docs/relatorio_extracao.pdf
             docs/relatorio_extracao_en.pdf

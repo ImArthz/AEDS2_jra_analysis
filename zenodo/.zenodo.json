@@ -1,14 +1,14 @@
 {
-  "title": "JRA Graded Races (2002-2025) & JBIS 5-Generation Pedigree Dataset (Bilingual JA/EN + Graph Networks)",
+  "title": "JRA Graded Races (2002-2025) & JBIS 5-Generation Pedigree Dataset (Bilingual JA/EN + Graph Networks & ML)",
   "upload_type": "dataset",
-  "publication_date": "2026-10-26",
+  "publication_date": "2026-10-27",
   "creators": [
     {
       "name": "Mendonça, Arthur De Oliveira",
       "affiliation": "Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG)"
     }
   ],
-  "description": "Comprehensive relational and graph-ready dataset of Japanese Thoroughbred horse racing covering 24 years (2002-2025) of Japan Racing Association (JRA) Graded Races (G1, G2, G3) coupled with 5-generation genealogical pedigrees extracted from the Japan Bloodhorse Information System (JBIS). Includes both original Japanese and 100% hybrid-AI-translated English editions (SQLite3 + UTF-8 CSVs + Gephi GEXF networks). Contains 3,216 Graded races, 33,409 race entries, 8,209 unique racehorses, 8,202 direct pedigrees, and 504,074 5-generation pedigree tree nodes validated with zero broken foreign keys.",
+  "description": "Comprehensive relational, graph-ready, and machine-learning-ready dataset of Japanese Thoroughbred horse racing covering 24 years (2002-2025) of Japan Racing Association (JRA) Graded Races (G1, G2, G3) coupled with 5-generation genealogical pedigrees extracted from the Japan Bloodhorse Information System (JBIS). Includes both original Japanese (data/csv/) and 100% hybrid-AI-translated English editions (data/csv_en/), interactive Gephi graph projects and vector PDFs (data/gephi/), and empirical tables for Sports PageRank, Wright's Coefficient of Inbreeding (F_X), K-Means++ PCA stallion archetypes, and zero-leakage Random Forest podium classification (data/analysis/). Contains 3,216 Graded races, 33,409 race entries, 8,209 unique racehorses, 8,202 direct pedigrees, and 504,074 5-generation pedigree tree nodes validated with zero broken foreign keys.",
   "access_right": "open",
   "license": "CC-BY-4.0",
   "keywords": [
@@ -18,10 +18,13 @@
     "Pedigree DAG",
     "Graph Theory",
     "PageRank",
+    "Wright Inbreeding Coefficient",
+    "Machine Learning",
+    "Random Forest",
     "Sports Analytics",
     "Thoroughbred Genetics",
     "Gephi",
     "Data Science"
   ],
-  "notes": "Developed as an integrated project for Data Science and Algorithms & Data Structures II (AEDS 2) at CEFET-MG."
+  "notes": "Developed as an integrated project for Data Science and Algorithms & Data Structures II (AEDS 2) at CEFET-MG (Divinópolis Campus)."
 }
