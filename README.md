@@ -5,8 +5,8 @@
 
 <p align="center">
   <a href="README.md"><img src="https://img.shields.io/badge/🇧🇷_Idioma-Português-2ea44f?style=for-the-badge" alt="Português"></a>
-  <a href="README.en.md"><img src="https://img.shields.io/badge/🇺🇸_Language-English-0969da?style=for-the-badge" alt="English"></a>
-  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵_言語-日本語-d73a49?style=for-the-badge" alt="日本語"></a>
+  <a href="docs/README.en.md"><img src="https://img.shields.io/badge/🇺🇸_Language-English-0969da?style=for-the-badge" alt="English"></a>
+  <a href="docs/README.ja.md"><img src="https://img.shields.io/badge/🇯🇵_言語-日本語-d73a49?style=for-the-badge" alt="日本語"></a>
 </p>
 
 <p align="center">
@@ -62,7 +62,7 @@ O sistema extrai, higieniza, traduz e modela **24 anos de histórico oficial (20
    Navega pelas listas semânticas `<dt>/<dd>` do JBIS para capturar ganhos vitalícios (convertidos de *Man-Yen* $\times 10.000$), pelagem, criador e proprietário, construindo a árvore ascendente de 5 gerações via **Busca em Profundidade (DFS)** e mesclando automaticamente aliases ortográficos sob o mesmo ID biológico de 10 dígitos (`ON UPDATE CASCADE`).
 3. **[`src/clean_data.py`](src/clean_data.py) — Sanitização Estrutural e Realinhamento Vetorial:**
    Corrige deslocamentos históricos de colunas da JRA (2004–2018) onde a fusão de Sexo+Idade (`性齢`) deslocava Jóquei, Tempo e Treinador; expurga ruídos de tabelas de apostas e imputa 100% de `grade`, `surface` (*Turf*, *Dirt*, *Obstacle*) e `distance` via normalização Unicode NFKC.
-4. **[`hybrid_translator.py`](hybrid_translator.py) & [`src/translate_db.py`](src/translate_db.py) — Motor Híbrido de Tradução IA (JP $\to$ EN):**
+4. **[`src/hybrid_translator.py`](src/hybrid_translator.py) & [`src/translate_db.py`](src/translate_db.py) — Motor Híbrido de Tradução IA (JP $\to$ EN):**
    Combina dicionários estáticos $O(1)$ com um pool multi-modelo da API **Google Gemini** (`gemini-3.5-flash-lite`, `gemini-3.5-flash`, `gemini-3.7-flash`), processamento paralelo em lote e regras de *Kanmei* (prefixos tradicionais da JRA), resolvendo leituras *Nanori* de jóqueis (`武豊` $\to$ *Yutaka Take*) e grafias internacionais oficiais de cavalos (`ディープインパクト` $\to$ *Deep Impact*, `オルフェーヴル` $\to$ *Orfevre*).
 5. **[`src/validate_data.py`](src/validate_data.py) — Auditoria Automática de Qualidade (QA):**
    Verifica chaves estrangeiras, cobertura de atributos, distribuição temporal Ano $\times$ Grade e ausência de órfãos ou duplicatas.
@@ -120,7 +120,7 @@ Os maiores ganhadores financeiros registrados no banco de dados (em centenas de 
 </p>
 
 ### 🕸️ Modelagem em Grafos no Gephi (Clique nas imagens para abrir o PDF Vetorial com Zoom Infinito!)
-Redes complexas modeladas e exportadas via **Gephi** (`data/gephi/*.gexf` e `*.pdf`). **Dica:** *Clique sobre qualquer grafo abaixo para abrir o arquivo `.pdf` vetorial original e dar zoom de até 1600% nos nomes dos cavalos!*
+Redes complexas modeladas e exportadas via **Gephi** (`data/gephi/*.gephi` e `*.pdf`). **Dica:** *Clique sobre qualquer grafo abaixo para abrir o arquivo `.pdf` vetorial original e dar zoom de até 1600% nos nomes dos cavalos!*
 
 <div align="center">
 <table>
@@ -198,11 +198,13 @@ AEDS2_jra_analysis/
 │   ├── analysis/                 # Tabelas analíticas de PageRank, Inbreeding, K-Means PCA e Random Forest
 │   ├── csv/                      # CSVs limpos no idioma original (Japonês)
 │   ├── csv_en/                   # CSVs 100% traduzidos e padronizados em Inglês (Padrão Zenodo)
-│   ├── gephi/                    # 4 Grafos .gexf + 4 Grafos Vetoriais .pdf renderizados no Gephi
+│   ├── gephi/                    # 4 Projetos .gephi estilizados + 4 Grafos Vetoriais .pdf (zoom infinito)
 │   ├── sqlite/                   # Bancos relacionais SQLite3 (jra_graded.db & jra_graded_en.db)
 │   └── gemini_cache.json         # Dicionário semântico com 29.159 termos traduzidos via IA
 ├── docs/
 │   ├── assets/                   # Visualizações de alta resolução (EN, JA, Gephi e ML)
+│   ├── README.en.md              # Documentação principal em Inglês
+│   ├── README.ja.md              # Documentação principal em Japonês
 │   ├── proposta_ciencia_dos_dados.tex
 │   ├── relatorio_extracao.tex    # Relatório Técnico Completo (PT-BR)
 │   ├── relatorio_extracao_en.tex # Relatório Técnico Completo (EN)
@@ -213,17 +215,20 @@ AEDS2_jra_analysis/
 │   ├── scraper_pedigree.py       # Web Scraper JBIS (Perfil + Pedigree 5 Gerações)
 │   ├── clean_data.py             # Sanitização estrutural, realinhamento e imputação
 │   ├── validate_data.py          # Sistema de QA e integridade referencial
+│   ├── hybrid_translator.py      # Motor Híbrido de Tradução (Gemini Multi-Model Pool + Batch)
+│   ├── gemini_translator.py      # Tradutor auxiliar via API Gemini
 │   ├── translate_db.py           # Construtor do banco e CSVs em Inglês
+│   ├── generate_plots.py         # Gerador dos gráficos analíticos (EN e JA)
 │   ├── graph_analysis.py         # Grafos (DAG, LCA, Inbreeding F_X, PageRank, Dijkstra, Bipartidos)
-│   ├── export_gephi.py           # Exportador de redes .gexf e tabelas analíticas de grafos
+│   ├── export_gephi.py           # Exportador de redes para o Gephi e tabelas analíticas de grafos
 │   ├── ml_analysis.py            # Testes de Hipóteses (Chi2, ANOVA, Kruskal), K-Means PCA e Random Forest
-│   └── run_pipeline.py           # Orquestrador CLI completo
+│   ├── run_pipeline.py           # Orquestrador CLI completo
+│   └── run_full.bat              # Script de execução rápida para Windows
 ├── zenodo/
 │   ├── .zenodo.json              # Metadados oficiais de depósito científico (DataCite / OpenAIRE)
 │   └── GEPHI_AND_ZENODO_GUIDE.md # Guia passo a passo de estilização no Gephi e publicação no Zenodo
-├── hybrid_translator.py          # Motor Híbrido de Tradução (Gemini Multi-Model Pool + Batch)
-├── generate_plots.py             # Gerador dos gráficos analíticos (EN e JA)
-└── LICENSE                       # Licença MIT
+├── LICENSE                       # Licença MIT
+└── README.md                     # Documentação principal (Português)
 ```
 
 ---

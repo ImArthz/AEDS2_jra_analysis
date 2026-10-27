@@ -19,6 +19,7 @@ from google.genai import types
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_API_KEY_HERE")
 CACHE_PATH = "data/gemini_cache.json"

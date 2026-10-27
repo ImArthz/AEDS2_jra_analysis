@@ -4,7 +4,7 @@
 ### *日本競馬（2002–2025年）におけるデータエンジニアリング・AIハイブリッド意味翻訳・グラフ理論*
 
 <p align="center">
-  <a href="README.md"><img src="https://img.shields.io/badge/🇧🇷_Idioma-Português-2ea44f?style=for-the-badge" alt="Português"></a>
+  <a href="../README.md"><img src="https://img.shields.io/badge/🇧🇷_Idioma-Português-2ea44f?style=for-the-badge" alt="Português"></a>
   <a href="README.en.md"><img src="https://img.shields.io/badge/🇺🇸_Language-English-0969da?style=for-the-badge" alt="English"></a>
   <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵_言語-日本語-d73a49?style=for-the-badge" alt="日本語"></a>
 </p>
@@ -56,17 +56,17 @@
  (DAG/PageRank)           (参照整合性チェック)        (Gemini Pool + JRA専門辞書)
 ```
 
-1. **[`src/scraper_jra.py`](src/scraper_jra.py) — JRA重賞成績スクレイパー (G1, G2, G3):**
+1. **[`src/scraper_jra.py`](../src/scraper_jra.py) — JRA重賞成績スクレイパー (G1, G2, G3):**
    2002年から2025年までの公式重賞成績を抽出し、$O(1)$スキップロジックとエクスポネンシャルバックオフにより高効率に収集します。
-2. **[`src/scraper_pedigree.py`](src/scraper_pedigree.py) — JBISプロフィール＆5代血統スクレイパー:**
+2. **[`src/scraper_pedigree.py`](../src/scraper_pedigree.py) — JBISプロフィール＆5代血統スクレイパー:**
    `<dt>/<dd>`定義リストから総獲得賞金（万円 $\times 10,000$）・毛色・生産牧場・馬主を抽出し、**深さ優先探索 (DFS)** により5代血統ツリーを構築します（`ON UPDATE CASCADE`による表記ゆれ自動統合機能付き）。
-3. **[`src/clean_data.py`](src/clean_data.py) — 構造的データクレンジング＆列アライメント復元:**
+3. **[`src/clean_data.py`](../src/clean_data.py) — 構造的データクレンジング＆列アライメント復元:**
    2004〜2018年のJRA成績表における「性齢」統合列に起因する列ズレ（25,014行）を数学的に完全復元し、払戻表のノイズ行を除去、さらにNFKC正規化により全3,216レースのグレード・コース種別・距離を100%補完します。
-4. **[`hybrid_translator.py`](hybrid_translator.py) & [`src/translate_db.py`](src/translate_db.py) — 3層ハイブリッドAI翻訳エンジン (JP $\to$ EN):**
+4. **[`src/hybrid_translator.py`](../src/hybrid_translator.py) & [`src/translate_db.py`](../src/translate_db.py) — 3層ハイブリッドAI翻訳エンジン (JP $\to$ EN):**
    $O(1)$静的辞書、**Google Gemini API** マルチモデルプール（`gemini-3.5-flash-lite`, `gemini-3.5-flash`, `gemini-3.7-flash`）、および並列バッチ処理と冠名（*Symboli*, *Mejiro*, *Daiwa*, *Meisho*等）ルールを組み合わせ、騎手の名乗り読み（`武豊` $\to$ *Yutaka Take*）や競走馬の国際公式英語表記（`ディープインパクト` $\to$ *Deep Impact*）を高精度に実現しました。
-5. **[`src/validate_data.py`](src/validate_data.py) — 自動データ品質検証システム (QA):**
+5. **[`src/validate_data.py`](../src/validate_data.py) — 自動データ品質検証システム (QA):**
    外部キー参照整合性、欠損値カバー率、年度×グレード分布を自動検査します。
-6. **[`src/graph_analysis.py`](src/graph_analysis.py) — グラフ理論分析エンジン (AEDS 2):**
+6. **[`src/graph_analysis.py`](../src/graph_analysis.py) — グラフ理論分析エンジン (AEDS 2):**
    - **`PedigreeDAG`（有向非巡回グラフ）:** 世代別BFS/DFS探索、**最小共通祖先 (LCA)**、および **近親交配係数（インブリード）** の算出。
    - **`CompetitionGraph`（重み付き対戦ネットワーク）:** グレード重み（$\text{G1}=1.0, \text{G2}=0.7, \text{G3}=0.5$）に基づく **スポーツPageRank**、**次数中心性**、**Dijkstra最短経路**、**連結成分**。
    - **`JockeyHorseGraph` & `JockeyTrainerGraph`:** 騎手・競走馬・調教師間の二部グラフネットワーク。
@@ -107,46 +107,46 @@
 現代日本競馬を牽引する種牡馬ランキング（1位：**ディープインパクト** 287頭、2位：**サンデーサイレンス(USA)** 281頭）：
 
 <p align="center">
-  <img src="docs/assets/top_sires_ja.png" alt="重賞出走馬の種牡馬トップ10" width="85%">
+  <img src="assets/top_sires_ja.png" alt="重賞出走馬の種牡馬トップ10" width="85%">
 </p>
 
 ### 💰 生涯獲得賞金トップ10 競走馬
 データベース内の生涯獲得賞金（億円単位）トップ10（1位：**アーモンドアイ** 19.15億円、2位：**キタサンブラック** 18.77億円）：
 
 <p align="center">
-  <img src="docs/assets/top_earners_ja.png" alt="生涯獲得賞金トップ10競走馬" width="85%">
+  <img src="assets/top_earners_ja.png" alt="生涯獲得賞金トップ10競走馬" width="85%">
 </p>
 
 ### 🕸️ Gephi グラフネットワーク（画像をクリックすると無限ズーム可能なベクターPDFが開きます！）
-**Gephi**（`data/gephi/*.gexf` および `*.pdf`）で可視化された複雑ネットワークです。**ヒント：** *各画像をクリックするとオリジナルのベクター `.pdf` が開き、最大1600%まで拡大して各競走馬名を確認できます！*
+**Gephi**（`data/gephi/*.gephi` および `*.pdf`）で可視化された複雑ネットワークです。**ヒント：** *各画像をクリックするとオリジナルのベクター `.pdf` が開き、最大1600%まで拡大して各競走馬名を確認できます！*
 
 <div align="center">
 <table>
   <tr>
     <td align="center" width="50%">
       <b>1. 競走ネットワーク — PageRank トップ150（種牡馬系統別）</b><br>
-      <a href="data/gephi/competition_network_top150.pdf">
-        <img src="docs/assets/gephi_competition_top150.png" alt="Gephi Top 150 Competition" width="96%">
+      <a href="../data/gephi/competition_network_top150.pdf">
+        <img src="assets/gephi_competition_top150.png" alt="Gephi Top 150 Competition" width="96%">
       </a>
     </td>
     <td align="center" width="50%">
       <b>2. 時代別ライバル関係フロー — トップ500（2002–2025年）</b><br>
-      <a href="data/gephi/competition_network_top500.pdf">
-        <img src="docs/assets/gephi_competition_top500.png" alt="Gephi Top 500 Era" width="96%">
+      <a href="../data/gephi/competition_network_top500.pdf">
+        <img src="assets/gephi_competition_top500.png" alt="Gephi Top 500 Era" width="96%">
       </a>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
       <b>3. 5代血統有向非巡回グラフ（DAG — 4,475ノード）</b><br>
-      <a href="data/gephi/lineage_dag_elite.pdf">
-        <img src="docs/assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" width="96%">
+      <a href="../data/gephi/lineage_dag_elite.pdf">
+        <img src="assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" width="96%">
       </a>
     </td>
     <td align="center" width="50%">
       <b>4. 三部ネットワーク — 騎手 ↔ 競走馬 ↔ 調教師</b><br>
-      <a href="data/gephi/jockey_horse_trainer_network.pdf">
-        <img src="docs/assets/gephi_jockey_horse_trainer.png" alt="Gephi Jockey Horse Trainer" width="96%">
+      <a href="../data/gephi/jockey_horse_trainer_network.pdf">
+        <img src="assets/gephi_jockey_horse_trainer.png" alt="Gephi Jockey Horse Trainer" width="96%">
       </a>
     </td>
   </tr>
@@ -155,10 +155,10 @@
 
 ### 📊 5代血統ダイナスティ階層図 ＆ PageRank サブグラフ
 <p align="center">
-  <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
+  <img src="assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
 </p>
 <p align="center">
-  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
+  <img src="assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
 ### 3. 機械学習と統計的仮説検定 (`src/ml_analysis.py`)
@@ -178,10 +178,10 @@
 | **ランダムフォレスト (CART Ensemble)** | **`0.7260`** | **`[0.7109, 0.7389]`** | **`0.4187`** | **`0.4585`** | **`0.6908`** |
 
 <p align="center">
-  <img src="docs/assets/ml_kmeans_pca_clusters.png" alt="K-Means++ PCA Sire Clustering" width="92%">
+  <img src="assets/ml_kmeans_pca_clusters.png" alt="K-Means++ PCA Sire Clustering" width="92%">
 </p>
 <p align="center">
-  <img src="docs/assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+  <img src="assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
 </p>
 
 ---

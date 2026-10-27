@@ -7,6 +7,7 @@ from google import genai
 from google.genai import types
 
 sys.stdout.reconfigure(encoding='utf-8')
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 API_KEY = "YOUR_API_KEY_HERE"
 client = genai.Client(api_key=API_KEY)

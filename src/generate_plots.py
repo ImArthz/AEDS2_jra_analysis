@@ -4,6 +4,7 @@ import seaborn as sns
 import sqlite3
 import os
 
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.makedirs('docs/assets', exist_ok=True)
 sns.set_theme(style='whitegrid')
 

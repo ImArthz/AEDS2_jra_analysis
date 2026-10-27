@@ -4,7 +4,7 @@
 ### *Data Engineering, Hybrid AI Semantic Translation & Graph Theory in Japanese Horse Racing (2002–2025)*
 
 <p align="center">
-  <a href="README.md"><img src="https://img.shields.io/badge/🇧🇷_Idioma-Português-2ea44f?style=for-the-badge" alt="Português"></a>
+  <a href="../README.md"><img src="https://img.shields.io/badge/🇧🇷_Idioma-Português-2ea44f?style=for-the-badge" alt="Português"></a>
   <a href="README.en.md"><img src="https://img.shields.io/badge/🇺🇸_Language-English-0969da?style=for-the-badge" alt="English"></a>
   <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵_言語-日本語-d73a49?style=for-the-badge" alt="日本語"></a>
 </p>
@@ -56,17 +56,17 @@ The system extracts, sanitizes, translates, and models **24 years of official hi
  (DAG/PageRank)         (Referential Integrity)       (Gemini Pool + JRA Lexicon)
 ```
 
-1. **[`src/scraper_jra.py`](src/scraper_jra.py) — JRA Historical Graded Scraper (G1, G2, G3):**
+1. **[`src/scraper_jra.py`](../src/scraper_jra.py) — JRA Historical Graded Scraper (G1, G2, G3):**
    Extracts official race results from 2002 to 2025, handling multi-decade HTML layout shifts with $O(1)$ *Skip Logic* and *Exponential Backoff*.
-2. **[`src/scraper_pedigree.py`](src/scraper_pedigree.py) — JBIS Biological Profile & 5-Gen Pedigree Scraper:**
+2. **[`src/scraper_pedigree.py`](../src/scraper_pedigree.py) — JBIS Biological Profile & 5-Gen Pedigree Scraper:**
    Parses JBIS `<dt>/<dd>` definition lists to capture lifetime earnings (converted from *Man-Yen* $\times 10,000$), coat color, breeder, and owner, building the 5-generation ascending tree via **Depth-First Search (DFS)** and automatically merging orthographic aliases under a single 10-digit biological ID (`ON UPDATE CASCADE`).
-3. **[`src/clean_data.py`](src/clean_data.py) — Structural Sanitization & Vector Realignment:**
+3. **[`src/clean_data.py`](../src/clean_data.py) — Structural Sanitization & Vector Realignment:**
    Fixes historical column shifts in JRA result tables (2004–2018) caused by merged Sex+Age (`性齢`) cells; purges spurious betting-table rows and imputes 100% of `grade`, `surface` (*Turf*, *Dirt*, *Obstacle*), and `distance` via Unicode NFKC normalization.
-4. **[`hybrid_translator.py`](hybrid_translator.py) & [`src/translate_db.py`](src/translate_db.py) — 3-Tier Hybrid AI Translation Engine (JP $\to$ EN):**
+4. **[`src/hybrid_translator.py`](../src/hybrid_translator.py) & [`src/translate_db.py`](../src/translate_db.py) — 3-Tier Hybrid AI Translation Engine (JP $\to$ EN):**
    Combines $O(1)$ domain dictionaries with a multi-model **Google Gemini API** pool (`gemini-3.5-flash-lite`, `gemini-3.5-flash`, `gemini-3.7-flash`), parallel batch processing, and traditional *Kanmei* crown-prefix rules, resolving *Nanori* human name readings (`武豊` $\to$ *Yutaka Take*) and official international horse spellings (`ディープインパクト` $\to$ *Deep Impact*, `オルフェーヴル` $\to$ *Orfevre*).
-5. **[`src/validate_data.py`](src/validate_data.py) — Automated Quality Assurance (QA):**
+5. **[`src/validate_data.py`](../src/validate_data.py) — Automated Quality Assurance (QA):**
    Verifies foreign keys, field coverage, Year $\times$ Grade distributions, and zero orphan/duplicate records.
-6. **[`src/graph_analysis.py`](src/graph_analysis.py) — Graph Theory Analytics Engine (AEDS 2):**
+6. **[`src/graph_analysis.py`](../src/graph_analysis.py) — Graph Theory Analytics Engine (AEDS 2):**
    - **`PedigreeDAG` (Directed Acyclic Graph):** Generational BFS and DFS traversals, **Lowest Common Ancestor (LCA)**, and **Inbreeding Coefficient** calculation.
    - **`CompetitionGraph` (Weighted Rivalry Network):** Edges weighted by race grade ($\text{G1}=1.0, \text{G2}=0.7, \text{G3}=0.5$), featuring **Sports PageRank**, **Degree Centrality**, **Dijkstra Shortest Path**, and **Connected Components**.
    - **`JockeyHorseGraph` & `JockeyTrainerGraph`:** Bipartite synergy networks connecting jockeys, horses, and trainers.
@@ -99,7 +99,7 @@ Complete architectural and mathematical documentation (including the in-depth br
 </table>
 </div>
 
-- LaTeX source files: [`docs/relatorio_extracao.tex`](docs/relatorio_extracao.tex) | [`docs/relatorio_extracao_en.tex`](docs/relatorio_extracao_en.tex) | [`docs/relatorio_extracao_ja.tex`](docs/relatorio_extracao_ja.tex) | [`docs/proposta_ciencia_dos_dados.tex`](docs/proposta_ciencia_dos_dados.tex)
+- LaTeX source files: [`docs/relatorio_extracao.tex`](relatorio_extracao.tex) | [`docs/relatorio_extracao_en.tex`](relatorio_extracao_en.tex) | [`docs/relatorio_extracao_ja.tex`](relatorio_extracao_ja.tex) | [`docs/proposta_ciencia_dos_dados.tex`](proposta_ciencia_dos_dados.tex)
 
 ---
 
@@ -109,46 +109,46 @@ Complete architectural and mathematical documentation (including the in-depth br
 The most dominant paternal bloodlines in modern Japanese turf history, led by **Deep Impact** (287 Graded runners) and his sire **Sunday Silence (USA)** (281):
 
 <p align="center">
-  <img src="docs/assets/top_sires.png" alt="Top 10 Sires" width="85%">
+  <img src="assets/top_sires.png" alt="Top 10 Sires" width="85%">
 </p>
 
 ### 💰 Top 10 Racehorses by Lifetime Earnings
 The highest-earning thoroughbreds recorded in the database (in 100 Million JPY — *Oku-Yen*), led by **Almond Eye** (¥19.15B) and **Kitasan Black** (¥18.77B):
 
 <p align="center">
-  <img src="docs/assets/top_earners.png" alt="Top 10 Earners" width="85%">
+  <img src="assets/top_earners.png" alt="Top 10 Earners" width="85%">
 </p>
 
 ### 🕸️ Gephi Graph Networks (Click any image to open the Vector PDF with Infinite Zoom!)
-Complex networks rendered in **Gephi** (`data/gephi/*.gexf` and `*.pdf`). **Tip:** *Click any graph below to open the original vector `.pdf` and zoom up to 1600% into individual racehorse names!*
+Complex networks rendered in **Gephi** (`data/gephi/*.gephi` and `*.pdf`). **Tip:** *Click any graph below to open the original vector `.pdf` and zoom up to 1600% into individual racehorse names!*
 
 <div align="center">
 <table>
   <tr>
     <td align="center" width="50%">
       <b>1. Competition Network — Top 150 PageRank (by Sire Line)</b><br>
-      <a href="data/gephi/competition_network_top150.pdf">
-        <img src="docs/assets/gephi_competition_top150.png" alt="Gephi Top 150 Competition" width="96%">
+      <a href="../data/gephi/competition_network_top150.pdf">
+        <img src="assets/gephi_competition_top150.png" alt="Gephi Top 150 Competition" width="96%">
       </a>
     </td>
     <td align="center" width="50%">
       <b>2. Temporal Rivalry Flow — Top 500 (by Era 2002–2025)</b><br>
-      <a href="data/gephi/competition_network_top500.pdf">
-        <img src="docs/assets/gephi_competition_top500.png" alt="Gephi Top 500 Era" width="96%">
+      <a href="../data/gephi/competition_network_top500.pdf">
+        <img src="assets/gephi_competition_top500.png" alt="Gephi Top 500 Era" width="96%">
       </a>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
       <b>3. Genealogical Galaxy — 5-Gen Lineage DAG (4,475 Nodes)</b><br>
-      <a href="data/gephi/lineage_dag_elite.pdf">
-        <img src="docs/assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" width="96%">
+      <a href="../data/gephi/lineage_dag_elite.pdf">
+        <img src="assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" width="96%">
       </a>
     </td>
     <td align="center" width="50%">
       <b>4. Tripartite Network — Jockeys ↔ Horses ↔ Trainers</b><br>
-      <a href="data/gephi/jockey_horse_trainer_network.pdf">
-        <img src="docs/assets/gephi_jockey_horse_trainer.png" alt="Gephi Jockey Horse Trainer" width="96%">
+      <a href="../data/gephi/jockey_horse_trainer_network.pdf">
+        <img src="assets/gephi_jockey_horse_trainer.png" alt="Gephi Jockey Horse Trainer" width="96%">
       </a>
     </td>
   </tr>
@@ -157,10 +157,10 @@ Complex networks rendered in **Gephi** (`data/gephi/*.gexf` and `*.pdf`). **Tip:
 
 ### 📊 5-Generation Royal Bloodline Flow & PageRank Subgraph
 <p align="center">
-  <img src="docs/assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
+  <img src="assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
 </p>
 <p align="center">
-  <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
+  <img src="assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
 ### 3. Machine Learning & Statistical Hypothesis Testing (`src/ml_analysis.py`)
@@ -180,10 +180,10 @@ Inferential statistical modeling and strict zero-data-leakage machine learning:
 | **Random Forest Classifier (CART Ensemble)** | **`0.7260`** | **`[0.7109, 0.7389]`** | **`0.4187`** | **`0.4585`** | **`0.6908`** |
 
 <p align="center">
-  <img src="docs/assets/ml_kmeans_pca_clusters.png" alt="K-Means++ PCA Sire Clustering" width="92%">
+  <img src="assets/ml_kmeans_pca_clusters.png" alt="K-Means++ PCA Sire Clustering" width="92%">
 </p>
 <p align="center">
-  <img src="docs/assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+  <img src="assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
 </p>
 
 ---
