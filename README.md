@@ -163,6 +163,29 @@ Redes complexas modeladas e exportadas via **Gephi** (`data/gephi/*.gexf` e `*.p
   <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
+### 3. Machine Learning & Testes de Hipóteses Estatísticos (`src/ml_analysis.py`)
+Modelagem estatística inferencial e aprendizado de máquina sem vazamento temporal (*Zero Data Leakage*):
+- **Especialização Genética Comprovada ($H_1$):**
+  - **Sire $\times$ Superfície (Turf vs. Dirt):** $\chi^2 = 739.99$, $gl = 14$, $p = 2.43 \times 10^{-107}$, $V \text{ de Cramér} = 0.2514$.
+  - **Sire $\times$ Categoria de Distância:** $\chi^2 = 2237.47$, $gl = 42$, $p = 3.71 \times 10^{-317}$, $V \text{ de Cramér} = 0.2523$.
+  - **ANOVA & Kruskal-Wallis (Distância de Vitória por Sire):** $F(14, 930) = 16.46$ ($\eta^2 = 0.1986$, $p = 1.68 \times 10^{-35}$) e $H = 192.40$ ($p = 2.02 \times 10^{-29}$).
+- **Validação Empírica do PageRank Esportivo ($H_2$, $N = 8.135$ cavalos):** Forte correlação com pódios Graded ($r = 0.8799$, $\rho = 0.7597$) e premiação acumulada ($r = 0.6266$), identificando **"Diamantes Injustiçados"** com zero vitórias Graded mas pódios contra lendas de G1 (*Sounds of Earth* #32, *Etariou* #43).
+- **Clusterização Não-Supervisionada (K-Means++ & PCA 2D — 63,4% de Variância Explicada):** Segmentação automática de 106 garanhões em 4 arquétipos zootécnicos (*Dirt & Sand Specialists*, *Speed & Mile Turf Sires*, *Elite Classic & G1 Turf Dynasties* e *Classic Stayers*).
+- **Classificação Supervisionada Cronológica (Treino: 2002–2013 | Validação: 2014–2015 | Teste Out-of-Time: 2016–2018, $N_{\text{teste}} = 5.889$):**
+
+| Modelo Supervisionado (Predição de Pódio Top-3) | ROC-AUC (Teste 2016–2018) | IC 95% Bootstrap | PR-AUC | F1-Score | Acurácia |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Baseline Ingênuo (Prior Estratificado)** | `0.5000` | — | `0.2089` | `0.0000` | `0.7911` |
+| **Regressão Logística L2 (Cost-Sensitive)** | `0.7144` | `[0.6992, 0.7275]` | `0.4257` | `0.4413` | `0.6762` |
+| **Random Forest Classifier (CART Ensemble)** | **`0.7260`** | **`[0.7109, 0.7389]`** | **`0.4187`** | **`0.4585`** | **`0.6908`** |
+
+<p align="center">
+  <img src="docs/assets/ml_kmeans_pca_clusters.png" alt="K-Means++ PCA Sire Clustering" width="92%">
+</p>
+<p align="center">
+  <img src="docs/assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+</p>
+
 ---
 
 ## 🗂 Estrutura do Repositório
@@ -172,12 +195,14 @@ AEDS2_jra_analysis/
 ├── .github/workflows/
 │   └── compile_latex.yml         # CI/CD: Compila os relatórios LaTeX (XeLaTeX) e publica Releases
 ├── data/
+│   ├── analysis/                 # Tabelas analíticas de PageRank, Inbreeding, K-Means PCA e Random Forest
 │   ├── csv/                      # CSVs limpos no idioma original (Japonês)
 │   ├── csv_en/                   # CSVs 100% traduzidos e padronizados em Inglês (Padrão Zenodo)
+│   ├── gephi/                    # 4 Grafos .gexf + 4 Grafos Vetoriais .pdf renderizados no Gephi
 │   ├── sqlite/                   # Bancos relacionais SQLite3 (jra_graded.db & jra_graded_en.db)
 │   └── gemini_cache.json         # Dicionário semântico com 29.159 termos traduzidos via IA
 ├── docs/
-│   ├── assets/                   # Visualizações de alta resolução (EN e JA)
+│   ├── assets/                   # Visualizações de alta resolução (EN, JA, Gephi e ML)
 │   ├── proposta_ciencia_dos_dados.tex
 │   ├── relatorio_extracao.tex    # Relatório Técnico Completo (PT-BR)
 │   ├── relatorio_extracao_en.tex # Relatório Técnico Completo (EN)
@@ -189,8 +214,13 @@ AEDS2_jra_analysis/
 │   ├── clean_data.py             # Sanitização estrutural, realinhamento e imputação
 │   ├── validate_data.py          # Sistema de QA e integridade referencial
 │   ├── translate_db.py           # Construtor do banco e CSVs em Inglês
-│   ├── graph_analysis.py         # Grafos (DAG, LCA, Inbreeding, PageRank, Dijkstra, Bipartidos)
+│   ├── graph_analysis.py         # Grafos (DAG, LCA, Inbreeding F_X, PageRank, Dijkstra, Bipartidos)
+│   ├── export_gephi.py           # Exportador de redes .gexf e tabelas analíticas de grafos
+│   ├── ml_analysis.py            # Testes de Hipóteses (Chi2, ANOVA, Kruskal), K-Means PCA e Random Forest
 │   └── run_pipeline.py           # Orquestrador CLI completo
+├── zenodo/
+│   ├── .zenodo.json              # Metadados oficiais de depósito científico (DataCite / OpenAIRE)
+│   └── GEPHI_AND_ZENODO_GUIDE.md # Guia passo a passo de estilização no Gephi e publicação no Zenodo
 ├── hybrid_translator.py          # Motor Híbrido de Tradução (Gemini Multi-Model Pool + Batch)
 ├── generate_plots.py             # Gerador dos gráficos analíticos (EN e JA)
 └── LICENSE                       # Licença MIT
@@ -208,10 +238,14 @@ python src/validate_data.py
 python src/clean_data.py
 python src/translate_db.py
 
-# 3. Executar a análise de Grafos (DAG 5-Gen, Competição, PageRank e Parcerias)
+# 3. Executar a análise de Grafos (DAG 5-Gen, Competição, PageRank, Parcerias e Gephi .gexf)
 python src/graph_analysis.py
+python src/export_gephi.py
 
-# 4. Executar o pipeline completo via CLI
+# 4. Executar Testes de Hipóteses Estatísticos, K-Means PCA e Random Forest
+python src/ml_analysis.py
+
+# 5. Executar o pipeline completo via CLI
 python src/run_pipeline.py --start-year 2002 --end-year 2025 --analyze
 ```
 

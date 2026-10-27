@@ -1,0 +1,109 @@
+{
+  "hypothesis_tests": {
+    "H1a_chi2_sire_vs_surface": {
+      "chi2": 739.99,
+      "dof": 14,
+      "p_value": 2.4256542183243978e-107,
+      "cramers_v": 0.2514
+    },
+    "H1b_chi2_sire_vs_distance": {
+      "chi2": 2237.47,
+      "dof": 42,
+      "p_value": 3.7062196e-317,
+      "cramers_v": 0.2523
+    },
+    "ANOVA_winning_distance_by_sire": {
+      "F_stat": 16.4621,
+      "df_between": 14,
+      "df_within": 930,
+      "eta_squared": 0.1986,
+      "p_anova": 0.0,
+      "H_stat": 192.4043,
+      "p_kruskal": 0.0
+    },
+    "ANOVA_pagerank_by_sire": {
+      "F_stat": 6.5245,
+      "df_between": 14,
+      "df_within": 2432,
+      "eta_squared": 0.0362,
+      "p_anova": 0.0,
+      "H_stat": 88.7352,
+      "p_kruskal": 0.0
+    },
+    "H2_pagerank_correlations": {
+      "pearson_podiums": 0.8799,
+      "spearman_podiums": 0.7597,
+      "pearson_earnings": 0.6266,
+      "spearman_earnings": 0.3021
+    }
+  },
+  "clustering_kmeans": {
+    "silhouette_scores_by_k": {
+      "2": 0.2352,
+      "3": 0.1797,
+      "4": 0.1703,
+      "5": 0.2022,
+      "6": 0.1915,
+      "7": 0.2148
+    },
+    "pca_variance_explained": [
+      0.4413,
+      0.1923
+    ],
+    "cluster_archetypes": {
+      "3": "Cluster C: Elite Classic & G1 Turf Dynasties",
+      "1": "Cluster A: Dirt & Sand Power Specialists",
+      "0": "Cluster B: Speed & Mile Turf Sires",
+      "2": "Cluster D: Classic Stayers & Long-Distance Sires"
+    }
+  },
+  "supervised_classification_test_2016_2018": {
+    "train_samples": 23024,
+    "val_samples": 4110,
+    "test_samples": 5889,
+    "naive_baseline": {
+      "accuracy": 0.7918,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "pr_auc": 0.2089,
+      "tp": 0,
+      "tn": 4663,
+      "fp": 0,
+      "fn": 1226
+    },
+    "logistic_regression_l2": {
+      "accuracy": 0.6762,
+      "precision": 0.3443,
+      "recall": 0.6142,
+      "f1": 0.4413,
+      "roc_auc": 0.7144,
+      "pr_auc": 0.4257,
+      "tp": 753,
+      "tn": 3229,
+      "fp": 1434,
+      "fn": 473,
+      "roc_auc_ci95": [
+        0.6992,
+        0.7275
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.6908,
+      "precision": 0.3608,
+      "recall": 0.6289,
+      "f1": 0.4585,
+      "roc_auc": 0.726,
+      "pr_auc": 0.4187,
+      "tp": 771,
+      "tn": 3297,
+      "fp": 1366,
+      "fn": 455,
+      "roc_auc_ci95": [
+        0.7109,
+        0.7389
+      ]
+    }
+  }
+}

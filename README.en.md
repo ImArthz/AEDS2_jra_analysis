@@ -163,6 +163,29 @@ Complex networks rendered in **Gephi** (`data/gephi/*.gexf` and `*.pdf`). **Tip:
   <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
+### 3. Machine Learning & Statistical Hypothesis Testing (`src/ml_analysis.py`)
+Inferential statistical modeling and strict zero-data-leakage machine learning:
+- **Genomic Specialization Verified ($H_1$):**
+  - **Sire $\times$ Surface (Turf vs. Dirt):** $\chi^2 = 739.99$, $df = 14$, $p = 2.43 \times 10^{-107}$, $\text{Cramér's } V = 0.2514$.
+  - **Sire $\times$ Distance Category:** $\chi^2 = 2237.47$, $df = 42$, $p = 3.71 \times 10^{-317}$, $\text{Cramér's } V = 0.2523$.
+  - **One-Way ANOVA & Kruskal-Wallis (Winning Distance by Sire):** $F(14, 930) = 16.46$ ($\eta^2 = 0.1986$, $p = 1.68 \times 10^{-35}$) and $H = 192.40$ ($p = 2.02 \times 10^{-29}$).
+- **Sports PageRank Empirical Validation ($H_2$, $N = 8,135$ horses):** Strong correlation with Graded podiums ($r = 0.8799$, $\rho = 0.7597$) and career prize money ($r = 0.6266$), discovering **"Underdog Diamonds"** with zero Graded wins who repeatedly placed against G1 legends (*Sounds of Earth* #32, *Etariou* #43).
+- **Unsupervised Clustering (K-Means++ & 2D PCA — 63.4% Variance Explained):** Automated segmentation of 106 stallions into 4 breeding archetypes (*Dirt & Sand Specialists*, *Speed & Mile Turf Sires*, *Elite Classic & G1 Turf Dynasties*, and *Classic Stayers*).
+- **Chronological Supervised Classification (Train: 2002–2013 | Validation: 2014–2015 | Out-of-Time Test: 2016–2018, $N_{\text{test}} = 5,889$):**
+
+| Supervised Model (Top-3 Podium Prediction) | Test ROC-AUC (2016–2018) | 95% Bootstrap CI | PR-AUC | F1-Score | Accuracy |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Naive Baseline (Stratified Prior)** | `0.5000` | — | `0.2089` | `0.0000` | `0.7911` |
+| **L2 Logistic Regression (Cost-Sensitive)** | `0.7144` | `[0.6992, 0.7275]` | `0.4257` | `0.4413` | `0.6762` |
+| **Random Forest Classifier (CART Ensemble)** | **`0.7260`** | **`[0.7109, 0.7389]`** | **`0.4187`** | **`0.4585`** | **`0.6908`** |
+
+<p align="center">
+  <img src="docs/assets/ml_kmeans_pca_clusters.png" alt="K-Means++ PCA Sire Clustering" width="92%">
+</p>
+<p align="center">
+  <img src="docs/assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+</p>
+
 ---
 
 ## 🚀 Quickstart
@@ -175,10 +198,14 @@ python src/validate_data.py
 python src/clean_data.py
 python src/translate_db.py
 
-# 3. Run Graph Theory analytics (5-Gen DAG, Competition PageRank & Partnerships)
+# 3. Run Graph Theory analytics (5-Gen DAG, Competition PageRank, Partnerships & Gephi .gexf)
 python src/graph_analysis.py
+python src/export_gephi.py
 
-# 4. Run full end-to-end pipeline via CLI
+# 4. Run Statistical Hypothesis Tests, K-Means PCA & Random Forest Classification
+python src/ml_analysis.py
+
+# 5. Run full end-to-end pipeline via CLI
 python src/run_pipeline.py --start-year 2002 --end-year 2025 --analyze
 ```
 

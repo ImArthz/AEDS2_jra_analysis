@@ -161,6 +161,29 @@
   <img src="docs/assets/network_competition_pagerank.png" alt="Competition Network PageRank" width="85%">
 </p>
 
+### 3. 機械学習と統計的仮説検定 (`src/ml_analysis.py`)
+データリークを完全に排除した時系列検証と推計統計モデリング：
+- **血統による距離・馬場適性の統計的証明 ($H_1$):**
+  - **種牡馬 $\times$ 馬場（芝 vs. ダート）：** $\chi^2 = 739.99$, $df = 14$, $p = 2.43 \times 10^{-107}$, $\text{Cramér's } V = 0.2514$.
+  - **種牡馬 $\times$ 距離区分：** $\chi^2 = 2237.47$, $df = 42$, $p = 3.71 \times 10^{-317}$, $\text{Cramér's } V = 0.2523$.
+  - **一元配置分散分析 (ANOVA) & Kruskal-Wallis検定：** $F(14, 930) = 16.46$ ($\eta^2 = 0.1986$, $p = 1.68 \times 10^{-35}$)、$H = 192.40$ ($p = 2.02 \times 10^{-29}$).
+- **競走PageRankの実証的妥当性 ($H_2$, $N = 8,135$頭):** 重賞3着以内回数（$r = 0.8799, \rho = 0.7597$）および総獲得賞金（$r = 0.6266$）と強い正の相関を示し、重賞未勝利ながらG1級の強豪相手に好走を続けた**「無冠の名馬（サウンズオブアース 全体32位、エタリオウ 全体43位）」**を定量的に抽出。
+- **教師なしクラスタリング (K-Means++ & 2次元PCA — 累積寄与率 63.4%):** 主要種牡馬106頭を4つの遺伝的アーキタイプ（ダートパワー型、芝スプリント・マイル型、G1クラシック王朝型、芝ステイヤー型）へ自動分類。
+- **時系列分割による教師あり学習（訓練: 2002–2013年 | 検証: 2014–2015年 | テスト: 2016–2018年, $N_{\text{test}} = 5,889$）:**
+
+| 教師あり学習モデル（重賞3着以内予測） | テスト ROC-AUC (2016–2018) | 95% ブートストラップ信頼区間 | PR-AUC | F1スコア | 正解率 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **ベースライン (Stratified Prior)** | `0.5000` | — | `0.2089` | `0.0000` | `0.7911` |
+| **L2正則化ロジスティック回帰** | `0.7144` | `[0.6992, 0.7275]` | `0.4257` | `0.4413` | `0.6762` |
+| **ランダムフォレスト (CART Ensemble)** | **`0.7260`** | **`[0.7109, 0.7389]`** | **`0.4187`** | **`0.4585`** | **`0.6908`** |
+
+<p align="center">
+  <img src="docs/assets/ml_kmeans_pca_clusters.png" alt="K-Means++ PCA Sire Clustering" width="92%">
+</p>
+<p align="center">
+  <img src="docs/assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+</p>
+
 ---
 
 ## 🚀 実行方法
@@ -173,10 +196,14 @@ python src/validate_data.py
 python src/clean_data.py
 python src/translate_db.py
 
-# 3. グラフ理論分析（5代血統DAG・PageRank・騎手シナジー）の実行
+# 3. グラフ理論分析（5代血統DAG・PageRank・騎手シナジー・Gephi .gexf出力）の実行
 python src/graph_analysis.py
+python src/export_gephi.py
 
-# 4. フルパイプラインの実行
+# 4. 統計的仮説検定・K-Means PCA・ランダムフォレスト予測モデルの実行
+python src/ml_analysis.py
+
+# 5. フルパイプラインの実行
 python src/run_pipeline.py --start-year 2002 --end-year 2025 --analyze
 ```
 
