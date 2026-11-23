@@ -102,6 +102,31 @@ Complete architectural and mathematical documentation (including the in-depth br
 
 - LaTeX source files: [`docs/relatorio_extracao.tex`](relatorio_extracao.tex) | [`docs/relatorio_extracao_en.tex`](relatorio_extracao_en.tex) | [`docs/relatorio_extracao_ja.tex`](relatorio_extracao_ja.tex) | [`docs/proposta_ciencia_dos_dados.tex`](proposta_ciencia_dos_dados.tex)
 
+### 🖥️ Interactive Executive Suite — Apache Superset 6.1 (Apache ECharts Live HTML)
+Click any button below to launch the **13-Chart Interactive Dashboard (Zoom, Sunburst Drill-Down & Live Parallel Coordinates Brush Filter)** directly in your browser:
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-Português_(HTML)-8b5cf6?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_en.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-English_(HTML)-0284c7?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_ja.html">
+        <img src="https://img.shields.io/badge/🚀_インタラクティブ分析-日本語_(HTML)-059669?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard JA">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
 ---
 
 ## 📈 Visual Data Insights (2002–2025)
@@ -185,6 +210,22 @@ Inferential statistical modeling and strict zero-data-leakage machine learning:
 </p>
 <p align="center">
   <img src="assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+</p>
+
+### 4. Advanced Multidimensional DataViz — Apache Superset & DataViz Project Edition (`src/generate_advanced_viz.py`)
+High-dimensional visual encodings (*Multi-Stage Alluvial Sankey*, *6-Axis Radar Profile*, *3-Ring Hierarchical Sunburst*, *Symmetric Dynasty Streamgraph*, *Split-Violin Biometrics*, and *Parallel Coordinates*) coupled with a standalone **Apache ECharts / Superset** interactive dashboard ([`docs/superset_interactive_dashboard.html`](superset_interactive_dashboard.html)):
+
+<p align="center">
+  <img src="assets/superset_alluvial_sankey_flow.png" alt="Multi-Stage Alluvial Sankey Diagram" width="94%">
+</p>
+<p align="center">
+  <img src="assets/superset_radar_and_sunburst.png" alt="Multidimensional Radar Profile and 3-Ring Sunburst" width="94%">
+</p>
+<p align="center">
+  <img src="assets/superset_streamgraph_dynasties.png" alt="Symmetric Streamgraph of Sire Dynasties" width="94%">
+</p>
+<p align="center">
+  <img src="assets/superset_raincloud_and_parallel.png" alt="Split-Violin Biometrics and Parallel Coordinates" width="94%">
 </p>
 
 ---

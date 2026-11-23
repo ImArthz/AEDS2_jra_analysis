@@ -100,6 +100,31 @@
 </table>
 </div>
 
+### 🖥️ インタラクティブ分析スイート — Apache Superset 6.1 (Apache ECharts Live HTML)
+以下のボタンをクリックすると、**全13種類のインタラクティブチャート（サンバースト拡大・平行座標ライブフィルタ・PageRank象限ズーム搭載）** をブラウザ上で直接開くことができます：
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-Português_(HTML)-8b5cf6?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_en.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-English_(HTML)-0284c7?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_ja.html">
+        <img src="https://img.shields.io/badge/🚀_インタラクティブ分析-日本語_(HTML)-059669?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard JA">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
 ---
 
 ## 📈 データインサイト（2002–2025年）
@@ -154,6 +179,31 @@
 </table>
 </div>
 
+### 🖥️ インタラクティブ分析スイート — Apache Superset 6.1 (Apache ECharts Live HTML)
+以下のボタンをクリックすると、**全13種類のインタラクティブチャート（サンバースト拡大・平行座標ライブフィルタ・PageRank象限ズーム搭載）** をブラウザ上で直接開くことができます：
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-Português_(HTML)-8b5cf6?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_en.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-English_(HTML)-0284c7?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_ja.html">
+        <img src="https://img.shields.io/badge/🚀_インタラクティブ分析-日本語_(HTML)-059669?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard JA">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
 ### 📊 5代血統ダイナスティ階層図 ＆ PageRank サブグラフ
 <p align="center">
   <img src="assets/network_lineage_dag.png" alt="Lineage DAG 5 Generations" width="85%">
@@ -183,6 +233,22 @@
 </p>
 <p align="center">
   <img src="assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+</p>
+
+### 4. 多次元データビジュアライゼーション — Apache Superset & DataViz Project スタイル (`src/generate_advanced_viz.py`)
+**Apache Superset (Apache ECharts)** および **DataViz Project** に着想を得た高度な多次元可視化（4段階サンキー・ダイアグラム、6軸レーダーチャート、3層サンバースト、種牡馬王朝ストリームグラフ、馬体重スプリット・バイオリン図、および平行座標プロット）：
+
+<p align="center">
+  <img src="assets/superset_alluvial_sankey_flow.png" alt="Multi-Stage Alluvial Sankey Diagram" width="94%">
+</p>
+<p align="center">
+  <img src="assets/superset_radar_and_sunburst.png" alt="Multidimensional Radar Profile and 3-Ring Sunburst" width="94%">
+</p>
+<p align="center">
+  <img src="assets/superset_streamgraph_dynasties.png" alt="Symmetric Streamgraph of Sire Dynasties" width="94%">
+</p>
+<p align="center">
+  <img src="assets/superset_raincloud_and_parallel.png" alt="Split-Violin Biometrics and Parallel Coordinates" width="94%">
 </p>
 
 ---

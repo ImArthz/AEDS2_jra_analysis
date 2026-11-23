@@ -102,6 +102,31 @@ Documentação arquitetural e matemática completa (incluindo o estudo detalhado
 
 - Código-fonte dos artigos: [`docs/relatorio_extracao.tex`](docs/relatorio_extracao.tex) | [`docs/relatorio_extracao_en.tex`](docs/relatorio_extracao_en.tex) | [`docs/relatorio_extracao_ja.tex`](docs/relatorio_extracao_ja.tex) | [`docs/proposta_ciencia_dos_dados.tex`](docs/proposta_ciencia_dos_dados.tex)
 
+### 🖥️ Suíte Executiva Interativa — Apache Superset 6.1 (Apache ECharts Live HTML)
+Clique em qualquer um dos botões abaixo para abrir o **Mega Dashboard Interativo (13 Gráficos + 6 KPIs com Zoom, Drill-Down e Filtro Brush ao Vivo)** diretamente no seu navegador (ou baixe na aba *Releases*):
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-Português_(HTML)-8b5cf6?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_en.html">
+        <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-English_(HTML)-0284c7?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_ja.html">
+        <img src="https://img.shields.io/badge/🚀_インタラクティブ分析-日本語_(HTML)-059669?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard JA">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
 ---
 
 ## 📈 Insights Visuais do Dataset (2002–2025)
@@ -185,6 +210,27 @@ Modelagem estatística inferencial e aprendizado de máquina sem vazamento tempo
 </p>
 <p align="center">
   <img src="docs/assets/ml_random_forest_and_chi2.png" alt="Random Forest Feature Importance and Chi2 Heatmap" width="92%">
+</p>
+
+### 4. Visualização Avançada Multidimensional — Estilo Apache Superset & DataViz Project (`src/generate_advanced_viz.py`)
+Explorando gramáticas visuais avançadas de Ciência dos Dados (*Alluvial Sankey*, *Radar Hexagonal*, *Sunburst Concêntrico*, *Symmetric Streamgraph*, *Split-Violin Biométrico* e *Coordenadas Paralelas*) além de um dashboard interativo com motor **Apache ECharts / Superset** ([`docs/superset_interactive_dashboard.html`](docs/superset_interactive_dashboard.html)):
+
+1. **Diagrama de Fluxo Aluvial / Sankey de 4 Estágios (*Linhagem Paterna $\to$ Superfície $\to$ Regime de Distância $\to$ Grau G1/G2/G3*):** Demonstra visualmente como linhagens de força bruta (*Gold Allure*, *Brian's Time*) escoam para provas de Areia (*Dirt*), enquanto *Sakura Bakushin O* flui para *Sprint Turf* ($\le 1400\text{m}$) e *Deep Impact* / *Sunday Silence* dominam as distâncias clássicas de G1/G2.
+2. **Radar Hexagonal Multidimensional (*Lendas vs. "Diamante Injustiçado"*) & Sunburst Hierárquico dos 10 Hipódromos:** O polígono tracejado de **Sounds of Earth** ilustra perfeitamente a assinatura matemática de um *"Diamante Injustiçado"*: `0%` no vértice de taxa de vitória, mas altíssima área nos eixos de *PageRank Prestige* (#32 geral), *Volume de Rivalidade G1* e *Índice de Estamina*. Ao lado, o gráfico **Sunburst** de 3 anéis mapeia a distribuição hierárquica das 3.216 corridas por *Superfície $\to$ Grau $\to$ Hipódromo*.
+3. **Streamgraph Simétrico de Sucessão Geracional (2002–2018):** Revela a transição histórica de hegemonia entre a **Era I** (prole direta de *Sunday Silence*), **Era II** (*Agnes Tachyon*, *Fuji Kiseki*, *Manhattan Cafe*) e **Era III** (*Deep Impact*, *King Kamehameha*, *Stay Gold* e *Heart's Cry*).
+4. **Split-Violin Biométrico (Massa Corporal Equina) & Coordenadas Paralelas dos 4 Clusters:** Comprova que cavalos de Areia (*Dirt*, média $\approx 495\text{–}498\text{ kg}$) são sistematicamente mais pesados e musculosos que cavalos de Grama (*Turf*, média $\approx 473\text{–}482\text{ kg}$) em todas as faixas de distância, enquanto as **Coordenadas Paralelas** traçam a assinatura multidimensional dos 4 arquétipos de garanhões.
+
+<p align="center">
+  <img src="docs/assets/superset_alluvial_sankey_flow.png" alt="Multi-Stage Alluvial Sankey Diagram" width="94%">
+</p>
+<p align="center">
+  <img src="docs/assets/superset_radar_and_sunburst.png" alt="Multidimensional Radar Profile and 3-Ring Sunburst" width="94%">
+</p>
+<p align="center">
+  <img src="docs/assets/superset_streamgraph_dynasties.png" alt="Symmetric Streamgraph of Sire Dynasties" width="94%">
+</p>
+<p align="center">
+  <img src="docs/assets/superset_raincloud_and_parallel.png" alt="Split-Violin Biometrics and Parallel Coordinates" width="94%">
 </p>
 
 ---

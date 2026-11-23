@@ -18,6 +18,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Build Trilingual Interactive Apache Superset / ECharts Dashboards (PT, EN, JA)
+        run: |
+          pip install --quiet numpy pandas matplotlib seaborn
+          python src/generate_advanced_viz.py
+
       - name: Compile PT-BR Document
         uses: xu-cheng/latex-action@v3
         with:
@@ -59,6 +64,9 @@ jobs:
             docs/relatorio_extracao.pdf
             docs/relatorio_extracao_en.pdf
             docs/relatorio_extracao_ja.pdf
+            docs/superset_interactive_dashboard.html
+            docs/superset_interactive_dashboard_en.html
+            docs/superset_interactive_dashboard_ja.html
           make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
