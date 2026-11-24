@@ -29,40 +29,40 @@ jobs:
         with:
           working_directory: docs
           root_file: relatorio_extracao.tex
-          compiler: xelatex
-          args: "-interaction=nonstopmode -halt-on-error"
+          compiler: latexmk
+          args: "-xelatex -interaction=nonstopmode -halt-on-error"
 
       - name: Compile EN Document
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: docs
           root_file: relatorio_extracao_en.tex
-          compiler: xelatex
-          args: "-interaction=nonstopmode -halt-on-error"
+          compiler: latexmk
+          args: "-xelatex -interaction=nonstopmode -halt-on-error"
 
       - name: Compile JA Document
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: docs
           root_file: relatorio_extracao_ja.tex
-          compiler: xelatex
-          args: "-interaction=nonstopmode -halt-on-error"
+          compiler: latexmk
+          args: "-xelatex -interaction=nonstopmode -halt-on-error"
 
       - name: Compile IEEE Data Science Final Paper (PT-BR)
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: docs/entrega_ciencia_dados
           root_file: artigo_ieee_ciencia_dados.tex
-          compiler: xelatex
-          args: "-interaction=nonstopmode -halt-on-error"
+          compiler: latexmk
+          args: "-xelatex -interaction=nonstopmode -halt-on-error"
 
       - name: Compile Beamer Presentation Slides (PT-BR)
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: docs/entrega_ciencia_dados
           root_file: slides_apresentacao_ciencia_dados.tex
-          compiler: xelatex
-          args: "-interaction=nonstopmode -halt-on-error"
+          compiler: latexmk
+          args: "-xelatex -interaction=nonstopmode -halt-on-error"
 
       - name: Create tag
         id: create_tag
