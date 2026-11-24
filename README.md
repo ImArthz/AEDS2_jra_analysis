@@ -102,6 +102,37 @@ Documentação arquitetural e matemática completa (incluindo o estudo detalhado
 
 - Código-fonte dos artigos: [`docs/relatorio_extracao.tex`](docs/relatorio_extracao.tex) | [`docs/relatorio_extracao_en.tex`](docs/relatorio_extracao_en.tex) | [`docs/relatorio_extracao_ja.tex`](docs/relatorio_extracao_ja.tex) | [`docs/proposta_ciencia_dos_dados.tex`](docs/proposta_ciencia_dos_dados.tex)
 
+### 🎓 Entrega Final — Ciência dos Dados (`docs/entrega_ciencia_dados/`)
+Pacote completo para a entrega e apresentação final de **Ciência dos Dados (Padrão IEEE Conference + Slides 16:9 + Roteiro 15–20 min)**:
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/artigo_ieee_ciencia_dados.pdf">
+        <img src="https://img.shields.io/badge/📘_Artigo_Final_IEEE-Ciência_dos_Dados_(PDF)-0284c7?style=for-the-badge&logo=ieee&logoColor=white" alt="Artigo IEEE PDF">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/slides_apresentacao_ciencia_dados.pdf">
+        <img src="https://img.shields.io/badge/📽️_Slides_Beamer_16:9-Apresentação_(PDF)-7c3aed?style=for-the-badge&logo=latex&logoColor=white" alt="Slides Beamer PDF">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/entrega_ciencia_dados/slides_interativos_apresentacao.html">
+        <img src="https://img.shields.io/badge/🖥️_Slides_Interativos_Ao_Vivo-Abrir_no_Navegador_(HTML5)-10b981?style=for-the-badge" alt="Slides HTML5 Ao Vivo">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
+- Arquivos na pasta [`docs/entrega_ciencia_dados/`](docs/entrega_ciencia_dados/):
+  - [`artigo_ieee_ciencia_dados.tex`](docs/entrega_ciencia_dados/artigo_ieee_ciencia_dados.tex) — Artigo em formato oficial **IEEE (`IEEEtran`)** enxuto ($\le 11$ páginas) com todas as figuras e tabelas;
+  - [`slides_apresentacao_ciencia_dados.tex`](docs/entrega_ciencia_dados/slides_apresentacao_ciencia_dados.tex) — Apresentação em **LaTeX Beamer Widescreen (16:9)**;
+  - [`slides_interativos_apresentacao.html`](docs/entrega_ciencia_dados/slides_interativos_apresentacao.html) — Apresentação interativa Widescreen (setas `←` `→`, tela cheia `F` e notas de fala `N`);
+  - [`ROTEIRO_APRESENTACAO_15_20_MIN.md`](docs/entrega_ciencia_dados/ROTEIRO_APRESENTACAO_15_20_MIN.md) — Roteiro cronometrado minuto a minuto (15 a 20 min).
+
 ### 🖥️ Suíte Executiva Interativa (Apache Superset 6.1) & 🃏 Arena Gamificada de Cards (TCG Dex)
 Clique em qualquer um dos botões abaixo para abrir o **Mega Dashboard Interativo (13 Gráficos + 6 KPIs)** ou a **Arena Gamificada de Cards Colecionáveis (520 Cards em 6 Decks de Ranking + Dossiê 3D + Modo Duelo VS)** diretamente no seu navegador via GitHub Pages:
 

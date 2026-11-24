@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação Final (15–20 min) — Ciência dos Dados | JRA & JBIS (2002–2025)</title>
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --bg-slide: #0f172a;
+      --accent-blue: #38bdf8;
+      --accent-purple: #a855f7;
+      --accent-amber: #fbbf24;
+      --accent-green: #10b981;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid #1e293b;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      z-index: 20;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 6px 13px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .ctrl-btn:hover { background: #334155; }
+    .ctrl-btn.gold { background: rgba(251, 191, 36, 0.18); border-color: #fbbf24; color: #fde68a; }
+    .ctrl-btn.purple { background: rgba(168, 85, 247, 0.18); border-color: #a855f7; color: #e9d5ff; }
+
+    .deck-viewport {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 32px;
+      overflow: hidden;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1460px;
+      height: 100%;
+      max-height: 820px;
+      background: linear-gradient(155deg, #111a2e 0%, #0a101f 100%);
+      border: 1px solid #263554;
+      border-radius: 22px;
+      padding: 36px 46px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.65);
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+      animation: fadeSlide 0.24s ease;
+    }
+    .slide.active { display: flex; }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-header {
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .slide-header h2 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #38bdf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .slide-time {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    .cols-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .box {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid #263659;
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+    .box h3 {
+      margin: 0 0 10px 0;
+      font-size: 17px;
+      color: #38bdf8;
+    }
+    .box ul, .box ol {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.6;
+      font-size: 14.5px;
+      color: #e2e8f0;
+    }
+    .box li { margin-bottom: 6px; }
+    .img-frame {
+      text-align: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .img-frame img {
+      max-width: 100%;
+      max-height: 440px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    table.data-tab {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.2px;
+    }
+    table.data-tab th {
+      background: #1e293b;
+      color: #38bdf8;
+      text-align: left;
+      padding: 9px 12px;
+      border-bottom: 2px solid #334155;
+    }
+    table.data-tab td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #1e293b;
+      color: #e2e8f0;
+    }
+
+    .speaker-note {
+      display: none;
+      margin-top: 12px;
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 4px solid #fbbf24;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #fde68a;
+      line-height: 1.45;
+    }
+    body.show-notes .speaker-note { display: block; }
+
+    .progress-bar {
+      height: 5px;
+      background: #1e293b;
+      width: 100%;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #a855f7, #fbbf24);
+      width: 7%;
+      transition: width 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-left">
+      <span>🎓 CEFET-MG • Ciência dos Dados (Prof. Higor Mascarenhas)</span>
+      <span>|</span>
+      <span id="slideCounter">Slide 1 / 14</span>
+    </div>
+    <div class="topbar-right">
+      <button class="ctrl-btn" onclick="prevSlide()">◀ Anterior (←)</button>
+      <button class="ctrl-btn" onclick="nextSlide()">Próximo (→) ▶</button>
+      <button class="ctrl-btn" onclick="toggleNotes()">📝 Notas de Fala (N)</button>
+      <button class="ctrl-btn" onclick="toggleFull()">⛶ Tela Cheia (F)</button>
+      <a class="ctrl-btn purple" href="../superset_interactive_dashboard.html" target="_blank">🚀 Abrir Superset Ao Vivo</a>
+      <a class="ctrl-btn gold" href="../jra_tcg_arena.html" target="_blank">🃏 Abrir TCG Card Arena</a>
+    </div>
+  </div>
+
+  <div class="deck-viewport">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide active">
+      <div class="slide-body" style="text-align:center;align-items:center;">
+        <div style="background:rgba(56,189,248,0.12);border:1px solid #38bdf8;color:#38bdf8;padding:6px 18px;border-radius:999px;font-weight:800;font-size:13px;">
+          PROJETO FINAL DE CIÊNCIA DOS DADOS • PADRÃO IEEE • DOI: 10.5281/zenodo.23681764
+        </div>
+        <h1 style="font-size:36px;max-width:1100px;margin:14px 0;line-height:1.25;background:linear-gradient(90deg,#fbbf24,#38bdf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+          Mineração de Dados, Tradução Semântica Híbrida via IA, Visualização Multidimensional e Machine Learning no Turfe Japonês de Elite (2002–2025)
+        </h1>
+        <p style="font-size:18px;color:#cbd5e1;margin:0;">
+          <b>Autor:</b> Arthur De Oliveira Mendonça &nbsp;•&nbsp; <b>Docente:</b> Prof. Higor Alexandre Duarte Mascarenhas<br/>
+          <span style="font-size:14.5px;color:#94a3b8;">Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG — Campus Divinópolis)</span>
+        </p>
+        <div class="cols-3" style="width:100%;max-width:980px;margin-top:20px;">
+          <div class="box"><h3>📊 3.216 Corridas / 33.409 Entradas</h3><p style="margin:0;font-size:13.5px;color:#94a3b8;">24 Anos de Provas G1, G2 e G3 da JRA (100% Higienizadas)</p></div>
+          <div class="box"><h3>🧬 504.074 Nós Genealógicos</h3><p style="margin:0;font-size:13.5px;color:#94a3b8;">Árvore de 5 Gerações do JBIS + Coeficiente de Wright (F_X)</p></div>
+          <div class="box"><h3>🤖 Random Forest & Superset</h3><p style="margin:0;font-size:13.5px;color:#94a3b8;">ROC-AUC = 0,7260 + 13 Gráficos ECharts + 520 Cards TCG</p></div>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Minuto 0:00 – 1:00]</b> Olá professor Higor e colegas! Hoje vou apresentar o projeto final de Ciência dos Dados sobre 24 anos de histórico das corridas de elite do Japão (JRA, 2002–2025) cruzadas com 5 gerações de árvore genealógica (JBIS), publicado com DOI oficial no Zenodo.
+      </div>
+    </section>
+
+    <!-- SLIDE 2: INTRODUÇÃO E CONTEXTO -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>1. Introdução e Contexto do Domínio (JRA & JBIS)</h2>
+        <span class="slide-time">⏱️ Minuto 1:00 – 2:30</span>
+      </div>
+      <div class="slide-body">
+        <div class="cols-2">
+          <div class="box">
+            <h3>🏇 Por que o Turfe Japonês é um Laboratório Ideal para Data Science?</h3>
+            <ul>
+              <li>A <b>Japan Racing Association (JRA)</b> mantém o ecossistema de corridas de Puro-Sangue Inglês (<i>Thoroughbred</i>) mais monitorado e rico do planeta.</li>
+              <li>Cada prova de elite (<b>G1, G2 e G3</b>) registra precisão centesimal de tempo, massa corporal do animal no dia da prova (kg), variações climáticas, pista (Grama, Areia, Obstáculos), jóquei e treinador.</li>
+              <li>O portal <b>JBIS</b> preserva a árvore genealógica completa de <b>5 gerações ascendentes</b> ($2+4+8+16+32 = 62$ ancestrais por cavalo).</li>
+              <li><b>Lacuna Científica:</b> Dados históricos isolados em Japonês e HTMLs legados dos anos 2000 sem padronização internacional.</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>📈 Dimensão Consolidada do Dataset</h3>
+            <ul>
+              <li><b>3.216</b> Corridas de Elite (G1, G2 e G3 de 2002 a 2025)</li>
+              <li><b>33.409</b> Participações Individuais Validadas (100% cobertura)</li>
+              <li><b>8.209</b> Cavalos Puro-Sangue Únicos Mapeados</li>
+              <li><b>8.202</b> Registros de Pedigree Direto (Pai, Mãe, Avô Materno)</li>
+              <li><b>504.074</b> Nós Ancestrais na Árvore de 5 Gerações</li>
+              <li><b>29.159</b> Termos e Nomes Próprios Traduzidos via IA Híbrida</li>
+              <li><b>0 Erros e 0 Avisos</b> na Auditoria Automatizada de QA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Explicar que o Japão importou os maiores garanhões do mundo (como Sunday Silence) e registra tudo com precisão cirúrgica, mas esses dados estavam presos em tabelas HTML japonesas de 2002 a 2025.
+      </div>
+    </section>
+
+    <!-- SLIDE 3: DESCRIÇÃO DO PROBLEMA E OBJETIVOS -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>2. Descrição do Problema e Objetivos do Trabalho</h2>
+        <span class="slide-time">⏱️ Minuto 2:30 – 4:30</span>
+      </div>
+      <div class="slide-body">
+        <div class="cols-2">
+          <div class="box">
+            <h3>⚠️ 4 Problemas Críticos de Engenharia e Ciência dos Dados</h3>
+            <ol>
+              <li><b>Deslocamento Estrutural de Colunas (2006–2018):</b> A JRA fundiu as colunas Sexo e Idade (<code>性齢</code>, ex: <code>牡4</code>), deslocando Jóquei, Tempo, Treinador e Peso em <b>25.014 linhas</b>, além de omitir o <code>grade</code> em 1.834 corridas.</li>
+              <li><b>Inversão Topológica DFS vs. BFS (504.074 nós):</b> O HTML do JBIS lista os 62 ancestrais em largura (BFS), exigindo uma bijeção matemática exata para restaurar as ligações pai-filho.</li>
+              <li><b>Intraduzibilidade Fonética (Katakana/Kanji):</b> Tradutores comuns convertem <i>Deep Impact</i> para <code>"Diipu Inpakuto"</code>, o jóquei <i>Yutaka Take</i> (leitura <i>Nanori</i>) para <code>"Taketoyo"</code> e pelagens biológicas (<i>Bay</i>) para <code>"Kage"</code>.</li>
+              <li><b>Cegueira da Contagem de Vitórias & Vazamento Temporal:</b> Contar apenas vitórias ignora quem enfrentou lendas em G1.</li>
+            </ol>
+          </div>
+          <div class="box">
+            <h3>🎯 Pergunta Central e Objetivos</h3>
+            <p style="font-size:14.5px;color:#fde68a;line-height:1.5;background:rgba(251,191,36,0.1);padding:12px;border-radius:10px;border:1px solid rgba(251,191,36,0.3);">
+              <i>"A aptidão física (grama vs. areia, velocidade vs. resistência) e a conquista de pódios na JRA são determinadas pela árvore genética de 5 gerações ou pelo fator humano (jóquei/treinador)? E podemos usar Teoria dos Grafos para encontrar craques que a contagem de vitórias ignora?"</i>
+            </p>
+            <ul>
+              <li>Higienizar e traduzir 100% da base para Inglês na 3ª Forma Normal (3NF);</li>
+              <li>Testar estatisticamente a especialização genética ($H_1$) e o PageRank ($H_2$);</li>
+              <li>Agrupar garanhões via <b>K-Means++ PCA</b> e prever pódios via <b>Random Forest</b>;</li>
+              <li>Construir visualizações estilo <b>Apache Superset</b> e a <b>Arena Gamificada TCG</b>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Destacar os desafios reais de dados sujos da web legada (as 25 mil linhas deslocadas e o problema de traduzir nomes próprios e pelagens) e a nossa pergunta científica central.
+      </div>
+    </section>
+
+    <!-- SLIDE 4: METODOLOGIA E NATUREZA DOS DADOS -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>3. Metodologia: Natureza dos Dados, Variáveis Categóricas e Ferramentas</h2>
+        <span class="slide-time">⏱️ Minuto 4:30 – 7:00</span>
+      </div>
+      <div class="slide-body">
+        <table class="data-tab">
+          <thead>
+            <tr>
+              <th>Variável / Atributo</th>
+              <th>Natureza Estatística e Tipo</th>
+              <th>Tratamento e Codificação Aplicada (Item 7)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>distance</code>, <code>weight</code>, <code>horse_mass_kg</code></td>
+              <td>Quantitativa Contínua (<code>float</code>)</td>
+              <td>Regex (<code>"486Kg(+2)" → 486.0</code>), imputação por mediana exclusiva do treino e padronização Z-score.</td>
+            </tr>
+            <tr>
+              <td><code>total_earnings</code>, <code>pagerank</code>, <code>fx_pct</code></td>
+              <td>Quantitativa Contínua (<code>float</code>)</td>
+              <td>Conversão de <i>Man-Yen</i> ($\times 10^4$), PageRank ($d=0,85$) e Endogamia de Wright $F_X = \sum (1/2)^{n_S+n_D-1}$.</td>
+            </tr>
+            <tr>
+              <td><code>year</code>, <code>age</code>, <code>position</code>, <code>num_runners</code></td>
+              <td>Quantitativa Discreta (<code>int</code>)</td>
+              <td>Realinhamento vetorial de 25.014 linhas (separando Sexo+Idade) e alvo binário $\text{Top-3} = \mathbb{I}(\text{pos} \le 3)$.</td>
+            </tr>
+            <tr>
+              <td><code>grade</code> (G1, G2, G3)</td>
+              <td>Qualitativa Ordinal (<code>str</code>)</td>
+              <td>Auto-junção histórica via NFKC e codificação ordinal ponderada: $\text{G1}=1,0;\; \text{G2}=0,7;\; \text{G3}=0,5$.</td>
+            </tr>
+            <tr>
+              <td><code>surface</code>, <code>sex</code>, <code>color</code>, <code>track</code></td>
+              <td>Qualitativa Nominal (Baixa Card.)</td>
+              <td>Dicionários determinísticos $O(1)$ (<i>Turf/Dirt/Obstacle</i>, pelagens <i>Bay/Chestnut/Grey</i>) e <i>One-Hot</i> (<code>is_turf</code>, <code>is_female</code>).</td>
+            </tr>
+            <tr>
+              <td><code>jockey</code>, <code>trainer</code>, <code>sire</code>, <code>dam_sire</code></td>
+              <td>Qualitativa Nominal (Alta Card.)</td>
+              <td>Motor Híbrido IA (Google Gemini Pool) + <b>Bayesian Shifted Expanding-Window Target Encoding</b> (Zero Leakage!).</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="box" style="padding:12px 16px;">
+          <h3 style="font-size:14.5px;margin-bottom:4px;">🔧 Justificativa de Adaptação de Bibliotecas (Diretriz da Disciplina)</h3>
+          <p style="margin:0;font-size:13px;color:#cbd5e1;">
+            <b>1. Tradução:</b> Substituição do <code>pykakasi</code> fonético pelo <b>Motor Híbrido em 3 Camadas com Google Gemini API</b> (29.159 termos validados). &nbsp;|&nbsp;
+            <b>2. Computação Científica & Visualização:</b> Implementação vetorizada de $\chi^2$, ANOVA, Kruskal-Wallis, PageRank, K-Means++ PCA e Random Forest em <code>NumPy/Pandas</code> (compatibilidade nativa Python 3.15), somada a <code>Matplotlib</code>, <code>Seaborn</code>, <b>Gephi</b> e <b>Apache ECharts 5.5 (motor oficial do Apache Superset 6.1)</b>.
+          </p>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Este slide responde diretamente ao Item 7 do edital do professor: explicar a tabela com a natureza de cada dado (quantitativo contínuo/discreto, qualitativo ordinal/nominal), o Target Encoding Bayesiano com janela temporal para não vazar dados do futuro nas variáveis categóricas de alta cardinalidade, e por que adaptamos as bibliotecas.
+      </div>
+    </section>
+
+    <!-- SLIDE 5: VISUALIZAÇÃO 1 - TOP SIRES E TOP EARNERS -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>4. Visualização Inicial: Dominância Paterna e Premiação Vitalícia</h2>
+        <span class="slide-time">⏱️ Minuto 7:00 – 8:15</span>
+      </div>
+      <div class="slide-body">
+        <div class="cols-2">
+          <div class="img-frame">
+            <img src="../assets/top_sires.png" alt="Top 10 Sires">
+          </div>
+          <div class="img-frame">
+            <img src="../assets/top_earners.png" alt="Top 10 Earners">
+          </div>
+        </div>
+        <div class="box" style="padding:12px 18px;">
+          <p style="margin:0;font-size:13.8px;color:#e2e8f0;">
+            <b>Análise dos Gráficos:</b> À esquerda, <b>Deep Impact</b> (289 filhos únicos em provas Graded, 46 títulos G1) e seu pai <b>Sunday Silence (USA)</b> (281 filhos, 42 G1s) comprovam a concentração genética extrema da era moderna. À direita, <b>Almond Eye</b> (¥19,15 Bilhões) e <b>Kitasan Black</b> (¥18,77 Bilhões) lideram o ranking financeiro histórico.
+          </p>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Mostrar os dois gráficos clássicos em Matplotlib/Seaborn após a tradução 100% para inglês, e explicar que gráficos de barra mostram apenas uma dimensão por vez — o que nos levou às visualizações avançadas do DataViz Project e Apache Superset a seguir.
+      </div>
+    </section>
+
+    <!-- SLIDE 6: VISUALIZAÇÃO 2 - SANKEY ALUVIAL -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>5. Visualização Multidimensional: Diagrama Sankey Aluvial (4 Estágios)</h2>
+        <span class="slide-time">⏱️ Minuto 8:15 – 9:45</span>
+      </div>
+      <div class="slide-body">
+        <div class="img-frame">
+          <img src="../assets/superset_alluvial_sankey_flow.png" alt="Alluvial Sankey Flow" style="max-height:450px;">
+        </div>
+        <div class="box" style="padding:12px 18px;">
+          <p style="margin:0;font-size:13.5px;color:#e2e8f0;">
+            <b>Análise Multidimensional (DataViz Project & Apache Superset):</b> Conecta 4 variáveis categóricas simultaneamente ($N = 8.857$): <i>Linhagem Paterna → Superfície → Regime de Distância → Grau (G1/G2/G3)</i>. Observe as fitas laranjas de <b>Gold Allure</b> e <b>Brian's Time</b> fluindo para a <b>Areia (Dirt)</b>, a faixa azul de <b>Sakura Bakushin O</b> canalizada para <b>Sprint (&le;1400m)</b> e <b>Deep Impact</b> dominando as distâncias clássicas rumo ao <b>G1</b>!
+          </p>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Destacar como o Sankey de 4 estágios (inspirado diretamente na aula de Visualização de Dados do Prof. Higor) resume em uma única imagem a especialização genética que depois comprovamos no teste Qui-Quadrado.
+      </div>
+    </section>
+
+    <!-- SLIDE 7: VISUALIZAÇÃO 3 - RADAR E SUNBURST -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>6. PageRank ($H_2$): "Diamantes Injustiçados" (Radar) & Sunburst</h2>
+        <span class="slide-time">⏱️ Minuto 9:45 – 11:15</span>
+      </div>
+      <div class="slide-body">
+        <div class="img-frame">
+          <img src="../assets/superset_radar_and_sunburst.png" alt="Radar and Sunburst" style="max-height:440px;">
+        </div>
+        <div class="box" style="padding:12px 18px;">
+          <p style="margin:0;font-size:13.5px;color:#e2e8f0;">
+            <b>A Grande Descoberta do PageRank ($r = 0,8799$ com pódios):</b> O cavalo <b>Sounds of Earth</b> possui <b>ZERO vitórias Graded na carreira</b>, mas ficou em <b>#32 entre 8.135 cavalos (Top 0,4% da história!)</b> porque foi 7 vezes pódio contra lendas em G1 (Japan Cup, Arima Kinen e Kikuka Sho)! Veja o polígono tracejado laranja no Radar: <code>0%</code> no vértice de vitórias, mas topo em PageRank e Rivalidade G1! Ao lado, o <b>Sunburst de 3 Anéis</b> mapeia as 3.216 corridas nos 10 Hipódromos da JRA.
+          </p>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Este é o ponto alto da tese do PageRank: explicar o caso real do Sounds of Earth (#32 geral com 0 vitórias) e Etariou (#43 com 0 vitórias), além dos Colecionadores de Prata (Stephanos #19, Cosmo Bulk #27).
+      </div>
+    </section>
+
+    <!-- SLIDE 8: VISUALIZAÇÃO 4 - STREAMGRAPH E BIOMETRIA VIOLIN -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>7. Streamgraph de Dinastias & Descoberta Biométrica (Split-Violin)</h2>
+        <span class="slide-time">⏱️ Minuto 11:15 – 12:45</span>
+      </div>
+      <div class="slide-body">
+        <div class="cols-2">
+          <div class="img-frame">
+            <img src="../assets/superset_streamgraph_dynasties.png" alt="Streamgraph Dynasties" style="max-height:390px;">
+          </div>
+          <div class="img-frame">
+            <img src="../assets/superset_raincloud_and_parallel.png" alt="Split Violin and Parallel Coordinates" style="max-height:390px;">
+          </div>
+        </div>
+        <div class="box" style="padding:12px 18px;">
+          <p style="margin:0;font-size:13.5px;color:#e2e8f0;">
+            <b>Esquerda (Streamgraph):</b> A sucessão geracional da Era I (<i>Sunday Silence</i>) para a Era II (<i>Agnes Tachyon/Fuji Kiseki</i>) e Era III (<i>Deep Impact/King Kamehameha</i>). &nbsp;|&nbsp;
+            <b>Direita (Split-Violin Biométrico):</b> Descobrimos que cavalos de <b>Areia (Dirt, ~494–498 kg)</b> são sistematicamente <b>16 a 21 kg mais pesados e musculosos</b> que cavalos de <b>Grama (Turf, ~473–482 kg)</b> em todas as distâncias!
+          </p>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Mostrar como o gráfico Split-Violin revelou uma descoberta biológica real sobre o peso físico dos cavalos na areia (força bruta e tração) versus grama (leveza e velocidade).
+      </div>
+    </section>
+
+    <!-- SLIDE 9: MACHINE LEARNING 1 - K-MEANS++ PCA -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>8. Aprendizado Não-Supervisionado: K-Means++ & PCA 2D</h2>
+        <span class="slide-time">⏱️ Minuto 12:45 – 14:00</span>
+      </div>
+      <div class="slide-body">
+        <div class="img-frame">
+          <img src="../assets/ml_kmeans_pca_clusters.png" alt="K-Means PCA Clusters" style="max-height:440px;">
+        </div>
+        <div class="box" style="padding:12px 18px;">
+          <p style="margin:0;font-size:13.5px;color:#e2e8f0;">
+            <b>63,4% da Variância Explicada em 2 Componentes ($\text{PC}_1 = 44,1\%, \text{PC}_2 = 19,2\%$):</b> O algoritmo K-Means++ segmentou autonomamente os 106 garanhões em 4 arquétipos zootécnicos: <b>Cluster A (Areia/Força)</b>, <b>Cluster B (Velocistas/Milheiros)</b>, <b>Cluster C (Dinastias Clássicas G1: Deep Impact, Sunday Silence, King Kamehameha, Stay Gold)</b> e <b>Cluster D (Fundistas/Stayers)</b>.
+          </p>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Explicar como reduzimos 6 variáveis zootécnicas para 2 componentes principais (PCA) retendo 63,4% da informação original e separando os 4 grupos de reprodutores.
+      </div>
+    </section>
+
+    <!-- SLIDE 10: MACHINE LEARNING 2 - RANDOM FOREST & QUI-QUADRADO -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>9. Classificação Supervisionada (Random Forest) & Testes de Hipóteses ($H_1$)</h2>
+        <span class="slide-time">⏱️ Minuto 14:00 – 15:30</span>
+      </div>
+      <div class="slide-body">
+        <div class="img-frame">
+          <img src="../assets/ml_random_forest_and_chi2.png" alt="Random Forest and Chi2" style="max-height:415px;">
+        </div>
+        <div class="cols-2">
+          <div class="box" style="padding:10px 16px;">
+            <h3 style="font-size:14.5px;margin-bottom:4px;">🤖 Predição de Pódio Out-of-Time (Teste 2016–2018, $N=5.889$)</h3>
+            <p style="margin:0;font-size:13px;color:#e2e8f0;">
+              • <b>Random Forest (CART):</b> <b>$\text{ROC-AUC} = 0,7260$</b> (IC 95% $[0,711; 0,739]$) vs. Reg. Logística L2 ($0,7144$) e Baseline ($0,5000$).<br/>
+              • <b>Top Features (Gini):</b> Taxa prévia do <b>Jóquei (29,8%)</b> e do <b>Cavalo (22,7%)</b> lideram a decisão!
+            </p>
+          </div>
+          <div class="box" style="padding:10px 16px;">
+            <h3 style="font-size:14.5px;margin-bottom:4px;">📐 Testes Estatísticos de Especialização Genética ($H_1$)</h3>
+            <p style="margin:0;font-size:13px;color:#e2e8f0;">
+              • <b>Sire $\times$ Superfície:</b> $\chi^2 = 739,99, p = 2,43 \times 10^{-107}, V = 0,2514$.<br/>
+              • <b>Sire $\times$ Distância:</b> $\chi^2 = 2237,47, p = 3,71 \times 10^{-317}, V = 0,2523$.<br/>
+              • <b>ANOVA / Kruskal:</b> $F = 16,46 (\eta^2 = 0,1986, p < 10^{-34}), H = 192,40$.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Mostrar como os dois gráficos juntos respondem à pergunta do trabalho: o Heatmap Qui-Quadrado à direita prova que a genética escolhe a distância/pista ($p < 10^{-300}$), e a Random Forest à esquerda prova que dentro da corrida o Jóquei (29,8%) e o retrospecto do Cavalo (22,7%) decidem o pódio!
+      </div>
+    </section>
+
+    <!-- SLIDE 11: GRAFOS NO GEPHI -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>10. Modelagem Vetorial de Redes Complexas no Gephi (ForceAtlas2)</h2>
+        <span class="slide-time">⏱️ Minuto 15:30 – 16:30</span>
+      </div>
+      <div class="slide-body">
+        <div class="cols-2">
+          <div class="img-frame">
+            <img src="../assets/gephi_competition_top150.png" alt="Gephi Competition Top 150" style="max-height:410px;">
+          </div>
+          <div class="img-frame">
+            <img src="../assets/gephi_lineage_dag_elite.png" alt="Gephi Lineage DAG" style="max-height:410px;">
+          </div>
+        </div>
+        <div class="box" style="padding:12px 18px;">
+          <p style="margin:0;font-size:13.5px;color:#e2e8f0;">
+            <b>4 Grafos Vetoriais (Zoom Infinito 1600% em PDF):</b> À esquerda, a <b>Rede de Competição Top 150 PageRank</b> (2.551 arestas ponderadas por G1/G2/G3). À direita, a <b>Galáxia Genealógica de 5 Gerações</b> (4.475 nós), onde o cálculo do Coeficiente de Endogamia de Wright ($F_X$) revelou a convergência sobre <b>Northern Dancer</b> (4.206 cavalos endogâmicos e 1.211 vitórias Graded).
+          </p>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Mostrar brevemente os grafos vetoriais gerados no Gephi que estão clicáveis com zoom infinito no nosso README.
+      </div>
+    </section>
+
+    <!-- SLIDE 12: DEMONSTRAÇÃO AO VIVO - SUPERSET DASHBOARD & TCG ARENA -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>11. Demonstração Ao Vivo: Suíte Apache Superset (13 Gráficos) & TCG Arena (520 Cards)</h2>
+        <span class="slide-time">⏱️ Minuto 16:30 – 18:30</span>
+      </div>
+      <div class="slide-body">
+        <div class="cols-2">
+          <div class="box" style="border-color:#a855f7;">
+            <h3 style="color:#e9d5ff;">🚀 1. Suíte Executiva Apache Superset 6.1 (Apache ECharts)</h3>
+            <ul>
+              <li><b>13 Gráficos 100% Interativos + 6 KPIs</b> em 3 idiomas (<b>PT-BR, EN, JA</b>).</li>
+              <li><b>Sunburst com Drill-Down:</b> Clique em qualquer fatia para dar zoom nos 10 Hipódromos da JRA.</li>
+              <li><b>Coordenadas Paralelas com Brush Filter:</b> Arraste o mouse verticalmente em qualquer eixo para filtrar os 106 garanhões ao vivo!</li>
+              <li><b>Quadrante PageRank:</b> Inspecione <i>Sounds of Earth (#32)</i> no eixo $X=0$.</li>
+            </ul>
+            <div style="margin-top:14px;">
+              <a class="ctrl-btn purple" style="display:inline-block;padding:10px 18px;font-size:14px;" href="../superset_interactive_dashboard.html" target="_blank">🚀 Abrir Dashboard Superset Ao Vivo ↗</a>
+            </div>
+          </div>
+          <div class="box" style="border-color:#fbbf24;">
+            <h3 style="color:#fde68a;">🃏 2. Gamificação para Leigos: JRA & JBIS TCG Card Arena</h3>
+            <ul>
+              <li><b>520 Cards Colecionáveis em 6 Decks de Ranking</b> (324 Cavalos, 106 Garanhões, 60 Jóqueis e 30 Patriarcas 5-Gen).</li>
+              <li><b>Raridades Procedurais (OVR 76–99):</b> <code>SSR Mythic</code>, <code>DIAMOND Anomaly</code> (0 vitórias e alto PageRank!), <code>SILVER Crown</code>, <code>UR</code> e <code>SR</code>.</li>
+              <li><b>Dossiê 3D + Árvore Genealógica Clicável:</b> Salte do Filho → Pai → Avô → Jóquei!</li>
+              <li><b>Modo Duelo (⚔️ VS Mode):</b> Compare 2 cards com Radar sobreposto!</li>
+            </ul>
+            <div style="margin-top:14px;">
+              <a class="ctrl-btn gold" style="display:inline-block;padding:10px 18px;font-size:14px;" href="../jra_tcg_arena.html" target="_blank">🃏 Abrir TCG Card Arena Ao Vivo ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala — 2 Minutos de Demo Ao Vivo!]:</b> Clicar nos dois botões acima para mostrar ao Prof. Higor: (1) No Superset Dashboard, clicar numa fatia do Sunburst e arrastar o filtro nas Coordenadas Paralelas; (2) Na TCG Card Arena, mostrar o card DIAMOND do Sounds of Earth (#32 com 0 vitórias), clicar no pai dele na árvore genealógica e fazer um Duelo VS contra o Deep Impact!
+      </div>
+    </section>
+
+    <!-- SLIDE 13: REPOSITÓRIO GITHUB E ZENODO DOI -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>12. Repositório Científico, CI/CD e Depósito Oficial no Zenodo (Item 9)</h2>
+        <span class="slide-time">⏱️ Minuto 18:30 – 19:15</span>
+      </div>
+      <div class="slide-body">
+        <div class="cols-2">
+          <div class="box">
+            <h3>🗂️ Arquitetura do Repositório GitHub</h3>
+            <ul>
+              <li><b>URL:</b> <code>github.com/ImArthz/AEDS2_jra_analysis</code></li>
+              <li><code>data/csv/</code> e <code>data/csv_en/</code>: Tabelas relacionais espelhadas em Japonês e 100% em Inglês.</li>
+              <li><code>data/analysis/</code>: Rankings PageRank, Inbreeding $F_X$, Clusters PCA e Random Forest.</li>
+              <li><code>data/gephi/</code>: Projetos <code>.gephi</code> e Grafos Vetoriais <code>.pdf</code>.</li>
+              <li><code>src/</code>: 12 módulos Python modulares e auditados.</li>
+              <li><code>docs/entrega_ciencia_dados/</code>: Artigo IEEE e Slides.</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>🏛️ Ciência Aberta: Zenodo DOI & GitHub Actions CI/CD</h3>
+            <ul>
+              <li><b>DOI Oficial Registrado no Zenodo (CERN/OpenAIRE):</b><br/>
+                <span style="color:#38bdf8;font-weight:900;font-size:17px;">10.5281/zenodo.23681764</span> (Licença CC-BY-4.0).</li>
+              <li><b>Pipeline CI/CD (<code>compile_latex.yml</code>):</b> A cada <i>push</i>, o GitHub Actions executa os scripts Python de visualização e compila automaticamente os relatórios e o Artigo IEEE em PDF via <code>XeLaTeX</code>, anexando PDFs e Dashboards HTML na aba <i>Releases</i>.</li>
+              <li><b>Documentação Trilíngue:</b> READMEs e Dashboards em Português, Inglês e Japonês.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fala]:</b> Explicar a organização profissional do repositório exigida no Item 9 do edital e destacar que o dataset já possui DOI acadêmico oficial no Zenodo.
+      </div>
+    </section>
+
+    <!-- SLIDE 14: CONCLUSÃO -->
+    <section class="slide">
+      <div class="slide-header">
+        <h2>13. Conclusão e Considerações Finais (Item 10)</h2>
+        <span class="slide-time">⏱️ Minuto 19:15 – 20:00</span>
+      </div>
+      <div class="slide-body">
+        <div class="box" style="border-color:#10b981;">
+          <h3 style="color:#6ee7b7;font-size:19px;">🏆 As 4 Grandes Conclusões Científicas do Projeto</h3>
+          <ol style="font-size:15.5px;line-height:1.7;">
+            <li><b>A Genética de 5 Gerações Define "ONDE" o Cavalo Pode Vencer ($H_1$):</b> Comprovamos especialização genética extrema por superfície ($\chi^2 = 740,0$) e distância ($\chi^2 = 2237,5, p < 10^{-300}$), agrupando 106 garanhões em 4 arquétipos via K-Means++ PCA (63,4% de variância) e revelando dimorfismo biométrico entre Areia ($\approx 496\text{ kg}$) e Grama ($\approx 477\text{ kg}$).</li>
+            <li><b>A Sinergia Humana e a Forma Atlética Preveem "QUEM" Sobe ao Pódio:</b> A Random Forest ($\text{ROC-AUC} = 0,7260$ no teste futuro 2016–2018 sem vazamento de dados) provou que a taxa histórica do <b>Jóquei (29,8%)</b> e do <b>Cavalo (22,7%)</b> lideram a decisão na pista.</li>
+            <li><b>O PageRank Resgata os "Diamantes Injustiçados" ($H_2$):</b> A centralidade em grafos ($r = 0,88$ com pódios) corrige a cegueira da contagem simples de vitórias, revelando craques como <b>Sounds of Earth (#32 geral entre 8.135 cavalos com 0 vitórias Graded)</b>.</li>
+            <li><b>Visualização e Gamificação Democratizam a Ciência dos Dados:</b> A suíte <i>Apache Superset / ECharts</i> e a <i>TCG Card Arena</i> transformam matrizes complexas em conhecimento visual acessível para qualquer pessoa.</li>
+          </ol>
+        </div>
+        <div style="text-align:center;font-size:16px;font-weight:800;color:#38bdf8;">
+          Obrigado! Perguntas? &nbsp;•&nbsp; github.com/ImArthz/AEDS2_jra_analysis &nbsp;•&nbsp; DOI: 10.5281/zenodo.23681764
+        </div>
+      </div>
+      <div class="speaker-note">
+        <b>⏱️ [Fechamento]:</b> Fechar com a frase síntese das 4 descobertas e abrir para perguntas do Prof. Higor!
+      </div>
+    </section>
+
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let cur = 0;
+
+    function updateSlide() {
+      slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+      document.getElementById('slideCounter').textContent = `Slide ${cur + 1} / ${slides.length}`;
+      document.getElementById('progressFill').style.width = `${((cur + 1) / slides.length) * 100}%`;
+    }
+    function nextSlide() { if (cur < slides.length - 1) { cur++; updateSlide(); } }
+    function prevSlide() { if (cur > 0) { cur--; updateSlide(); } }
+    function toggleNotes() { document.body.classList.toggle('show-notes'); }
+    function toggleFull() {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
+      else if (e.key.toLowerCase() === 'n') toggleNotes();
+      else if (e.key.toLowerCase() === 'f') toggleFull();
+    });
+    updateSlide();
+  </script>
+</body>
+</html>
