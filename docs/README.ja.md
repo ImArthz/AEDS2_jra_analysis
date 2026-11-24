@@ -122,6 +122,23 @@
       </a>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=pt">
+        <img src="https://img.shields.io/badge/🃏_JRA_&_JBIS_TCG_Arena-Português_(520_Cards)-f59e0b?style=for-the-badge" alt="TCG Arena PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=en">
+        <img src="https://img.shields.io/badge/🃏_JRA_&_JBIS_TCG_Arena-English_(520_Cards)-eab308?style=for-the-badge" alt="TCG Arena EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=ja">
+        <img src="https://img.shields.io/badge/🃏_競走馬・血統_TCGアリーナ-日本語_(全520枚)-d97706?style=for-the-badge" alt="TCG Arena JA">
+      </a>
+    </td>
+  </tr>
 </table>
 </div>
 
@@ -198,6 +215,23 @@
     <td align="center">
       <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/superset_interactive_dashboard_ja.html">
         <img src="https://img.shields.io/badge/🚀_インタラクティブ分析-日本語_(HTML)-059669?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard JA">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=pt">
+        <img src="https://img.shields.io/badge/🃏_JRA_&_JBIS_TCG_Arena-Português_(520_Cards)-f59e0b?style=for-the-badge" alt="TCG Arena PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=en">
+        <img src="https://img.shields.io/badge/🃏_JRA_&_JBIS_TCG_Arena-English_(520_Cards)-eab308?style=for-the-badge" alt="TCG Arena EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=ja">
+        <img src="https://img.shields.io/badge/🃏_競走馬・血統_TCGアリーナ-日本語_(全520枚)-d97706?style=for-the-badge" alt="TCG Arena JA">
       </a>
     </td>
   </tr>

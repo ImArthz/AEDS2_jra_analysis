@@ -102,8 +102,8 @@ Complete architectural and mathematical documentation (including the in-depth br
 
 - LaTeX source files: [`docs/relatorio_extracao.tex`](relatorio_extracao.tex) | [`docs/relatorio_extracao_en.tex`](relatorio_extracao_en.tex) | [`docs/relatorio_extracao_ja.tex`](relatorio_extracao_ja.tex) | [`docs/proposta_ciencia_dos_dados.tex`](proposta_ciencia_dos_dados.tex)
 
-### 🖥️ Interactive Executive Suite — Apache Superset 6.1 (Apache ECharts Live HTML)
-Click any button below to launch the **13-Chart Interactive Dashboard (Zoom, Sunburst Drill-Down & Live Parallel Coordinates Brush Filter)** directly in your browser:
+### 🖥️ Interactive Executive Suite (Apache Superset 6.1) & 🃏 Gamified TCG Card Arena
+Click any button below to launch the **13-Chart Interactive Dashboard** or the **Gamified Trading Card Game Arena (520 Cards across 6 Leaderboard Decks + 3D Dossier + VS Duel Mode)** directly in your browser via GitHub Pages:
 
 <div align="center">
 <table>
@@ -121,6 +121,23 @@ Click any button below to launch the **13-Chart Interactive Dashboard (Zoom, Sun
     <td align="center">
       <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/superset_interactive_dashboard_ja.html">
         <img src="https://img.shields.io/badge/🚀_インタラクティブ分析-日本語_(HTML)-059669?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard JA">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=pt">
+        <img src="https://img.shields.io/badge/🃏_JRA_&_JBIS_TCG_Arena-Português_(520_Cards)-f59e0b?style=for-the-badge" alt="TCG Arena PT-BR">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=en">
+        <img src="https://img.shields.io/badge/🃏_JRA_&_JBIS_TCG_Arena-English_(520_Cards)-eab308?style=for-the-badge" alt="TCG Arena EN">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html?lang=ja">
+        <img src="https://img.shields.io/badge/🃏_競走馬・血統_TCGアリーナ-日本語_(全520枚)-d97706?style=for-the-badge" alt="TCG Arena JA">
       </a>
     </td>
   </tr>

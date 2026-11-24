@@ -18,10 +18,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Build Trilingual Interactive Apache Superset / ECharts Dashboards (PT, EN, JA)
+      - name: Build Trilingual Interactive Apache Superset / ECharts Dashboards & TCG Card Arena (PT, EN, JA)
         run: |
           pip install --quiet numpy pandas matplotlib seaborn
           python src/generate_advanced_viz.py
+          python src/generate_tcg_cards.py
 
       - name: Compile PT-BR Document
         uses: xu-cheng/latex-action@v3
@@ -67,6 +68,7 @@ jobs:
             docs/superset_interactive_dashboard.html
             docs/superset_interactive_dashboard_en.html
             docs/superset_interactive_dashboard_ja.html
+            docs/jra_tcg_arena.html
           make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
