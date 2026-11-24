@@ -1,0 +1,254 @@
+================================================================================
+GUIA DE APRESENTACAO — CIENCIA DOS DADOS (CEFET-MG)
+Autor: Arthur De Oliveira Mendonca
+Docente: Prof. Higor Alexandre Duarte Mascarenhas
+Tempo Total Estimado: 15 a 20 minutos
+================================================================================
+DICA DE OURO: Se voce estiver usando o arquivo "slides_interativos_apresentacao.html",
+basta apertar a tecla "N" no teclado durante a apresentacao que uma barra discreta
+com a cola de falas aparece no rodape da sua tela, e "F" coloca em Tela Cheia!
+================================================================================
+
+
+################################################################################
+PARTE 1: COLA DE BATE-OLHO RAPIDO (SE DER BRANCO, OLHE SO AQUI!)
+################################################################################
+
+[SLIDE 1 — CAPA (00:00 - 01:00)]
+  -> Tema: 24 anos da elite do turfe japones (JRA 2002-2025) + 5 geracoes de genealogia (JBIS).
+  -> Ciencia Aberta: Codigo no GitHub + Dataset publicado no CERN/Zenodo com DOI oficial.
+
+[SLIDE 2 — INTRODUCAO E NUMEROS DA BASE (01:00 - 02:15)]
+  -> Por que turfe japones? Maior laboratorio biologico e cinematico do mundo (tempo, peso do cavalo no dia, pista, clima e 62 ancestrais por animal).
+  -> Numeros-chave: 3.216 corridas G1/G2/G3 | 33.409 participacoes | 8.209 cavalos | 504.074 nos genealogicos (5 geracoes) | 29.159 termos traduzidos por IA.
+
+[SLIDE 3 — OS 4 PROBLEMAS REAIS E A PERGUNTA CENTRAL (02:15 - 04:15)]
+  -> Problema 1 (HTML Mutante 2006-2018): JRA juntou Sexo+Idade ("Seirei"), deslocando colunas em 25.014 linhas.
+  -> Problema 2 (Arvore Invertida DFS vs BFS): HTML do JBIS vinha em largura (BFS), parser lia em profundidade (DFS) -> corrigimos 504.074 nos via bijecao matematica.
+  -> Problema 3 (Traducao): Katakana (estrangerismos), Kanji Nanori (nomes humanos, ex: Yutaka Take) e pelagens biologicas falham em tradutor fonetico comum.
+  -> Problema 4 (Contagem de vitorias e cega): Ignora quem bateu na trave contra lendas em G1 + risco de Data Leakage no ML.
+  -> Pergunta Central: O que define o sucesso — a genetica de 5 geracoes ou o fator humano (joquei/treinador)?
+
+[SLIDE 4 — METODOLOGIA, NATUREZA DOS DADOS E CATEGORICAS (04:15 - 06:45)]
+  -> ITEM OBRIGATORIO DO EDITAL (Natureza das Variaveis):
+     * Quantitativas Continuas (float): distancia, peso carregado, massa do cavalo (extraida via Regex "486Kg(+2)" -> 486 kg), premios (Man-Yen x 10.000), PageRank e Endogamia de Wright F_X.
+     * Quantitativas Discretas (int): ano, idade, posicao de chegada e alvo binario Top-3 (podio <= 3).
+     * Qualitativa Ordinal: Grau da corrida (G1=1.0, G2=0.7, G3=0.5).
+     * Qualitativa Nominal Baixa Cardinalidade: superficie, sexo, pelagem -> Dicionario O(1) + One-Hot Encoding (is_turf, is_female).
+     * Qualitativa Nominal Alta Cardinalidade (8.209 cavalos, 985 pais, 398 joqueis): One-Hot explodiria em +10.000 colunas! Usamos TARGET ENCODING BAYESIANO COM JANELA EXPANSIVA ESTRITAMENTE ANTERIOR (corridas 1 ate t-1) -> ZERO DATA LEAKAGE!
+  -> Adaptacao de Bibliotecas: Troca do pykakasi pelo Motor Hibrido Google Gemini API + Algebra Vetorizada em NumPy/Pandas (Python 3.15) + Gephi + Apache ECharts 5.5 (motor do Apache Superset 6.1).
+
+[SLIDE 5 — GRAFICOS BASE: TOP SIRES E TOP EARNERS (06:45 - 07:45)]
+  -> Hegemonia paterna: Deep Impact (289 filhos em provas Graded, 46 titulos G1) e o pai dele Sunday Silence (281 filhos, 42 G1s).
+  -> Premiacao vitalicia: Almond Eye (19,15 Bilhoes de Ienes) e Kitasan Black (18,77 Bilhoes).
+
+[SLIDE 6 — DIAGRAMA SANKEY ALUVIAL DE 4 ESTAGIOS (07:45 - 09:00)]
+  -> Inspirado na aula de Visualizacao (DataViz Project & Apache Superset).
+  -> Cruza 4 dimensoes de uma vez (8.857 largadas): Pai -> Superficie -> Distancia -> Grau (G1/G2/G3).
+  -> Olhar as cores: Gold Allure e Brian's Time (laranja) desviam para Areia (Dirt); Sakura Bakushin O (azul claro) vai todo para Sprint (<=1400m); Deep Impact domina Grama Classica rumo ao G1.
+
+[SLIDE 7 — PAGERANK (H2): "DIAMANTES INJUSTICADOS" NO RADAR + SUNBURST (09:00 - 10:30)]
+  -> PageRank (d=0.85, correlacao r=0.88 com podios) descobriu os "DIAMANTES INJUSTICADOS":
+  -> Caso SOUNDS OF EARTH: Tem ZERO vitorias Graded na carreira, mas e o #32 geral entre 8.135 cavalos (Top 0.4% da historia!) porque fez 7 podios de elite (vice na Japan Cup G1, Arima Kinen G1 e Kikuka Sho G1 contra lendas!).
+  -> No Radar Hexagonal: vertice de vitorias dele vai a 0%, mas PageRank, Volume G1 e Estamina explodem no topo!
+  -> No Sunburst de 3 Aneis (3.216 corridas): Superficie (81,9% Grama, 10,7% Areia, 7,4% Obstaculos) -> Grau -> 10 Hipodromos.
+
+[SLIDE 8 — STREAMGRAPH TEMPORAL DAS 12 DINASTIAS (10:30 - 11:30)]
+  -> Sucessao geracional em 3 Eras:
+     * Era I (2002-2007): Sunday Silence e Brian's Time.
+     * Era II (2008-2012): 1a geracao domestica (Fuji Kiseki, Agnes Tachyon, Dance in the Dark, Manhattan Cafe).
+     * Era III (2013+): Imperio de Deep Impact, King Kamehameha, Stay Gold, Heart's Cry e Lord Kanaloa.
+
+[SLIDE 9 — SPLIT-VIOLIN BIOMETRICO E COORDENADAS PARALELAS (11:30 - 12:45)]
+  -> Descoberta Biometrica (Split-Violin da massa do cavalo no dia da corrida):
+     Em TODAS as faixas de distancia, cavalos de AREIA (Dirt, media 494 a 498 kg) sao de 16 kg a 21 kg MAIS PESADOS E MUSCULOSOS que os de GRAMA (Turf, media 473 a 482 kg)! Areia exige tracao e forca bruta; grama exige leveza e elasticidade.
+
+[SLIDE 10 — K-MEANS++ E PCA 2D DOS 106 GARANHOES (12:45 - 13:45)]
+  -> PCA 2D capturou 63,4% da variancia total (PC1 = 44,1% superficie/distancia; PC2 = 19,2% letalidade em G1).
+  -> K-Means++ separou 4 arquetipos zootecnicos perfeitos:
+     * Cluster A (Laranja): Especialistas de Areia (Gold Allure, Brian's Time).
+     * Cluster B (Azul): Velocistas/Milheiros de Grama (Sakura Bakushin O, Fuji Kiseki).
+     * Cluster C (Roxo): Dinastias Classicas de G1 (Deep Impact, Sunday Silence, King Kamehameha, Stay Gold).
+     * Cluster D (Verde): Stayers / Fundistas de Longa Distancia (Dance in the Dark, Mayano Top Gun).
+
+[SLIDE 11 — RANDOM FOREST (OUT-OF-TIME) E TESTES ESTATISTICOS H1 (13:45 - 15:15)]
+  -> Testes H1: Qui-Quadrado Pai x Superficie (Chi2 = 740, p < 10^-107) e Pai x Distancia (Chi2 = 2237,5, p < 10^-317). ANOVA mostra que quase 20% da variancia da distancia vem direto do pai imediato (F = 16,46).
+  -> Random Forest (Treino 2002-2013, Validacao 2014-2015, Teste Futuro 2016-2018 com N=5.889 e Zero Leakage):
+     * Atingiu ROC-AUC = 0,7260 (IC 95% [0,711; 0,739]), superando Regressao Logistica L2 (0,7144).
+     * Importancia de Gini responde a pergunta central: Historico previo do JOQUEI (29,8%) + Retrospecto previo do CAVALO (22,7%) representam mais de 52% da decisao na largada!
+
+[SLIDE 12 — GRAFOS VETORIAIS NO GEPHI E ENDOGAMIA DE WRIGHT (15:15 - 16:15)]
+  -> 4 grafos ForceAtlas2 exportados em PDF vetorial de zoom infinito (1600%).
+  -> Na Galaxia Genealogica de 5 Geracoes (504.074 nos -> 4.475 elite): O Coeficiente de Endogamia de Wright (F_X) provou que NORTHERN DANCER (CAN) e o grande patriarca ancestral comum (presente em 4.206 cavalos com inbreeding, somando 1.211 vitorias Graded).
+
+[SLIDE 13 — DEMO AO VIVO: SUITE APACHE SUPERSET + JRA TCG CARD ARENA (16:15 - 18:15)]
+  -> Clicar e mostrar ao vivo no navegador (hospedado no GitHub Pages em PT, EN e JA):
+     1. Dashboard Apache Superset / ECharts: 6 KPIs + 13 graficos interativos (clicar no Sunburst para dar drill-down e arrastar filtro Brush nas Coordenadas Paralelas).
+     2. JRA & JBIS TCG Card Arena: Gamificacao com 520 cards em 6 decks, raridades (SSR, DIAMOND para os injusticados com 0 vitorias, SILVER), clicar no card do Sounds of Earth para abrir o Dossie 3D + Arvore Genealogica clicavel e rodar um Duelo VS contra o Deep Impact!
+
+[SLIDE 14 — REPOSITORIO GITHUB, CI/CD E DOI ZENODO (18:15 - 19:00)]
+  -> Tudo aberto, documentado em 3 idiomas (PT, EN, JA), pipeline com 12 scripts Python em src/, GitHub Actions compilando LaTeX e HTMLs automaticamente, e depositado no Zenodo (CERN).
+
+[SLIDE 15 — CONCLUSAO E RESPOSTA A PERGUNTA CENTRAL (19:00 - 20:00)]
+  -> 1) A GENETICA define ONDE o cavalo e competitivo (superficie, distancia e biotipo fisico: +18 kg na areia).
+  -> 2) O FATOR HUMANO (Joquei 29,8%) e a FORMA RECENTE (22,7%) definem QUEM vence no dia da corrida (ROC-AUC 0,7260).
+  -> 3) O PAGERANK corrige a cegueira das vitorias simples e resgata os "Diamantes Injusticados" (Sounds of Earth #32 entre 8.135 com 0 vitorias).
+  -> 4) A VISUALIZACAO (Superset) e a GAMIFICACAO (TCG Arena) traduzem matematica pesada para qualquer pessoa entender!
+
+
+################################################################################
+PARTE 2: FALAS COMPLETAS PALAVRA POR PALAVRA (PARA TREINAR OU LER)
+################################################################################
+
+--------------------------------------------------------------------------------
+SLIDE 1 — CAPA (00:00 a 01:00)
+--------------------------------------------------------------------------------
+"Bom dia / Boa tarde / Boa noite, professor Higor e colegas.
+Hoje eu vou apresentar o meu projeto final da disciplina de Ciencia dos Dados, intitulado 'Mineracao de Dados, Traducao Semantica Hibrida via IA, Visualizacao Multidimensional e Aprendizado de Maquina no Turfe Japones de Elite entre 2002 e 2025'.
+O objetivo desse projeto foi construir, do zero, um ecossistema completo de Engenharia e Ciencia de Dados — indo desde a raspagem de dados brutos em japones e limpeza de anomalias estruturais, ate testes estatisticos, teoria dos grafos, Machine Learning sem vazamento temporal e duas aplicacoes web interativas de visualizacao e gamificacao, com todo o dataset publicado oficialmente sob DOI no repositorio cientifico Zenodo do CERN."
+
+--------------------------------------------------------------------------------
+SLIDE 2 — INTRODUCAO E CONTEXTO DO DOMINIO (01:00 a 02:15)
+--------------------------------------------------------------------------------
+"Para contextualizar o dominio: a Japan Racing Association (JRA) organiza o circuito de corridas de cavalos Puro-Sangue Ingles mais tecnologicamente monitorado e financeiramente expressivo do mundo. Ao mesmo tempo, o Japan Bloodhorse Information System (JBIS) mantem o registro genealogico rigoroso de todas as geracoes ascendentes de cada animal.
+Por que esse cenario e um laboratorio perfeito para a Ciencia dos Dados? Porque cada corrida de elite — que sao as chamadas Graded Races de Grau 1, Grau 2 e Grau 3 — registra variaveis fisicas, cinematicas, ambientais, humanas e biologicas com altissima precisao.
+Nossa base consolidada cobre 24 anos completos, de 2002 a 2025, totalizando:
+- 3.216 corridas de elite (G1, G2 e G3);
+- 33.409 participacoes individuais validadas;
+- 8.209 cavalos unicos;
+- 8.202 registros de parentesco imediato; e
+- 504.074 nos genealogicos mapeando ate a quinta geracao de ancestrais (62 ancestrais por cavalo), com 29.159 termos tecnicos e nomes proprios traduzidos do japones para o ingles via Inteligencia Artificial."
+
+--------------------------------------------------------------------------------
+SLIDE 3 — DESCRICAO DO PROBLEMA E OBJETIVOS (02:15 a 04:15)
+--------------------------------------------------------------------------------
+"Trabalhar com dados reais acumulados ao longo de 24 anos trouxe quatro problemas estruturais severos que precisaram ser resolvidos antes de qualquer analise:
+O primeiro problema foi a mutacao historica dos layouts HTML da JRA entre 2002 e 2025. Os arquivos antigos dos anos 2000 usavam codificacao Shift_JIS em HTML4, enquanto os modernos usam UTF-8 em HTML5. Mais grave: nossa auditoria descobriu que, entre 2006 e 2018, a JRA fundiu as colunas de Sexo e Idade em uma unica celula chamada 'Seirei', o que deslocou em uma posicao todas as colunas seguintes — Joquei, Tempo, Margem, Treinador e Peso — corrompendo 25.014 linhas!
+O segundo problema foi uma inversao topologica entre Busca em Profundidade (DFS) e Busca em Largura (BFS) na arvore genealogica de 5 geracoes. O portal JBIS desenha a tabela HTML com rowspan progressivo listando os 62 ancestrais geracao por geracao, ou seja, em ordem BFS, enquanto um parser sequencial comum rotula os caminhos em ordem DFS. Isso invertia pais e avos em 504.074 registros.
+O terceiro problema foi a barreira linguistica do japones: nomes de cavalos em Katakana sao conceitos em ingles ou frances, nomes de joqueis e treinadores em Kanji usam leituras especiais chamadas Nanori — por exemplo, os Kanjis do lendario joquei Yutaka Take sao lidos como 'Taketoyo' por tradutores foneticos comuns — e as pelagens seguem taxonomia zootecnica.
+E o quarto problema e analitico: olhar apenas para a contagem bruta de vitorias e cego para a qualidade dos adversarios enfrentados.
+Diante disso, nossa pergunta central foi: 'A aptidao fisica (grama versus areia, velocidade versus estamina) e a chegada ao podio sao determinadas pela heranca genetica de 5 geracoes ou pelo fator humano (joquei e treinador)? E como resgatar talentos ocultos usando Teoria dos Grafos e Visualizacao Multidimensional?'"
+
+--------------------------------------------------------------------------------
+SLIDE 4 — METODOLOGIA, NATUREZA DOS DADOS E VARIAVEIS CATEGORICAS (04:15 a 06:45)
+--------------------------------------------------------------------------------
+"Neste slide temos o detalhamento metodologico exigido na especificacao sobre a natureza dos dados e o tratamento especial das variaveis categoricas.
+Nos modelamos o banco na Terceira Forma Normal (3NF) e classificamos rigorosamente cada variavel:
+- Nas variaveis Quantitativas Continuas (float), temos a distancia em metros, o peso carregado do joquei e a massa corporal do cavalo no dia da corrida, que vinha como string composta (por exemplo, '486Kg(+2)') e foi extraida por Expressao Regular e imputada apenas pela mediana do conjunto de treino para evitar vazamento de dados. Tambem temos os ganhos financeiros convertidos da unidade japonesa Man-Yen (multiplicando por 10.000), a centralidade PageRank e o Coeficiente de Endogamia de Wright F_X.
+- Nas Quantitativas Discretas (int), temos ano, idade (apos desmembrar e realinhar in-place aquelas 25.014 linhas deslocadas), posicao de chegada e a variavel alvo binaria de Podio (Top-3).
+- Na Qualitativa Ordinal, codificamos a hierarquia de exigencia da corrida com pesos: Grau 1 = 1,0; Grau 2 = 0,7; e Grau 3 = 0,5.
+- Agora, o ponto mais importante da engenharia de atributos: o que fizemos com as variaveis categoricas?
+Para as Qualitativas Nominais de baixa cardinalidade (superficie da pista, sexo e pelagem), aplicamos traducao deterministica em tempo constante O(1) e codificacao binaria One-Hot (is_turf, is_female).
+Ja para as Qualitativas Nominais de altissima cardinalidade — sao 8.209 cavalos, 985 garanhoes, 398 joqueis e 412 treinadores — aplicar One-Hot Encoding criaria uma matriz esparsa com mais de 10.000 colunas e causaria overfitting severo. Por outro lado, se calculassemos a media de vitorias da carreira inteira do joquei, cometeriamos Data Leakage (vazamento do futuro para o passado).
+A nossa solucao foi implementar o Shifted Expanding-Window Bayesian Target Encoding: para cada corrida na data t, a taxa historica de podio do joquei, do treinador, do cavalo e do pai e calculada exclusivamente sobre as corridas estritamente anteriores (de 1 ate t-1), ponderada por uma suavizacao bayesiana m-estimate. Isso garante Zero Data Leakage!
+Ainda na metodologia, registramos duas adaptacoes justificadas de ferramentas: primeiro, substituimos o transliterador fonetico pykakasi por um motor hibrido em 3 camadas acoplado a um pool multi-modelo da API Google Gemini, consolidando 29.159 termos traduzidos com zero caracteres japoneses residuais. Segundo, como rodamos em Python 3.15 no Windows, implementamos todos os testes estatisticos, o PageRank, o K-Means++ PCA e a Random Forest em algebra linear vetorizada pura com NumPy e Pandas, alem de integrar o Gephi e o motor Apache ECharts 5.5 do Apache Superset 6.1."
+
+--------------------------------------------------------------------------------
+SLIDE 5 — VISUALIZACAO 1: DOMINANCIA PATERNA E PREMIACAO (06:45 a 07:45)
+--------------------------------------------------------------------------------
+"Entrando na secao de Visualizacao e Analise dos Resultados, comecamos com as distribuicoes unidimensionais em 300 DPI.
+A esquerda, vemos a hegemonia historica dos garanhoes reprodutores: Deep Impact lidera isolado com 289 filhos unicos competindo na elite e 46 titulos de Grau 1, seguido imediatamente por seu proprio pai, Sunday Silence, com 281 filhos e 42 titulos de G1, e por King Kamehameha com 212 filhos.
+A direita, no ranking financeiro vitalicio, vemos Almond Eye no topo absoluto com 19,15 bilhoes de ienes acumulados, seguida por Kitasan Black com 18,77 bilhoes."
+
+--------------------------------------------------------------------------------
+SLIDE 6 — VISUALIZACAO 2: DIAGRAMA SANKEY ALUVIAL DE 4 ESTAGIOS (07:45 a 09:00)
+--------------------------------------------------------------------------------
+"Contudo, graficos de barras simples mostram apenas uma dimensao por vez. Aplicando os conceitos da aula de Visualizacao de Dados sobre o DataViz Project e o Apache Superset, nos construimos este Diagrama de Fluxo Aluvial / Sankey de 4 Estagios, mapeando 8.857 participacoes simultaneamente atraves de quatro eixos: Linhagem Paterna -> Superficie -> Regime de Distancia -> Grau da Corrida.
+Basta bater o olho nas cores para enxergar a canalizacao genetica:
+- As faixas roxas e azuis de Deep Impact, Sunday Silence e King Kamehameha fluem massivamente para a pista de Grama (92,6% do fluxo) e se concentram nas distancias classicas intermediarias de 1800 a 2200 metros rumo ao Grau 1.
+- Ja as fitas laranjas de Gold Allure e Brian's Time desviam fortemente para a pista de Areia (Dirt).
+- E a fita azul-clara de Sakura Bakushin O escoa quase inteira para o regime de Sprint, abaixo de 1400 metros."
+
+--------------------------------------------------------------------------------
+SLIDE 7 — PAGERANK (H2): "DIAMANTES INJUSTICADOS" NO RADAR & SUNBURST (09:00 a 10:30)
+--------------------------------------------------------------------------------
+"No Slide 7, testamos nossa hipotese H2 aplicando o algoritmo PageRank sobre a rede direcionada de confrontos entre todos os 8.135 cavalos, onde cada perdedor transfere prestigio para quem subiu ao podio, ponderado pelo grau da prova.
+O PageRank teve correlacao de 0,88 com o total de podios, mas a grande descoberta cientifica foi revelar os 'Diamantes Injusticados' — cavalos de altissimo nivel competitivo que a contagem simples de vitorias descartaria como fracassados.
+O caso mais impressionante e o do cavalo Sounds of Earth: ele possui ZERO vitorias em corridas Graded na carreira, mas alcancou a 32a posicao geral entre 8.135 cavalos (Top 0,4% da historia da JRA!). Por que? Porque ele conquistou 7 podios de elite enfrentando os maiores monstros da decada, sendo vice-campeao na Japan Cup G1, no Arima Kinen G1 e no Kikuka Sho G1!
+Olhem o Grafico Radar Hexagonal a esquerda: enquanto lendas como Deep Impact e Almond Eye batem 100% no vertice superior de Taxa de Vitorias, o poligono tracejado laranja do Sounds of Earth colapsa exatamente a 0% no vertice de vitorias, mas abre uma area gigantesca nos vertices de Prestigio PageRank, Volume de Rivalidade em G1 e Estamina!
+E a direita, o Sunburst Hierarquico de 3 Aneis sintetiza a estrutura das 3.216 corridas: o anel interno mostra a divisao por superficie (81,9% Grama, 10,7% Areia e 7,4% Obstaculos), o anel intermediario divide por Grau (G1, G2, G3) e o anel externo distribui pelos 10 hipodromos da JRA."
+
+--------------------------------------------------------------------------------
+SLIDE 8 — EVOLUCAO TEMPORAL: STREAMGRAPH DAS 12 DINASTIAS (10:30 a 11:30)
+--------------------------------------------------------------------------------
+"No Slide 8, o Streamgraph Simetrico Temporal mostra como o pool genetico japones evoluiu ao longo de um quarto de seculo em tres eras claras:
+- Na Era I (2002 a 2007), vemos o dominio direto dos patriarcas importados Sunday Silence e Brian's Time;
+- Na Era II (2008 a 2012), ocorre a transicao para a primeira geracao nascida no Japao, como Agnes Tachyon, Fuji Kiseki, Dance in the Dark e Manhattan Cafe;
+- E a partir da Era III (2013 em diante), vemos a explosao da faixa roxa de Deep Impact junto com King Kamehameha, Stay Gold, Heart's Cry e a ascensao recente de Lord Kanaloa."
+
+--------------------------------------------------------------------------------
+SLIDE 9 — BIOMETRIA EQUINA (SPLIT-VIOLIN) & COORDENADAS PARALELAS (11:30 a 12:45)
+--------------------------------------------------------------------------------
+"No Slide 9, a esquerda, trouxemos um grafico Split-Violin comparando a distribuicao da massa corporal real dos cavalos no dia da corrida entre Grama (metade verde) e Areia (metade laranja) nos quatro regimes de distancia.
+Esse grafico revelou um dimorfismo biomecanico fascinante: em absolutamente todas as faixas de distancia, os cavalos de Areia pesam em media entre 494 e 498 quilos — sendo de 16 a 21 quilos mais pesados e musculosos do que os cavalos de Grama, que pesam entre 473 e 482 quilos! Isso comprova fisicamente que a pista de areia exige tracao mecanica e potencia muscular bruta, enquanto a pista de grama premia a leveza e o retorno elastico da passada.
+A direita, o grafico de Coordenadas Paralelas traca a assinatura de 106 garanhoes ao longo de 6 eixos zootecnicos simultaneos."
+
+--------------------------------------------------------------------------------
+SLIDE 10 — APRENDIZADO NAO-SUPERVISIONADO: K-MEANS++ & PCA 2D (12:45 a 13:45)
+--------------------------------------------------------------------------------
+"Para provar matematicamente que essas assinaturas formam grupos reais, aplicamos no Slide 10 a reducao de dimensionalidade via PCA 2D combinada com o algoritmo de clusterizacao K-Means++ sobre os 106 principais garanhoes.
+Os dois primeiros componentes principais capturaram 63,4% de toda a variancia dos dados (44,1% no eixo horizontal de superficie e distancia, e 19,2% no eixo vertical de letalidade em Grau 1).
+O K-Means++ dividiu os reprodutores em 4 arquetipos perfeitamente interpretaveis:
+- Cluster A (Laranja): Especialistas de Potencia na Areia, como Gold Allure e Brian's Time;
+- Cluster B (Azul): Velocistas e Milheiros de Grama, como Sakura Bakushin O e Fuji Kiseki;
+- Cluster C (Roxo): As Dinastias Classicas de Grau 1, como Deep Impact, Sunday Silence, King Kamehameha e Stay Gold;
+- Cluster D (Verde): Os Stayers ou Fundistas de Longa Distancia, como Dance in the Dark e Mayano Top Gun."
+
+--------------------------------------------------------------------------------
+SLIDE 11 — MACHINE LEARNING SUPERVISIONADO (RANDOM FOREST) & TESTES H1 (13:45 a 15:15)
+--------------------------------------------------------------------------------
+"No Slide 11, consolidamos a inferencia estatistica formal e o aprendizado supervisionado.
+Nos testes de hipoteses para H1, o teste Qui-Quadrado rejeitou a independencia entre linhagem paterna e superficie com p-valor de 10 elevado a -107, e entre linhagem paterna e distancia com Chi-quadrado de 2237,5 e p-valor de 10 elevado a -317! Como vemos no mapa de calor a direita, enquanto 64,6% das largadas dos filhos de Sakura Bakushin O sao em Sprint, quase 80% dos filhos de Stay Gold e Heart's Cry competem acima de 1800 metros. A ANOVA One-Way confirmou que quase 20% de toda a variancia da distancia de vitoria vem diretamente do pai imediato.
+Ja a esquerda, treinamos nossa Random Forest para prever a chegada no podio (Top-3) usando divisao cronologica estrita: treinamos de 2002 a 2013, validamos em 2014-2015 e testamos no futuro (2016 a 2018, em 5.889 participacoes) usando apenas informacoes anteriores a largada.
+A Random Forest atingiu ROC-AUC de 0,7260, superando a Regressao Logistica L2 (0,7144) e mais que dobrando o PR-AUC do baseline.
+E o grafico de Importancia de Gini da Random Forest nos da a resposta definitiva para a pergunta central do trabalho: no momento em que o partidor abre, a taxa historica previa do JOQUEI (29,8%) e o retrospecto previo do proprio CAVALO (22,7%) respondem por mais de 52% da decisao do modelo, seguidos pela idade (9,1%) e pelo treinador (4,9%)."
+
+--------------------------------------------------------------------------------
+SLIDE 12 — REDES COMPLEXAS VETORIAIS NO GEPHI (15:15 a 16:15)
+--------------------------------------------------------------------------------
+"No Slide 12, vemos a modelagem em grafos renderizada no software Gephi com o algoritmo ForceAtlas2 e exportada em PDF vetorial de zoom infinito.
+A esquerda temos a Rede de Competicao Top 150 PageRank, e a direita a Galaxia Genealogica de 5 Geracoes com 4.475 nos de elite. Ao calcularmos o Coeficiente Exato de Endogamia de Wright (F_X) sobre os 504.074 nos genealogicos, comprovamos que o patriarca canadense Northern Dancer e o grande pilar genetico do turfe moderno, aparecendo como ancestral comum duplicado (inbreeding) em 4.206 cavalos que somam 1.211 vitorias Graded!"
+
+--------------------------------------------------------------------------------
+SLIDE 13 — DEMO AO VIVO: SUITE APACHE SUPERSET & TCG CARD ARENA (16:15 a 18:15)
+--------------------------------------------------------------------------------
+"E para tornar toda essa ciencia de dados acessivel e interativa para qualquer pessoa — inclusive quem nao e da area de programacao — nos criamos duas aplicacoes web trilingues (em Portugues, Ingles e Japones) hospedadas ao vivo no GitHub Pages.
+[ACAO: Clicar no botao 'Abrir Superset Dashboard' ou mostrar a aba aberta]
+1. A primeira e esta Suite Executiva baseada no motor Apache ECharts do Apache Superset 6.1, com 6 KPIs e 13 graficos interativos. Aqui o usuario pode passar o mouse nas fitas do Sankey, clicar em qualquer fatia do Sunburst para fazer drill-down nos 10 hipodromos, dar zoom no quadrante de PageRank e arrastar um filtro ao vivo (Brush) nas Coordenadas Paralelas para isolar os garanhoes em tempo real!
+[ACAO: Clicar no botao 'Abrir JRA TCG Card Arena' ou mostrar a aba aberta]
+2. A segunda aplicacao e a JRA & JBIS TCG Card Arena: nos usamos gamificacao para transformar os rankings matematicos de PageRank, genealogia, ganhos e afinidade em um jogo de 520 Cards Colecionaveis divididos em 6 decks (Cavalos, Garanhoes, Joqueis e Patriarcas).
+Criamos inclusive a raridade especial 'DIAMOND Anomaly' exclusiva para os Diamantes Injusticados com zero vitorias e alto PageRank! Se clicarmos aqui no card do Sounds of Earth (#32 do PageRank com 0 vitorias), ele abre um Dossie 3D completo com o grafico Radar e a arvore genealogica clicavel — se eu clicar no pai ou no avo dele, o sistema navega direto para a carta do ancestral! E ainda temos o Modo Duelo (VS Mode), onde podemos colocar dois cavalos frente a frente para comparar seus poligonos de atributos em tempo real."
+
+--------------------------------------------------------------------------------
+SLIDE 14 — REPOSITORIO CIENTIFICO, CI/CD E DEPOSITO NO ZENODO (18:15 a 19:00)
+--------------------------------------------------------------------------------
+"No Slide 14, destacamos a organizacao do repositorio e a reprodutibilidade cientifica (Item 9 do edital):
+Todo o projeto esta documentado em Portugues, Ingles e Japones no GitHub, com os CSVs brutos e traduzidos, as tabelas analiticas de Machine Learning e PageRank, os projetos do Gephi e os 12 scripts Python modulares na pasta src/.
+Alem disso, configuramos um pipeline de CI/CD via GitHub Actions que regenera os dashboards e compila automaticamente o artigo IEEE, os relatorios e os slides em LaTeX a cada push, e depositamos oficialmente o dataset no repositorio cientifico Zenodo (CERN/OpenAIRE) sob licenca aberta CC-BY-4.0."
+
+--------------------------------------------------------------------------------
+SLIDE 15 — CONCLUSAO E RESPOSTA A PERGUNTA CENTRAL (19:00 a 20:00)
+--------------------------------------------------------------------------------
+"Para concluir, nosso trabalho respondeu com rigor estatistico e computacional a pergunta central da pesquisa atraves de quatro grandes descobertas:
+1. A Genetica define ONDE o cavalo vence: a heranca de 5 geracoes determina com significancia extrema (p < 10^-300) a superficie e a distancia de aptidao, estruturando os garanhoes em 4 arquetipos (63,4% de variancia no PCA) e revelando que cavalos de areia sao cerca de 18 kg mais pesados que os de grama.
+2. O Fator Humano e a Forma Recente preveem QUEM sobe ao podio: uma vez dentro da corrida certa, a Random Forest (ROC-AUC = 0,7260 sem vazamento temporal) provou que a taxa historica previa do joquei (29,8%) e do proprio cavalo (22,7%) lideram o poder decisorio.
+3. O PageRank resgata os 'Diamantes Injusticados': a teoria dos grafos superou a miopia da contagem simples de vitorias ao revelar competidores de elite como Sounds of Earth (#32 geral entre 8.135 cavalos mesmo com zero vitorias Graded).
+4. E, por fim, a Visualizacao Multidimensional no estilo Apache Superset aliada a Gamificacao na TCG Card Arena provaram que e possivel transformar modelos matematicos complexos em ferramentas visuais intuitivas, interativas e acessiveis para qualquer publico.
+Muito obrigado pela atencao! Estou a disposicao para perguntas."
+
+
+################################################################################
+PARTE 3: RESPOSTAS RAPIDAS PARA POSSIVEIS PERGUNTAS DO PROFESSOR (BONUS)
+################################################################################
+
+PERGUNTA 1: "Como voce evitou Data Leakage (vazamento de dados) nas variaveis categoricas da Random Forest?"
+  -> RESPOSTA: "Nos implementamos o Shifted Expanding-Window Bayesian Target Encoding e separamos o dataset em ordem cronologica estrita (Treino 2002-2013, Validacao 2014-2015 e Teste Out-of-Time 2016-2018). Para cada corrida na data t, a taxa de podio do joquei, do cavalo, do treinador e do pai foi calculada usando apenas as corridas de 1 ate t-1 (estritamente anteriores), com suavizacao bayesiana m-estimate. Nenhuma informacao do futuro entrou nas features."
+
+PERGUNTA 2: "Por que voce nao usou One-Hot Encoding para Joquei e Pai (Sire)?"
+  -> RESPOSTA: "Porque sao variaveis categoricas de altissima cardinalidade (8.209 cavalos, 985 garanhoes, 398 joqueis). O One-Hot Encoding geraria uma matriz esparsa com mais de 10.000 colunas binarias, fragmentando os cortes das arvores da Random Forest e gerando overfitting severo."
+
+PERGUNTA 3: "Por que o Sounds of Earth tem PageRank tao alto (#32 de 8.135) se ele nunca ganhou uma corrida Graded?"
+  -> RESPOSTA: "Porque na nossa modelagem de grafos, toda vez que um cavalo chega no podio (Top-3), ele recebe arestas direcionadas de prestigio de todos os cavalos que ele derrotou naquela corrida, ponderadas pelo grau da prova (G1 pesa 1.0). O Sounds of Earth foi 7 vezes ao podio contra os maiores campeoes da historia em corridas de Grau 1 (vice na Japan Cup G1, Arima Kinen G1 e Kikuka Sho G1), derrotando dezenas de outros campeoes que chegaram atras dele!"
+
+PERGUNTA 4: "Por que voces adaptaram as bibliotecas estatisticas e de traducao em relacao ao planejamento inicial?"
+  -> RESPOSTA: "Duas razoes tecnicas documentadas no artigo: (1) tradutores foneticos como pykakasi erravam nomes estrangeiros em Katakana e leituras humanas Nanori em Kanji, entao criamos o motor hibrido de 3 camadas com a API Google Gemini; e (2) no ambiente Python 3.15 no Windows, implementamos os algoritmos estatisticos (Qui-Quadrado, ANOVA, Kruskal-Wallis), PageRank, K-Means++ PCA e Random Forest diretamente em algebra linear vetorizada no NumPy/Pandas e usamos o motor Apache ECharts 5.5 (nucleo do Apache Superset 6.1) para garantir reproducao 100% portatil e sem erros de compilacao C/Fortran."
