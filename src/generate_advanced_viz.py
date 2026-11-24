@@ -1421,13 +1421,21 @@ def generate_superset_html_dashboard(df, races, pr_df, clusters_df):
   </footer>
 
   <script>
-    const charts = [];
-    function initChart(id) {{
-      const c = echarts.init(document.getElementById(id), 'dark');
-      charts.push(c);
-      return c;
-    }}
-    window.addEventListener('resize', () => charts.forEach(c => c.resize()));
+    function renderAllCharts() {{
+      if (typeof echarts === 'undefined') {{
+        setTimeout(renderAllCharts, 60);
+        return;
+      }}
+      const charts = [];
+      function initChart(id) {{
+        const el = document.getElementById(id);
+        const prev = echarts.getInstanceByDom(el);
+        if (prev) prev.dispose();
+        const c = echarts.init(el, 'dark');
+        charts.push(c);
+        return c;
+      }}
+      window.addEventListener('resize', () => charts.forEach(c => c.resize()));
 
     // 1. SANKEY 4-STAGE
     const sankeyChart = initChart('sankeyChart');
@@ -1477,12 +1485,12 @@ def generate_superset_html_dashboard(df, races, pr_df, clusters_df):
         center: ['50%', '45%'],
         radius: '64%',
         indicator: [
-          {{ name: 'PageRank\\nPrestige', max: 100 }},
-          {{ name: 'Graded Win\\nRate (%)', max: 100 }},
-          {{ name: 'Top-3 Podium\\nConsistency (%)', max: 100 }},
-          {{ name: 'Career Earnings\\n(Oku-Yen Index)', max: 100 }},
-          {{ name: 'Stamina Index\\n(Pref. Distance)', max: 100 }},
-          {{ name: 'G1 Rivalry\\nVolume (Starts)', max: 100 }}
+          {{ name: 'PageRank Prestige', max: 100 }},
+          {{ name: 'Graded Win Rate (%)', max: 100 }},
+          {{ name: 'Top-3 Podium Consistency (%)', max: 100 }},
+          {{ name: 'Career Earnings (Oku-Yen)', max: 100 }},
+          {{ name: 'Stamina Index (Distance)', max: 100 }},
+          {{ name: 'G1 Rivalry Volume (Starts)', max: 100 }}
         ],
         axisName: {{ color: '#e2e8f0', fontSize: 11, fontWeight: 'bold' }},
         splitArea: {{ areaStyle: {{ color: ['rgba(30,41,59,0.3)', 'rgba(15,23,42,0.5)'] }} }}
@@ -1565,7 +1573,7 @@ def generate_superset_html_dashboard(df, races, pr_df, clusters_df):
       tooltip: {{
         formatter: info => {{
           const d = info.data;
-          return `<b>${{d.name.split('\\n')[0]}}</b><br/>` +
+          return `<b>${{d.name.split('(')[0]}}</b><br/>` +
                  `Inbred Horses (LCA): <b>${{d.inbred_cases.toLocaleString()}}</b><br/>` +
                  `Graded Wins by Inbred Progeny: <b>${{d.graded_wins.toLocaleString()}}</b>`;
         }}
@@ -1757,6 +1765,8 @@ def generate_superset_html_dashboard(df, races, pr_df, clusters_df):
         label: {{ show: true, position: 'right', formatter: '{{c}}%', color: '#f8fafc', fontWeight: 'bold' }}
       }}]
     }});
+    }}
+    renderAllCharts();
   </script>
 </body>
 </html>
