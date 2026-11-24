@@ -109,17 +109,17 @@ Clique em qualquer um dos botões abaixo para abrir o **Mega Dashboard Interativ
 <table>
   <tr>
     <td align="center">
-      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard.html">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/superset_interactive_dashboard.html">
         <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-Português_(HTML)-8b5cf6?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard PT-BR">
       </a>
     </td>
     <td align="center">
-      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_en.html">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/superset_interactive_dashboard_en.html">
         <img src="https://img.shields.io/badge/🚀_Live_Superset_Dashboard-English_(HTML)-0284c7?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard EN">
       </a>
     </td>
     <td align="center">
-      <a href="https://htmlpreview.github.io/?https://github.com/ImArthz/AEDS2_jra_analysis/blob/main/docs/superset_interactive_dashboard_ja.html">
+      <a href="https://imarthz.github.io/AEDS2_jra_analysis/docs/superset_interactive_dashboard_ja.html">
         <img src="https://img.shields.io/badge/🚀_インタラクティブ分析-日本語_(HTML)-059669?style=for-the-badge&logo=apacheecharts&logoColor=white" alt="Live Dashboard JA">
       </a>
     </td>
