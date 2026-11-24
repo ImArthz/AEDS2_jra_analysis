@@ -8,7 +8,7 @@
       "affiliation": "Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG)"
     }
   ],
-  "description": "Comprehensive relational, graph-ready, and machine-learning-ready dataset of Japanese Thoroughbred horse racing covering 24 years (2002-2025) of Japan Racing Association (JRA) Graded Races (G1, G2, G3) coupled with 5-generation genealogical pedigrees extracted from the Japan Bloodhorse Information System (JBIS). Includes both original Japanese (data/csv/) and 100% hybrid-AI-translated English editions (data/csv_en/), interactive Gephi graph projects and vector PDFs (data/gephi/), and empirical tables for Sports PageRank, Wright's Coefficient of Inbreeding (F_X), K-Means++ PCA stallion archetypes, and zero-leakage Random Forest podium classification (data/analysis/). Contains 3,216 Graded races, 33,409 race entries, 8,209 unique racehorses, 8,202 direct pedigrees, and 504,074 5-generation pedigree tree nodes validated with zero broken foreign keys.",
+  "description": "<p>Comprehensive relational, graph-ready, and machine-learning-ready dataset of Japanese Thoroughbred horse racing covering 24 years (2002-2025) of Japan Racing Association (JRA) Graded Races (G1, G2, G3) coupled with 5-generation genealogical pedigrees extracted from the Japan Bloodhorse Information System (JBIS). Contains 3,216 Graded races, 33,409 race entries, 8,209 unique racehorses, 8,202 direct pedigrees, and 504,074 5-generation pedigree tree nodes validated with zero broken foreign keys.</p><p><strong>Contents of the archive:</strong></p><ul><li><strong>data/csv/</strong> and <strong>data/csv_en/</strong>: the 5 relational tables in the original Japanese and in a 100% hybrid-AI-translated English edition (29,159-term validated translation cache).</li><li><strong>data/analysis/</strong>: empirical tables for Sports PageRank (including zero-win 'Underdog Diamonds' and 'Silver Collectors'), Wright's Coefficient of Inbreeding (F_X), K-Means++ PCA stallion archetypes, and zero-leakage out-of-time Random Forest podium classification (ROC-AUC 0.7260).</li><li><strong>data/gephi/</strong>: 4 styled Gephi projects (.gephi) and vector PDF graph renders (ForceAtlas2).</li><li><strong>docs/assets/</strong>: 300-DPI static figures, including 4 advanced Apache Superset / DataViz Project style panels (4-stage alluvial Sankey flow, hexagonal radar + 3-ring sunburst, symmetric streamgraph of sire dynasties, split-violin biometrics + parallel coordinates).</li><li><strong>docs/superset_interactive_dashboard*.html</strong>: trilingual (PT-BR, EN, JA) interactive Apache ECharts 5.5 / Apache Superset 6.1 style dashboard with 6 KPI cards and 13 interactive charts (sunburst drill-down, PageRank quadrant zoom, live brush filter on parallel coordinates).</li><li><strong>docs/jra_tcg_arena.html</strong>: trilingual gamified Trading Card Game explorer with 520 cards across 6 ranking decks (racehorses, stallions, jockeys, founding patriarchs), procedural OVR ratings, 5 rarity tiers, 3D dossier with clickable pedigree traversal, and VS Duel Mode.</li><li><strong>docs/entrega_ciencia_dados/</strong>: IEEE conference paper (LaTeX), 16:9 Beamer slides, interactive HTML5 slides, and presentation script.</li><li><strong>docs/relatorio_extracao*.tex</strong>: full technical reports in Portuguese, English, and Japanese.</li><li><strong>src/</strong>: the complete Python pipeline (scraping, cleaning, hybrid translation, validation, graph analysis, Gephi export, ML, visualization, and card generation).</li></ul><p>Live versions of the interactive dashboard and card arena are hosted on GitHub Pages (see related identifiers). Compiled PDFs of the paper, slides, and reports are attached to each GitHub release.</p>",
   "access_right": "open",
   "license": "CC-BY-4.0",
   "keywords": [
@@ -21,10 +21,28 @@
     "Wright Inbreeding Coefficient",
     "Machine Learning",
     "Random Forest",
+    "K-Means",
+    "PCA",
     "Sports Analytics",
     "Thoroughbred Genetics",
     "Gephi",
+    "Apache Superset",
+    "Apache ECharts",
+    "Data Visualization",
+    "Gamification",
     "Data Science"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://imarthz.github.io/AEDS2_jra_analysis/docs/superset_interactive_dashboard.html",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    },
+    {
+      "identifier": "https://imarthz.github.io/AEDS2_jra_analysis/docs/jra_tcg_arena.html",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    }
   ],
   "notes": "Developed as an integrated project for Data Science and Algorithms & Data Structures II (AEDS 2) at CEFET-MG (Divinópolis Campus)."
 }
