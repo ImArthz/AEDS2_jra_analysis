@@ -40,7 +40,8 @@ Dataset Zenodo DOI: \url{https://doi.org/10.5281/zenodo.23681383}}
 \maketitle
 
 \begin{abstract}
-A análise histórica da \textit{Japan Racing Association} (JRA, 2002--2025, 3.216 corridas e 33.409 participações) e das árvores genealógicas de 5 gerações do \textit{Japan Bloodhorse Information System} (JBIS, 504.074 nós) enfrenta anomalias estruturais severas (inversão topológica entre Busca em Profundidade e Busca em Largura e fusão de colunas em 25.014 registros), barreiras semânticas do japonês e a miopia da contagem simples de vitórias. Para solucioná-las, desenvolveu-se um pipeline em Python (Linux Ubuntu 24.04) integrando realinhamento vetorial, bijeção topológica $\text{DFS}\to\text{BFS}$, tradução híbrida por IA (29.159 termos), algoritmos em árvores e grafos (PageRank, BFS, DFS, Menor Ancestral Comum --- LCA, Endogamia de Wright $F_X$ e Dijkstra) e aprendizado de máquina sem vazamento temporal. O domínio foi modelado em listas de adjacência esparsas: (i) Árvores Binárias de 5 gerações (62 ancestrais/animal) contraídas em um Grafo Direcionado Acíclico (DAG) $G_p$ ($|V_p|=35.149, |E_p|=63.007$); (ii) um Grafo Direcionado Ponderado de Competição $G_c$ ($|V_c|=8.135, |E_c|=195.271$); e (iii) dois Grafos Bipartidos ($G_{jc}, G_{jt}$). Operando em tempo linear $O(V+E)$, o PageRank ($d=0,85, r=0,8799$ com pódios) descobriu ``Diamantes Injustiçados'' com zero vitórias Graded (\textit{Sounds of Earth}, \#32 entre 8.135 cavalos); o algoritmo de Wright identificou \textit{Northern Dancer} como maior patriarca LCA (4.206 cavalos endogâmicos e 1.211 vitórias); o K-Means++ via PCA 2D (63,4\% de variância) isolou 4 arquétipos paternos ($\chi^2=2237,47, p<10^{-300}$); e a \textit{Random Forest Out-of-Time} atingiu $\text{ROC-AUC}=0,7260$, integrando redes Gephi, dashboard \textit{Apache Superset/ECharts} e uma arena gamificada de 520 cards (TCG).
+A análise histórica da \textit{Japan Racing Association} (JRA, 2002--2025, 3.216 corridas e 33.409 participações) e das árvores genealógicas de 5 gerações do \textit{Japan Bloodhorse Information System} (JBIS, 504.074 nós) enfrenta anomalias estruturais severas (inversão topológica entre Busca em Profundidade e Busca em Largura e fusão de colunas em 25.014 registros), barreiras semânticas do japonês e a miopia da contagem simples de vitórias. Para solucioná-las, desenvolveu-se um pipeline em Python (Linux Ubuntu 24.04) integrando realinhamento vetorial, bijeção topológica $\text{DFS}\to\text{BFS}$, tradução híbrida por IA (29.159 termos), algoritmos em árvores e grafos (PageRank, BFS, DFS, Menor Ancestral Comum --- LCA, Endogamia de Wright $F_X$ e Dijkstra) e aprendizado de máquina sem vazamento temporal. O domínio foi modelado em listas de adjacência esparsas: (i) Árvores Binárias de 5 gerações (62 ancestrais/animal) contraídas em um Grafo Direcionado Acíclico (DAG) $G_p$ ($|V_p|=35.149, |E_p|=63.007$); (ii) um Grafo Direcionado Ponderado de Competição $G_c$ ($|V_c|=8.135, |E_c|=195.271$); e (iii) dois Grafos Bipartidos ($G_{jc}, G_{jt}$). Operando em tempo linear $O(V+E)$, o PageRank ($d=0,85, r=0,8799$ com pódios) descobriu ``Diamantes Injustiçados'' com zero vitórias Graded (\textit{Sounds of Earth}, \#32 entre 8.135 cavalos); o algoritmo de Wright identificou \textit{Northern Dancer} como maior patriarca LCA (4.206 cavalos endogâmicos e 1.211 vitórias); o K-Means++ via PCA 2D (63,4\%
+de variância) isolou 4 arquétipos paternos ($\chi^2=2237,47, p<10^{-300}$); e a \textit{Random Forest Out-of-Time} atingiu $\text{ROC-AUC}=0,7260$, integrando redes Gephi, dashboard \textit{Apache Superset/ECharts} e uma arena gamificada de 520 cards (TCG).
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -93,7 +94,10 @@ Em 1922, Sewall Wright [3] formulou através do método de coeficientes de camin
 \begin{equation}
     F_X = \sum_{(\omega_S, \omega_D, A) \in \mathcal{P}_{\min}(X)} \left(\frac{1}{2}\right)^{n_S + n_D - 1} (1 + F_A)
 \end{equation}
-Assumindo-se a linha de base de 5 gerações ($F_A = 0$ dentro da janela observada), um cruzamento clássico de $3 \times 4$ gerações ($n_S = 3, n_D = 4$) contribui exatamente com $(1/2)^{3+4-1} = (1/2)^6 = 0,015625$ ($1,5625\%$) por ancestral duplicado, enquanto um cruzamento $3 \times 3$ ou a combinação de múltiplos ancestrais em $3 \times 4$ resulta em $F_X = 6,25\%$ (conhecido na literatura zootécnica japonesa como a ``dosagem de sangue milagrosa'' de $18,75\%$ de herança acumulada).
+Assumindo-se a linha de base de 5 gerações ($F_A = 0$ dentro da janela observada), um cruzamento clássico de $3 \times 4$ gerações ($n_S = 3, n_D = 4$) contribui exatamente com $(1/2)^{3+4-1} = (1/2)^6 = 0,015625$ (1,5625\%)
+por ancestral duplicado, enquanto um cruzamento $3 \times 3$ ou a combinação de múltiplos ancestrais em $3 \times 4$ resulta em $F_X = 6,25$\%
+(conhecido na literatura zootécnica japonesa como a ``dosagem de sangue milagrosa'' de 18,75\%
+de herança acumulada).
 
 \subsection{Grafos Direcionados de Competição, Centralidade PageRank e Caminho Mínimo de Dijkstra}
 A avaliação de desempenho em torneios esportivos onde nem todos os competidores se enfrentam diretamente (\textit{incomplete round-robin tournaments}) foi extensivamente estudada sob a ótica da Teoria dos Grafos e da Álgebra Linear Numérica [5, 6, 7, 9]. Enquanto a centralidade de grau simples contabiliza apenas o volume local de interações de um vértice, métricas espectrais baseadas em autovetores ponderam recursivamente a qualidade dos vizinhos: derrotar (ou chegar imediatamente atrás de) um bicampeão mundial em uma prova de Grau 1 confere ordens de grandeza mais prestígio do que vencer dez competidores medianos em provas regionais.
@@ -125,11 +129,13 @@ A metodologia deste trabalho foi concebida como uma arquitetura modular reprodut
 \subsection{Origem, Coleta e Natureza Estatística e Computacional dos Dados}
 Os dados primários provêm de duas fontes oficiais do turfe japonês coletadas entre as temporadas de 2002 e 2025 e arquivadas permanentemente no repositório científico Zenodo sob o identificador digital \texttt{10.5281/zenodo.23681383} [14]:
 \begin{enumerate}
-    \item \textbf{Histórico de Corridas de Elite da JRA (\path{src/scraper_jra.py}):} Coleta automatizada de 100\% dos calendários anuais de provas graduadas (\textit{Jusho}: G1, G2 e G3) de 2002 a 2025 via requisições HTTP resilientes com decodificação adaptativa (\texttt{Shift\_JIS}/\texttt{CP932} para tabelas HTML4 legadas e \texttt{UTF-8} para páginas HTML5 modernas), \textit{Skip Logic} em $O(1)$ sobre banco transacional SQLite em modo WAL (\textit{Write-Ahead Logging}) e \textit{Exponential Backoff} ($2^k\text{s}$).
+    \item \textbf{Histórico de Corridas de Elite da JRA (\path{src/scraper_jra.py}):} Coleta automatizada de 100\%
+dos calendários anuais de provas graduadas (\textit{Jusho}: G1, G2 e G3) de 2002 a 2025 via requisições HTTP resilientes com decodificação adaptativa (\texttt{Shift\_JIS}/\texttt{CP932} para tabelas HTML4 legadas e \texttt{UTF-8} para páginas HTML5 modernas), \textit{Skip Logic} em $O(1)$ sobre banco transacional SQLite em modo WAL (\textit{Write-Ahead Logging}) e \textit{Exponential Backoff} ($2^k\text{s}$).
     \item \textbf{Perfis Biológicos e Árvores Genealógicas de 5 Gerações do JBIS (\path{src/scraper_pedigree.py}):} Para cada um dos 8.209 cavalos únicos identificados nas pistas da JRA, o coletor extraiu os metadados biológicos e financeiros (premiação vitalícia convertida da unidade japonesa \textit{Man-Yen} por $\times 10^4$, pelagem, criador e proprietário) e a árvore genealógica ascendente de 5 gerações (\texttt{/horse/ped/}), totalizando 504.074 registros ancestrais.
 \end{enumerate}
 
-O esquema relacional higienizado foi normalizado na Terceira Forma Normal (3NF) em cinco tabelas exportadas tanto no idioma japonês original (\path{data/csv/}) quanto na edição 100\% traduzida para o inglês (\path{data/csv_en/}): \texttt{races} (3.216 corridas), \texttt{race\_entries} (33.409 participações), \texttt{horses} (8.209 cavalos), \texttt{pedigree} (8.202 tuplas diretas pai/mãe/avô materno) e \texttt{pedigree\_tree} (504.074 nós genealógicos de 5 gerações). A Tabela~I formaliza a natureza das variáveis, seus tipos primitivos e seu papel na modelagem em árvores, grafos e aprendizado de máquina.
+O esquema relacional higienizado foi normalizado na Terceira Forma Normal (3NF) em cinco tabelas exportadas tanto no idioma japonês original (\path{data/csv/}) quanto na edição 100\%
+traduzida para o inglês (\path{data/csv_en/}): \texttt{races} (3.216 corridas), \texttt{race\_entries} (33.409 participações), \texttt{horses} (8.209 cavalos), \texttt{pedigree} (8.202 tuplas diretas pai/mãe/avô materno) e \texttt{pedigree\_tree} (504.074 nós genealógicos de 5 gerações). A Tabela~I formaliza a natureza das variáveis, seus tipos primitivos e seu papel na modelagem em árvores, grafos e aprendizado de máquina.
 
 \begin{table}[htbp]
 \caption{Natureza dos Dados, Papel Topológico nos Grafos/Árvores e Tratamento Algorítmico}
@@ -162,7 +168,8 @@ O esquema relacional higienizado foi normalizado na Terceira Forma Normal (3NF) 
 Para assegurar que os algoritmos em grafos operassem sobre vértices íntegros e livres de duplicatas sintáticas, o módulo \path{src/clean_data.py} executou três transformações determinísticas auditadas pelo validador \path{src/validate_data.py} (\textbf{0 erros e 0 avisos}):
 \begin{enumerate}
     \item \textbf{Realinhamento Vetorial In-Place de 25.014 Participações (2004--2018):} Detecção por expressão regular de células deslocadas nas quais o par Sexo+Idade havia sido fundido na origem, restaurando em tempo linear $O(N)$ o alinhamento exato das colunas de Jóquei, Tempo Final, Margem, Treinador e Massa Corporal em todas as 33.409 linhas de \texttt{race\_entries}, além do expurgo em cascata de 15 registros espúrios provenientes de tabelas de rateio de apostas de 2004.
-    \item \textbf{Imputação Histórica por Auto-Junção e Normalização NFKC:} Aplicação da decomposição canônica Unicode \texttt{unicodedata.normalize('NFKC')} aos títulos das corridas, recuperando 100\% dos rótulos de \texttt{grade} (1.834 corridas de 2002--2015), \texttt{surface} (\textit{Turf}, \textit{Dirt} e \textit{Obstacle}) e \texttt{distance} nas 3.216 provas.
+    \item \textbf{Imputação Histórica por Auto-Junção e Normalização NFKC:} Aplicação da decomposição canônica Unicode \texttt{unicodedata.normalize('NFKC')} aos títulos das corridas, recuperando 100\%
+dos rótulos de \texttt{grade} (1.834 corridas de 2002--2015), \texttt{surface} (\textit{Turf}, \textit{Dirt} e \textit{Obstacle}) e \texttt{distance} nas 3.216 provas.
     \item \textbf{Motor Híbrido de Tradução Semântica em 3 Camadas (\path{src/hybrid_translator.py} e \path{src/translate_db.py}):} Na Camada 1, dicionários hash $O(1)$ traduziram domínios fechados (hipódromos, superfícies, sexo e taxonomia biológica de pelagens: \textit{Bay}, \textit{Dark Bay}, \textit{Chestnut}, \textit{Grey}, \textit{Black}, \textit{White}). Na Camada 2, sufixos geográficos \texttt{(USA)/(GB)/(IRE)} foram desacoplados via Regex, reduzindo 39.533 strings brutas para 23.511 radicais japoneses únicos que foram traduzidos por um pool assíncrono da API Google Gemini (\texttt{temperature=0.0}, saída JSON estrita), resolvendo nomes ocidentais em \textit{Katakana} (\textit{Di-pu In-pa-ku-to} $\to$ \textit{Deep Impact}; \textit{O-ru-fe-vu-ru} $\to$ \textit{Orfevre}) e leituras humanas \textit{Nanori} em \textit{Kanji} (\textit{Take Yutaka} $\to$ \textit{Yutaka Take}). Na Camada 3, regras morfológicas de prefixos tradicionais (\textit{Kanmei}: \textit{Symboli}, \textit{Mejiro}, \textit{Daiwa}, \textit{Meisho}) e desambiguação de 15 campeões homônimos consolidaram um dicionário auditado de \textbf{29.159 termos} (\path{data/gemini_cache.json}) com zero caracteres japoneses residuais.
 \end{enumerate}
 
@@ -176,9 +183,10 @@ No HTML do portal JBIS, a tabela genealógica de 5 gerações possui 32 linhas v
 \end{equation}
 Em contrapartida, a geração recursiva de palavras binárias produz a lista em pré-ordem de Busca em Profundidade ($\mathcal{L}_{\text{DFS}}$):
 \begin{equation}
-    \mathcal{L}_{\text{DFS}} = (\texttt{S}, \texttt{SS}, \texttt{SSS}, \texttt{SSSS}, \texttt{SSSSS}, \texttt{SSSSD}, \texttt{SSSD}, \dots, \texttt{DDDDD})
+    \mathcal{L}_{\text{DFS}} = (\texttt{S}, \texttt{SS}, \texttt{SSS}, \texttt{SSSS}, \texttt{SSSSS}, \texttt{SSSSD}, \dots, \texttt{DDDDD})
 \end{equation}
-Definimos a função bijetora de permutação $\Phi: \mathcal{L}_{\text{DFS}} \leftrightarrow \mathcal{L}_{\text{BFS}}$ mapeando o índice $i \in \{0, \dots, 61\}$ do rótulo incorreto $\mathcal{L}_{\text{DFS}}[i]$ para o rótulo topológico real $\mathcal{L}_{\text{BFS}}[i]$. Aplicada sobre os 504.074 registros da tabela \texttt{pedigree\_tree}, a bijeção $\Phi$ reconectou cada nó $\omega$ exatamente ao seu filho $\omega_{1 \dots |\omega|-1}$ em tempo $O(1)$ por nó via tabela hash pré-computada de 62 entradas, garantindo 100\% de consistência entre a 1ª geração da árvore (\texttt{S} e \texttt{D}) e a tabela relacional \texttt{pedigree}.
+Definimos a função bijetora de permutação $\Phi: \mathcal{L}_{\text{DFS}} \leftrightarrow \mathcal{L}_{\text{BFS}}$ mapeando o índice $i \in \{0, \dots, 61\}$ do rótulo incorreto $\mathcal{L}_{\text{DFS}}[i]$ para o rótulo topológico real $\mathcal{L}_{\text{BFS}}[i]$. Aplicada sobre os 504.074 registros da tabela \texttt{pedigree\_tree}, a bijeção $\Phi$ reconectou cada nó $\omega$ exatamente ao seu filho $\omega_{1 \dots |\omega|-1}$ em tempo $O(1)$ por nó via tabela hash pré-computada de 62 entradas, garantindo 100\%
+de consistência entre a 1ª geração da árvore (\texttt{S} e \texttt{D}) e a tabela relacional \texttt{pedigree}.
 
 \subsubsection{Algoritmo 2: Contração da Floresta de Árvores no DAG Genealógico $G_p = (V_p, E_p)$}
 Na classe \texttt{PedigreeDAG} (\path{src/graph_analysis.py}), cada cavalo $h \in H$ ($|H| = 8.202$ animais com árvore completa) possui seu mapa de caminhos $\mathcal{T}_h: \{\texttt{S}, \texttt{D}\}^{1..5} \to V_p$. O algoritmo de contração percorre cada par $(\omega, \text{ancestral}) \in \mathcal{T}_h$:
@@ -213,7 +221,9 @@ As classes \texttt{JockeyHorseGraph} ($|U_J| = 398$ jóqueis $\times |V_c| = 8.1
 
 Por fim, no módulo \path{src/ml_analysis.py}, as métricas extraídas dos grafos e das árvores são integradas a dois modelos de Aprendizado de Máquina:
 \begin{itemize}
-    \item \textbf{Agrupamento Não-Supervisionado K-Means++ e PCA 2D via SVD:} Os 106 garanhões com $\ge 50$ participações da prole são representados por um vetor de 6 atributos padronizados via Z-score (\% Grama, Distância Média, Taxa de Vitória, Taxa de Pódio, \% Vitórias G1 e PageRank Médio dos Filhos no grafo $G_c$), agrupados pelo algoritmo K-Means++ [12] ($k \in \{2 \dots 7\}$ avaliado por \textit{Silhouette Score}) e projetados em 2 dimensões via Decomposição em Valores Singulares ($\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T$).
+    \item \textbf{Agrupamento Não-Supervisionado K-Means++ e PCA 2D via SVD:} Os 106 garanhões com $\ge 50$ participações da prole são representados por um vetor de 6 atributos padronizados via Z-score (\%
+Grama, Distância Média, Taxa de Vitória, Taxa de Pódio, \%
+Vitórias G1 e PageRank Médio dos Filhos no grafo $G_c$), agrupados pelo algoritmo K-Means++ [12] ($k \in \{2 \dots 7\}$ avaliado por \textit{Silhouette Score}) e projetados em 2 dimensões via Decomposição em Valores Singulares ($\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T$).
     \item \textbf{Classificação Supervisionada \textit{Random Forest Out-of-Time} com \textit{Shifted Expanding-Window Bayesian Target Encoding}:} Para prever o pódio ($\text{target\_top3} = \mathbb{I}(\text{pos} \le 3)$) sem vazamento temporal (\textit{Zero Data Leakage}), o conjunto de dados foi dividido cronologicamente em \textbf{Treino (2002--2013)}, \textbf{Validação (2014--2015)} e \textbf{Teste Futuro Out-of-Time (2016--2018, $N = 5.889$)}. As variáveis categóricas de alta cardinalidade (vértices de jóquei, treinador, cavalo, pai e avô materno) foram codificadas exclusivamente pela taxa histórica de pódios nas corridas estritamente anteriores ($1 \dots t-1$) com suavização bayesiana (\textit{m-estimate}):
     \begin{equation}
         \hat{R}_{e}^{(t)} = \frac{\sum_{i=1}^{t-1} \mathbb{I}(e_i = e \land y_i = 1) + m \cdot \bar{y}_{\text{global}}}{\sum_{i=1}^{t-1} \mathbb{I}(e_i = e) + m}
@@ -237,12 +247,12 @@ Para verificar se os algoritmos em árvores e grafos se comportam em estrita con
 \toprule
 \textbf{Janela} & \textbf{Largadas} & $|V_c|$ & $|E_c|$ \textbf{(Dir.)} & $|E_r|$ \textbf{(Não-Dir.)} & \textbf{Build (ms)} & \textbf{BFS CC (ms)} & \textbf{Dijkstra (ms)} & \textbf{LCC (\%)} \\
 \midrule
-2002--2004 & $5.165$ & $1.767$ & $31.071$ & $29.029$ & $32,8$ & $3,0$ & $12,1$ & $93,15\%$ \\
-2002--2007 & $10.797$ & $3.101$ & $64.009$ & $59.210$ & $130,8$ & $7,9$ & $34,5$ & $96,03\%$ \\
-2002--2010 & $16.925$ & $4.492$ & $100.761$ & $92.519$ & $128,0$ & $10,3$ & $49,4$ & $97,06\%$ \\
-2002--2013 & $23.020$ & $5.899$ & $137.086$ & $125.646$ & $176,6$ & $14,6$ & $74,4$ & $100,00\%$ \\
-2002--2016 & $29.146$ & $7.266$ & $173.186$ & $158.409$ & $234,8$ & $18,9$ & $86,7$ & $99,86\%$ \\
-2002--2025 & $33.409$ & $8.135$ & $195.271$ & $178.560$ & $267,0$ & $21,6$ & $99,6$ & $98,66\%$ \\
+2002--2004 & $5.165$ & $1.767$ & $31.071$ & $29.029$ & $32,8$ & $3,0$ & $12,1$ & 93,15\% \\
+2002--2007 & $10.797$ & $3.101$ & $64.009$ & $59.210$ & $130,8$ & $7,9$ & $34,5$ & 96,03\% \\
+2002--2010 & $16.925$ & $4.492$ & $100.761$ & $92.519$ & $128,0$ & $10,3$ & $49,4$ & 97,06\% \\
+2002--2013 & $23.020$ & $5.899$ & $137.086$ & $125.646$ & $176,6$ & $14,6$ & $74,4$ & 100,00\% \\
+2002--2016 & $29.146$ & $7.266$ & $173.186$ & $158.409$ & $234,8$ & $18,9$ & $86,7$ & 99,86\% \\
+2002--2025 & $33.409$ & $8.135$ & $195.271$ & $178.560$ & $267,0$ & $21,6$ & $99,6$ & 98,66\% \\
 \bottomrule
 \end{tabular}%
 }
@@ -264,7 +274,9 @@ A análise crítica da Tabela~II e da Fig.~2 revela três propriedades algorítm
 \end{enumerate}
 
 \subsection{Conectividade Topológica, Caminho Mínimo de Dijkstra e Descoberta dos ``Diamantes Injustiçados'' via PageRank}
-A decomposição em componentes conexos via BFS sobre o grafo de competição $G_r$ revelou a emergência de uma \textbf{Componente Gigante Conexa (LCC)} que abrange \textbf{$8.026$ dos $8.135$ cavalos ($98,66\%$ de toda a população histórica entre 2002 e 2025)}. Os restantes $1,34\%$ ($109$ animais) dividem-se em apenas dois subcomponentes isolados correspondentes a provas específicas de obstáculos (\textit{Steeplechase / Jump Races}) cujos participantes nunca cruzaram com o circuito plano. Como ilustrado no losango de decisão do Fluxograma Metodológico (Fig.~1), essa altíssima conectividade decorre da sobreposição intergeracional: cavalos de 3 anos enfrentam veteranos de 4 a 7 anos em provas abertas de outono (como a \textit{Japan Cup} G1 e o \textit{Arima Kinen} G1), criando ``pontes temporais'' que soldam 24 anos de história em uma única rede conexa.
+A decomposição em componentes conexos via BFS sobre o grafo de competição $G_r$ revelou a emergência de uma \textbf{Componente Gigante Conexa (LCC)} que abrange \textbf{$8.026$ dos $8.135$ cavalos (98,66\%
+de toda a população histórica entre 2002 e 2025)}. Os restantes 1,34\%
+($109$ animais) dividem-se em apenas dois subcomponentes isolados correspondentes a provas específicas de obstáculos (\textit{Steeplechase / Jump Races}) cujos participantes nunca cruzaram com o circuito plano. Como ilustrado no losango de decisão do Fluxograma Metodológico (Fig.~1), essa altíssima conectividade decorre da sobreposição intergeracional: cavalos de 3 anos enfrentam veteranos de 4 a 7 anos em provas abertas de outono (como a \textit{Japan Cup} G1 e o \textit{Arima Kinen} G1), criando ``pontes temporais'' que soldam 24 anos de história em uma única rede conexa.
 
 Aplicando o algoritmo de \textbf{Caminho Mínimo de Dijkstra} [8] com custo $c(u, v) = 1 / W_r(u, v)$, verificou-se que o diâmetro efetivo entre campeões separados por duas décadas é surpreendentemente curto (propriedade de \textit{Small-World Network} [9]). Por exemplo, o caminho mínimo de maior intensidade competitiva entre \textit{Symboli Kris S} (campeão de 2002--2003) e \textit{Equinox} / \textit{Do Deuce} (campeões da década de 2020) atravessa apenas 4 a 5 saltos intermediários de alta ponderação G1 (\textit{Symboli Kris S} $\leftrightarrow$ \textit{Zenno Rob Roy} $\leftrightarrow$ \textit{Deep Impact} $\leftrightarrow$ \textit{Gentildonna} $\leftrightarrow$ \textit{Kitasan Black} $\leftrightarrow$ geração moderna).
 
@@ -272,7 +284,8 @@ A execução do \textbf{PageRank Esportivo ($d = 0,85$)} sobre o grafo direciona
 
 Todavia, a contribuição científica mais original da modelagem por PageRank foi a descoberta empírica de duas classes de anomalias competitivas invisíveis a consultas SQL baseadas na contagem simples de vitórias (Tabela~III):
 \begin{enumerate}
-    \item \textbf{``Diamantes Injustiçados'' (\textit{Underdog Diamonds} --- Zero Vitórias Graded na Carreira, mas Topo do PageRank):} O cavalo \textbf{\textit{Sounds of Earth}} (filho de \textit{Neo Universe}) possui \textbf{zero vitórias} em corridas Graded (0 vitórias em 22 largadas de elite no recorte), razão pela qual qualquer filtro tradicional por número de títulos o classificaria como malsucedido. Contudo, o algoritmo PageRank posicionou \textit{Sounds of Earth} na \textbf{32ª colocação geral entre todos os 8.135 cavalos da história da JRA (Top 0,4\% global)}. A inspeção de sua vizinhança de entrada $\mathcal{N}_{\text{in}}(\text{Sounds of Earth})$ em $G_c$ explica matematicamente o fenômeno: ele conquistou \textbf{7 pódios de altíssimo nível}, incluindo vice-campeonatos na \textit{Japan Cup} (G1), no \textit{Arima Kinen} (G1) e no \textit{Kikuka Sho} (G1), derrotando diretamente dezenas de ganhadores de G1 que chegaram do 3º ao 18º lugar atrás dele. Fenômeno idêntico foi descoberto para \textbf{\textit{Etariou}} (\textbf{\#43 geral} com 0 vitórias Graded e 3 pódios em 4 largadas no recorte, incluindo vice no Kikuka Sho G1) e \textbf{\textit{Fiero}} (\textbf{\#82 geral} com 0 vitórias Graded e 9 pódios em 16 largadas, incluindo dois vices no Mile Championship G1).
+    \item \textbf{``Diamantes Injustiçados'' (\textit{Underdog Diamonds} --- Zero Vitórias Graded na Carreira, mas Topo do PageRank):} O cavalo \textbf{\textit{Sounds of Earth}} (filho de \textit{Neo Universe}) possui \textbf{zero vitórias} em corridas Graded (0 vitórias em 22 largadas de elite no recorte), razão pela qual qualquer filtro tradicional por número de títulos o classificaria como malsucedido. Contudo, o algoritmo PageRank posicionou \textit{Sounds of Earth} na \textbf{32ª colocação geral entre todos os 8.135 cavalos da história da JRA (Top 0,4\%
+global)}. A inspeção de sua vizinhança de entrada $\mathcal{N}_{\text{in}}(\text{Sounds of Earth})$ em $G_c$ explica matematicamente o fenômeno: ele conquistou \textbf{7 pódios de altíssimo nível}, incluindo vice-campeonatos na \textit{Japan Cup} (G1), no \textit{Arima Kinen} (G1) e no \textit{Kikuka Sho} (G1), derrotando diretamente dezenas de ganhadores de G1 que chegaram do 3º ao 18º lugar atrás dele. Fenômeno idêntico foi descoberto para \textbf{\textit{Etariou}} (\textbf{\#43 geral} com 0 vitórias Graded e 3 pódios em 4 largadas no recorte, incluindo vice no Kikuka Sho G1) e \textbf{\textit{Fiero}} (\textbf{\#82 geral} com 0 vitórias Graded e 9 pódios em 16 largadas, incluindo dois vices no Mile Championship G1).
     \item \textbf{``Colecionadores de Prata'' (\textit{Silver Collectors} --- Zero Vitórias em G1, mas Prestígio de Campeão):} Animais que venceram provas de G2/G3 e bateram repetidamente na trave em finais de Grau 1 contra dinastias dominantes, alcançando o Top 35 global do PageRank: \textbf{\textit{Stephanos}} (\#19 geral, 8 pódios em 20 largadas), \textbf{\textit{Danburite}} (\#23, 6 pódios em 13 largadas), \textbf{\textit{Cosmo Bulk}} (\#27, 6 pódios em 33 largadas), \textbf{\textit{Smart Layer}} (\#31), \textbf{\textit{Real Steel}} (\#33, 8 pódios em 14 largadas) e \textbf{\textit{Win Variation}} (\#35, 11 pódios em 21 largadas).
 \end{enumerate}
 
@@ -301,7 +314,12 @@ Todavia, a contribuição científica mais original da modelagem por PageRank fo
 \end{center}
 \end{table}
 
-A Fig.~3 (esquerda) demonstra visualmente essa assimetria através de um \textbf{Gráfico Radar Hexagonal}: enquanto campeões como \textit{Deep Impact}, \textit{Almond Eye} e \textit{Lord Kanaloa} expandem seus polígonos até $90\text{--}100\%$ no vértice superior de \textit{Graded Win Rate}, o polígono tracejado laranja de \textbf{\textit{Sounds of Earth}} colapsa exatamente a $0\%$ no eixo de vitórias, mas mantém área de elite nos eixos de \textit{PageRank Prestige}, \textit{G1 Rivalry Volume} e \textit{Stamina Index}. À direita na Fig.~3, o \textbf{Gráfico Sunburst Hierárquico de 3 Anéis} decompõe a estrutura das 3.216 corridas por Superfície (\textit{Turf} $81,9\%$, \textit{Dirt} $10,7\%$, \textit{Obstacle} $7,4\%$) $\to$ Grau (G1, G2, G3) $\to$ 10 Hipódromos da JRA (\textit{Tokyo}, \textit{Kyoto}, \textit{Hanshin}, \textit{Nakayama}, \textit{Chukyo}, \textit{Niigata}, \textit{Kokura}, \textit{Sapporo}, \textit{Fukushima} e \textit{Hakodate}).
+A Fig.~3 (esquerda) demonstra visualmente essa assimetria através de um \textbf{Gráfico Radar Hexagonal}: enquanto campeões como \textit{Deep Impact}, \textit{Almond Eye} e \textit{Lord Kanaloa} expandem seus polígonos até 90--100\%
+no vértice superior de \textit{Graded Win Rate}, o polígono tracejado laranja de \textbf{\textit{Sounds of Earth}} colapsa exatamente a 0\%
+no eixo de vitórias, mas mantém área de elite nos eixos de \textit{PageRank Prestige}, \textit{G1 Rivalry Volume} e \textit{Stamina Index}. À direita na Fig.~3, o \textbf{Gráfico Sunburst Hierárquico de 3 Anéis} decompõe a estrutura das 3.216 corridas por Superfície (\textit{Turf} 81,9\%,
+\textit{Dirt} 10,7\%,
+\textit{Obstacle} 7,4\%)
+$\to$ Grau (G1, G2, G3) $\to$ 10 Hipódromos da JRA (\textit{Tokyo}, \textit{Kyoto}, \textit{Hanshin}, \textit{Nakayama}, \textit{Chukyo}, \textit{Niigata}, \textit{Kokura}, \textit{Sapporo}, \textit{Fukushima} e \textit{Hakodate}).
 
 \begin{figure*}[htbp]
 \centerline{\includegraphics[width=0.95\textwidth]{../assets/superset_radar_and_sunburst.png}}
@@ -310,12 +328,19 @@ A Fig.~3 (esquerda) demonstra visualmente essa assimetria através de um \textbf
 \end{figure*}
 
 \subsection{Análise Estrutural do DAG de 5 Gerações ($G_p$), LCA e Coeficiente de Endogamia de Wright ($F_X$)}
-A avaliação dos algoritmos de travessia em árvore sobre os $|V_p| = 35.149$ nós do DAG genealógico $G_p$ revelou que \textbf{$6.213$ dos $8.202$ cavalos mapeados ($75,75\%$ da população de elite da JRA)} possuem endogamia estritamente positiva dentro do horizonte de 5 gerações ($F_X > 0$), com coeficiente médio populacional de $\bar{F}_X = 0,744\%$ e máximo de $F_X = 8,01\%$.
+A avaliação dos algoritmos de travessia em árvore sobre os $|V_p| = 35.149$ nós do DAG genealógico $G_p$ revelou que \textbf{$6.213$ dos $8.202$ cavalos mapeados (75,75\%
+da população de elite da JRA)} possuem endogamia estritamente positiva dentro do horizonte de 5 gerações ($F_X > 0$), com coeficiente médio populacional de $\bar{F}_X = 0,744$\%
+e máximo de $F_X = 8,01$\%.
 
 A aplicação sistemática do algoritmo de Menor Ancestral Comum (LCA) e de filtragem de pares minimais de Wright identificou os grandes patriarcas e matriarcas fundadores sob os quais toda a árvore genealógica do turfe japonês moderno converge em funil (Tabela~IV):
 \begin{itemize}
-    \item \textbf{\textit{Northern Dancer (CAN)}:} Consagra-se como o ancestral comum mais influente da história do DAG de 5 gerações, aparecendo duplicado simultaneamente nos lados paterno e materno (\textit{inbreeding LCA}) de \textbf{$4.206$ cavalos distintos ($51,28\%$ de toda a base)}, cujos descendentes endogâmicos acumularam \textbf{$1.211$ vitórias em corridas Graded}. Exemplos emblemáticos calculados pelo nosso módulo \path{wright_inbreeding_coefficient} incluem \textbf{\textit{Meisho Samson}} ($F_X = 1,562\%$, com cruzamento $3 \times 4$ em \textit{Northern Dancer}), \textbf{\textit{Tosen Jordan}} ($F_X = 1,758\%$, com cruzamento $4 \times 3$ em \textit{Northern Dancer} e $5 \times 5$ em \textit{Hyperion}), \textbf{\textit{Orfevre}} ($F_X = 1,562\%$, com cruzamento $4 \times 3$ em \textit{Northern Taste}, filho direto de \textit{Northern Dancer}) e \textbf{\textit{Almond Eye}} ($F_X = 1,562\%$, com cruzamento $3 \times 4$ em \textit{Nasrullah}).
-    \item \textbf{\textit{Hail to Reason (USA)}, \textit{Almahmoud (USA)} e \textit{Halo (USA)}:} \textit{Hail to Reason} figura como LCA em \textbf{$891$ cavalos endogâmicos} ($256$ vitórias Graded), seguido por \textit{Nasrullah (GB)} ($631$ cavalos e $159$ vitórias) e \textit{Mr. Prospector (USA)} ($409$ cavalos e $69$ vitórias). Destacam-se ainda pela altíssima eficiência competitiva por indivíduo endogâmico a matriarca fundadora \textbf{\textit{Almahmoud (USA)}} ($360$ cavalos endogâmicos e $144$ vitórias Graded, liderando a eficiência da tabela com \textbf{$0,400$ vitórias Graded por indivíduo}) e seu neto \textbf{\textit{Halo (USA)}} (pai de \textit{Sunday Silence}, com $268$ cavalos endogâmicos, $100$ vitórias Graded e \textbf{$0,373$ vitórias por animal}, presente em cruzamentos múltiplos como os de \textit{Cheval Grand} e \textit{Satono Diamond}, ambos com $F_X = 2,734\%$).
+    \item \textbf{\textit{Northern Dancer (CAN)}:} Consagra-se como o ancestral comum mais influente da história do DAG de 5 gerações, aparecendo duplicado simultaneamente nos lados paterno e materno (\textit{inbreeding LCA}) de \textbf{$4.206$ cavalos distintos (51,28\%
+de toda a base)}, cujos descendentes endogâmicos acumularam \textbf{$1.211$ vitórias em corridas Graded}. Exemplos emblemáticos calculados pelo nosso módulo \path{wright_inbreeding_coefficient} incluem \textbf{\textit{Meisho Samson}} ($F_X = 1,562$\%,
+com cruzamento $3 \times 4$ em \textit{Northern Dancer}), \textbf{\textit{Tosen Jordan}} ($F_X = 1,758$\%,
+com cruzamento $4 \times 3$ em \textit{Northern Dancer} e $5 \times 5$ em \textit{Hyperion}), \textbf{\textit{Orfevre}} ($F_X = 1,562$\%,
+com cruzamento $4 \times 3$ em \textit{Northern Taste}, filho direto de \textit{Northern Dancer}) e \textbf{\textit{Almond Eye}} ($F_X = 1,562$\%,
+com cruzamento $3 \times 4$ em \textit{Nasrullah}).
+    \item \textbf{\textit{Hail to Reason (USA)}, \textit{Almahmoud (USA)} e \textit{Halo (USA)}:} \textit{Hail to Reason} figura como LCA em \textbf{$891$ cavalos endogâmicos} ($256$ vitórias Graded), seguido por \textit{Nasrullah (GB)} ($631$ cavalos e $159$ vitórias) e \textit{Mr. Prospector (USA)} ($409$ cavalos e $69$ vitórias). Destacam-se ainda pela altíssima eficiência competitiva por indivíduo endogâmico a matriarca fundadora \textbf{\textit{Almahmoud (USA)}} ($360$ cavalos endogâmicos e $144$ vitórias Graded, liderando a eficiência da tabela com \textbf{$0,400$ vitórias Graded por indivíduo}) e seu neto \textbf{\textit{Halo (USA)}} (pai de \textit{Sunday Silence}, com $268$ cavalos endogâmicos, $100$ vitórias Graded e \textbf{$0,373$ vitórias por animal}, presente em cruzamentos múltiplos como os de \textit{Cheval Grand} e \textit{Satono Diamond}, ambos com $F_X = 2,734$\%).
 \end{itemize}
 
 \begin{table}[htbp]
@@ -355,7 +380,9 @@ Na geração imediata (nível $l = 1$ da árvore, Fig.~4), verifica-se a hegemon
 \label{fig:top_sires_earners_aeds2}
 \end{figure}
 
-Para visualizar a propagação de fluxo ao longo das ramificações do DAG até as pistas, o \textbf{Diagrama de Fluxo Aluvial / Sankey de 4 Estágios} (Fig.~5) mapeia $N = 8.857$ participações através das partições \textit{Linhagem Paterna} $\to$ \textit{Superfície} $\to$ \textit{Regime de Distância} $\to$ \textit{Grau (G1/G2/G3)}. Observa-se nitidamente a bifurcação topológica das linhagens: enquanto os ramos de \textit{Deep Impact}, \textit{Sunday Silence} e \textit{King Kamehameha} fluem para a Grama (\textit{Turf}, $92,6\%$) e distâncias clássicas ($1800\text{--}2200\text{m}$, $45,6\%$), os ramos laranjas de \textbf{\textit{Gold Allure}} e \textbf{\textit{Brian's Time}} desviam fortemente para a Areia (\textit{Dirt}), e o ramo azul-claro de \textbf{\textit{Sakura Bakushin O}} canaliza-se para o regime de velocidade curta (\textit{Sprint} $\le 1400\text{m}$). Complementarmente, o \textbf{Streamgraph Simétrico Temporal} (Fig.~6) demonstra a dinâmica de sucessão geracional das árvores ao longo do tempo em três ondas: a Era I (2002--2007) dominada por \textit{Sunday Silence} e \textit{Brian's Time}; a Era II (2008--2012) marcada por \textit{Fuji Kiseki}, \textit{Agnes Tachyon}, \textit{Dance in the Dark} e \textit{Manhattan Cafe}; e a Era III (2013+) dominada por \textit{Deep Impact}, \textit{King Kamehameha}, \textit{Stay Gold}, \textit{Heart's Cry} e \textit{Lord Kanaloa}.
+Para visualizar a propagação de fluxo ao longo das ramificações do DAG até as pistas, o \textbf{Diagrama de Fluxo Aluvial / Sankey de 4 Estágios} (Fig.~5) mapeia $N = 8.857$ participações através das partições \textit{Linhagem Paterna} $\to$ \textit{Superfície} $\to$ \textit{Regime de Distância} $\to$ \textit{Grau (G1/G2/G3)}. Observa-se nitidamente a bifurcação topológica das linhagens: enquanto os ramos de \textit{Deep Impact}, \textit{Sunday Silence} e \textit{King Kamehameha} fluem para a Grama (\textit{Turf}, 92,6\%)
+e distâncias clássicas ($1800\text{--}2200\text{m}$, 45,6\%),
+os ramos laranjas de \textbf{\textit{Gold Allure}} e \textbf{\textit{Brian's Time}} desviam fortemente para a Areia (\textit{Dirt}), e o ramo azul-claro de \textbf{\textit{Sakura Bakushin O}} canaliza-se para o regime de velocidade curta (\textit{Sprint} $\le 1400\text{m}$). Complementarmente, o \textbf{Streamgraph Simétrico Temporal} (Fig.~6) demonstra a dinâmica de sucessão geracional das árvores ao longo do tempo em três ondas: a Era I (2002--2007) dominada por \textit{Sunday Silence} e \textit{Brian's Time}; a Era II (2008--2012) marcada por \textit{Fuji Kiseki}, \textit{Agnes Tachyon}, \textit{Dance in the Dark} e \textit{Manhattan Cafe}; e a Era III (2013+) dominada por \textit{Deep Impact}, \textit{King Kamehameha}, \textit{Stay Gold}, \textit{Heart's Cry} e \textit{Lord Kanaloa}.
 
 \begin{figure*}[htbp]
 \centerline{\includegraphics[width=0.95\textwidth]{../assets/superset_alluvial_sankey_flow.png}}
@@ -392,18 +419,29 @@ Cruzando a topologia do DAG $G_p$ com os atributos físicos das corridas, o test
 \label{fig:violin_parallel_aeds2}
 \end{figure*}
 
-Na modelagem não-supervisionada dos 106 principais garanhões (Fig.~9), os dois primeiros eixos da Análise de Componentes Principais capturaram \textbf{$63,4\%$ da variância total} ($\text{PC}_1 = 44,1\%$ e $\text{PC}_2 = 19,2\%$), e o algoritmo \textbf{K-Means++} [12] segmentou os vértices paternos em quatro arquétipos zootécnicos: \textbf{Cluster A} (\textit{Dirt \& Sand Power Specialists}, $n = 26$: \textit{Gold Allure}, \textit{Brian's Time}), \textbf{Cluster B} (\textit{Speed \& Mile Turf Sires}, $n = 41$: \textit{Sakura Bakushin O}, \textit{Fuji Kiseki}), \textbf{Cluster C} (\textit{Elite Classic \& G1 Turf Dynasties}, $n = 20$: \textit{Deep Impact}, \textit{Sunday Silence}, \textit{King Kamehameha}, \textit{Stay Gold}) e \textbf{Cluster D} (\textit{Classic Stayers \& Long-Distance Sires}, $n = 19$: \textit{Dance in the Dark}, \textit{Mayano Top Gun}).
+Na modelagem não-supervisionada dos 106 principais garanhões (Fig.~9), os dois primeiros eixos da Análise de Componentes Principais capturaram \textbf{63,4\% da variância total} ($\text{PC}_1 = 44,1$\% e $\text{PC}_2 = 19,2$\%), e o algoritmo \textbf{K-Means++} [12] segmentou os vértices paternos em quatro arquétipos zootécnicos: \textbf{Cluster A} (\textit{Dirt \& Sand Power Specialists}, $n = 26$: \textit{Gold Allure}, \textit{Brian's Time}), \textbf{Cluster B} (\textit{Speed \& Mile Turf Sires}, $n = 41$: \textit{Sakura Bakushin O}, \textit{Fuji Kiseki}), \textbf{Cluster C} (\textit{Elite Classic \& G1 Turf Dynasties}, $n = 20$: \textit{Deep Impact}, \textit{Sunday Silence}, \textit{King Kamehameha}, \textit{Stay Gold}) e \textbf{Cluster D} (\textit{Classic Stayers \& Long-Distance Sires}, $n = 19$: \textit{Dance in the Dark}, \textit{Mayano Top Gun}).
 
 \begin{figure*}[htbp]
 \centerline{\includegraphics[width=0.94\textwidth]{../assets/ml_kmeans_pca_clusters.png}}
-\caption{Esquerda: Agrupamento K-Means++ [12] dos 106 garanhões projetado via PCA 2D ($63,4\%$ de variância explicada). Direita: Curva de Silhouette Score para $k \in \{2 \dots 7\}$.}
+\caption{Esquerda: Agrupamento K-Means++ [12] dos 106 garanhões projetado via PCA 2D (63,4\%
+de variância explicada). Direita: Curva de Silhouette Score para $k \in \{2 \dots 7\}$.}
 \label{fig:kmeans_pca_aeds2}
 \end{figure*}
 
-Por fim, na predição supervisionada de pódio (Top-3) avaliada no conjunto de teste cronológico futuro (\textbf{2016--2018, $N_{\text{teste}} = 5.889$, \textit{Zero Data Leakage}}, Tabela~V e Fig.~10), o classificador \textbf{Random Forest} [13] atingiu \textbf{$\text{ROC-AUC} = 0,7260$} (IC Bootstrap 95\%: $[0,7109;\; 0,7389]$), $\text{PR-AUC} = 0,4187$ e $\text{F1-Score} = 0,4585$, superando a Regressão Logística L2 ($\text{ROC-AUC} = 0,7144$). A decomposição da Importância de Gini (Fig.~10, esquerda) revela que as métricas extraídas da rede bipartida e do histórico temporal lideram o poder preditivo na largada: a \textbf{taxa histórica prévia do jóquei ($29,77\%$)} e o \textbf{retrospecto prévio do próprio cavalo ($22,70\%$)} respondem por mais de $52\%$ da decisão do modelo, seguidos pela idade ($9,09\%$), número de largadas prévias ($5,70\%$), tamanho do grid ($5,10\%$), taxa prévia do treinador ($4,90\%$), peso de grau da corrida ($4,28\%$), afinidade genética do garanhão com a superfície no DAG ($3,88\%$) e retrospecto do avô materno ($2,92\%$).
+Por fim, na predição supervisionada de pódio (\mbox{Top-3}) avaliada no conjunto de teste cronológico futuro (\textbf{2016--2018, $N_{\text{teste}} = 5.889$, \textit{Zero Data Leakage}}, Tabela~V e Fig.~10), o classificador \textbf{Random Forest} [13] atingiu \textbf{$\text{ROC-AUC} = 0,7260$} (IC Bootstrap 95\%:
+$[0,7109;\; 0,7389]$), $\text{PR-AUC} = 0,4187$ e $\text{F1-Score} = 0,4585$, superando a Regressão Logística L2 ($\text{ROC-AUC} = 0,7144$). A decomposição da Importância de Gini (Fig.~10, esquerda) revela que as métricas extraídas da rede bipartida e do histórico temporal lideram o poder preditivo na largada: a \textbf{taxa histórica prévia do jóquei (29,77\%)}
+e o \textbf{retrospecto prévio do próprio cavalo (22,70\%)}
+respondem por mais de 52\%
+da decisão do modelo, seguidos pela idade (9,09\%),
+número de largadas prévias (5,70\%),
+tamanho do grid (5,10\%),
+taxa prévia do treinador (4,90\%),
+peso de grau da corrida (4,28\%),
+afinidade genética do garanhão com a superfície no DAG (3,88\%)
+e retrospecto do avô materno (2,92\%).
 
 \begin{table}[htbp]
-\caption{Desempenho Preditivo de Pódio (Top-3) no Conjunto de Teste Cronológico Out-of-Time (2016--2018, $N = 5.889$)}
+\caption{Desempenho Preditivo de Pódio (\mbox{Top-3}) no Conjunto de Teste Cronológico Out-of-Time (2016--2018, $N = 5.889$)}
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
 \setlength{\tabcolsep}{3.5pt}
@@ -424,7 +462,8 @@ Regressão Logística L2 & $0,7144$ ($[0,699;\; 0,728]$) & $\mathbf{0,4257}$ & $
 
 \begin{figure*}[htbp]
 \centerline{\includegraphics[width=0.94\textwidth]{../assets/ml_random_forest_and_chi2.png}}
-\caption{Esquerda: Importância Relativa de Gini (\%) na Random Forest ($\text{ROC-AUC} = 0,7260$). Direita: Mapa de Calor de Especialização Paterna por Distância ($\chi^2 = 2237,5, p < 0,0001$).}
+\caption{Esquerda: Importância Relativa de Gini (\%)
+na Random Forest ($\text{ROC-AUC} = 0,7260$). Direita: Mapa de Calor de Especialização Paterna por Distância ($\chi^2 = 2237,5, p < 0,0001$).}
 \label{fig:rf_chi2_aeds2}
 \end{figure*}
 
@@ -441,8 +480,12 @@ Este trabalho apresentou uma solução algorítmica completa, fundamentada em es
 Em síntese, as principais contribuições científicas e computacionais alcançadas foram:
 \begin{enumerate}
     \item \textbf{Resolução da Bijeção Topológica $\text{DFS}\to\text{BFS}$ e Contração no DAG $G_p$:} A formulação da permutação exata $\Phi$ entre a ordem de pré-ordem DFS e a ordem de nível BFS corrigiu 504.074 ligações pai-filho e permitiu colapsar as árvores individuais em um DAG unificado ($|V_p| = 35.149, |E_p| = 63.007$), sobre o qual travessias BFS/DFS, consultas de Menor Ancestral Comum (LCA) e o Coeficiente de Endogamia de Wright ($F_X$) executam na casa de dezenas de microssegundos por animal, comprovando \textit{Northern Dancer (CAN)} como o maior ancestral comum duplicado ($4.206$ cavalos e $1.211$ vitórias Graded) e \textit{Almahmoud (USA)} ($0,400$ vitórias Graded/animal) seguida por \textit{Halo (USA)} ($0,373$ vitórias/animal) como os ancestrais de maior eficiência competitiva endogâmica no Top 10.
-    \item \textbf{Descoberta de Talentos Ocultos via PageRank Esportivo em $O(V + E)$:} A modelagem do fluxo de prestígio em $G_c$ ($|V_c| = 8.135, |E_c| = 195.271$) superou a cegueira da contagem simples de vitórias ao identificar os ``Diamantes Injustiçados'' (liderados por \textit{Sounds of Earth}, \#32 geral entre 8.135 cavalos com zero vitórias Graded) e confirmou uma Componente Gigante Conexa abrangendo $98,66\%$ da população histórica.
-    \item \textbf{Sinergia entre Topologia Genealógica, Fator Humano e Visualização Interativa:} Provou-se estatisticamente que a linhagem paterna no DAG define o nicho físico de superfície e distância ($\chi^2 = 2237,47, p < 10^{-300}$, 4 arquétipos no K-Means++ PCA com $63,4\%$ de variância e dimorfismo biométrico de $+18\text{ kg}$ na areia), enquanto na hora da corrida o histórico prévio do jóquei ($29,77\%$ de importância de Gini) e do cavalo ($22,70\%$) governam a predição de pódio na \textit{Random Forest Out-of-Time} ($\text{ROC-AUC} = 0,7260$ com \textit{Zero Data Leakage}), resultados estes traduzidos visualmente nos grafos vetoriais Gephi, na suíte \textit{Apache Superset / ECharts} e na arena gamificada \textit{JRA TCG Card Arena}.
+    \item \textbf{Descoberta de Talentos Ocultos via PageRank Esportivo em $O(V + E)$:} A modelagem do fluxo de prestígio em $G_c$ ($|V_c| = 8.135, |E_c| = 195.271$) superou a cegueira da contagem simples de vitórias ao identificar os ``Diamantes Injustiçados'' (liderados por \textit{Sounds of Earth}, \#32 geral entre 8.135 cavalos com zero vitórias Graded) e confirmou uma Componente Gigante Conexa abrangendo 98,66\%
+da população histórica.
+    \item \textbf{Sinergia entre Topologia Genealógica, Fator Humano e Visualização Interativa:} Provou-se estatisticamente que a linhagem paterna no DAG define o nicho físico de superfície e distância ($\chi^2 = 2237,47, p < 10^{-300}$, 4 arquétipos no K-Means++ PCA com 63,4\%
+de variância e dimorfismo biométrico de $+18\text{ kg}$ na areia), enquanto na hora da corrida o histórico prévio do jóquei (29,77\%
+de importância de Gini) e do cavalo (22,70\%)
+governam a predição de pódio na \textit{Random Forest Out-of-Time} ($\text{ROC-AUC} = 0,7260$ com \textit{Zero Data Leakage}), resultados estes traduzidos visualmente nos grafos vetoriais Gephi, na suíte \textit{Apache Superset / ECharts} e na arena gamificada \textit{JRA TCG Card Arena}.
 \end{enumerate}
 
 \subsection{Desafios, Limitações e Sugestões para Pesquisas Futuras}
@@ -456,7 +499,8 @@ Como direções promissoras para pesquisas futuras, propõem-se:
 \end{itemize}
 
 \subsection{Instruções Objetivas de Execução e Validação no Linux (Ubuntu 24.04)}
-Para assegurar a reprodutibilidade científica integral, todo o código-fonte (\url{https://github.com/ImArthz/AEDS2_jra_analysis}) e a base de dados arquivada no Zenodo (\url{https://doi.org/10.5281/zenodo.23681383} / \url{https://zenodo.org/records/24498336}) [14] são 100\% compatíveis com execução via terminal no \textbf{Linux (Ubuntu 24.04 LTS)} sem necessidade de configurações excepcionais (o banco SQLite higienizado \path{data/sqlite/jra_graded_en.db}, os CSVs bilíngues e o cache de tradução \path{data/gemini_cache.json} já acompanham o pacote para execução offline imediata):
+Para assegurar a reprodutibilidade científica integral, todo o código-fonte (\url{https://github.com/ImArthz/AEDS2_jra_analysis}) e a base de dados arquivada no Zenodo (\url{https://doi.org/10.5281/zenodo.23681383} / \url{https://zenodo.org/records/24498336}) [14] são 100\%
+compatíveis com execução via terminal no \textbf{Linux (Ubuntu 24.04 LTS)} sem necessidade de configurações excepcionais (o banco SQLite higienizado \path{data/sqlite/jra_graded_en.db}, os CSVs bilíngues e o cache de tradução \path{data/gemini_cache.json} já acompanham o pacote para execução offline imediata):
 \begin{footnotesize}
 \begin{verbatim}
 git clone https://github.com/ImArthz/AEDS2_jra_analysis.git
