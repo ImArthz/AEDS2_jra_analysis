@@ -131,7 +131,36 @@ Pacote completo para a entrega e apresentação final de **Ciência dos Dados (P
   - [`artigo_ieee_ciencia_dados.tex`](docs/entrega_ciencia_dados/artigo_ieee_ciencia_dados.tex) — Artigo em formato oficial **IEEE (`IEEEtran`)** enxuto ($\le 11$ páginas) com todas as figuras e tabelas;
   - [`slides_apresentacao_ciencia_dados.tex`](docs/entrega_ciencia_dados/slides_apresentacao_ciencia_dados.tex) — Apresentação em **LaTeX Beamer Widescreen (16:9)**;
   - [`slides_interativos_apresentacao.html`](docs/entrega_ciencia_dados/slides_interativos_apresentacao.html) — Apresentação interativa Widescreen (setas `←` `→`, tela cheia `F` e notas de fala `N`);
-  - [`ROTEIRO_APRESENTACAO_15_20_MIN.md`](docs/entrega_ciencia_dados/ROTEIRO_APRESENTACAO_15_20_MIN.md) — Roteiro cronometrado minuto a minuto (15 a 20 min).
+  - [`ROTEIRO_APRESENTACAO_15_20_MIN.md`](docs/entrega_ciencia_dados/ROTEIRO_APRESENTACAO_15_20_MIN.md) & [`FALAS_APRESENTACAO_COLA_E_COMPLETA.txt`](docs/entrega_ciencia_dados/FALAS_APRESENTACAO_COLA_E_COMPLETA.txt) — Roteiro cronometrado e cola de falas completa.
+
+### 🌳 Entrega Final — AEDS 2: Estruturas em Árvores e Teoria dos Grafos (`docs/entrega_aeds2/`)
+Pacote científico completo para a entrega final de **AEDS 2 (Prof. Michel Pires da Silva — Padrão IEEE Conference + Fluxograma Metodológico + Benchmarks de Escalabilidade $O(V+E)$ + Roteiro de Pitch 10 min)**:
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/artigo_ieee_aeds2_grafos.pdf">
+        <img src="https://img.shields.io/badge/🌳_Artigo_Final_IEEE-AEDS_2:_Árvores_&_Grafos_(PDF)-d97706?style=for-the-badge&logo=ieee&logoColor=white" alt="Artigo IEEE AEDS 2 PDF">
+      </a>
+    </td>
+    <td align="center">
+      <a href="docs/entrega_aeds2/artigo_ieee_aeds2_grafos.tex">
+        <img src="https://img.shields.io/badge/📝_Código_LaTeX_IEEE-artigo__ieee__aeds2__grafos.tex-0f172a?style=for-the-badge&logo=latex&logoColor=white" alt="Codigo LaTeX AEDS 2">
+      </a>
+    </td>
+    <td align="center">
+      <a href="docs/entrega_aeds2/ROTEIRO_PITCH_10_MIN_AEDS2.txt">
+        <img src="https://img.shields.io/badge/🎙️_Roteiro_Pitch_10_Min-Cola_&_Fala_Completa_(TXT)-059669?style=for-the-badge" alt="Pitch 10 Min TXT">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
+- Arquivos na pasta [`docs/entrega_aeds2/`](docs/entrega_aeds2/):
+  - [`artigo_ieee_aeds2_grafos.tex`](docs/entrega_aeds2/artigo_ieee_aeds2_grafos.tex) — Artigo científico completo no template **IEEE Conference (`IEEEtran`)** cobrindo Árvores Binárias de 5 Gerações, Bijeção $\text{DFS}\to\text{BFS}$, Contração em DAG ($G_p$), PageRank Esportivo ($G_c$), Endogamia de Wright ($F_X$), LCA, Dijkstra e Machine Learning;
+  - [`ROTEIRO_PITCH_10_MIN_AEDS2.txt`](docs/entrega_aeds2/ROTEIRO_PITCH_10_MIN_AEDS2.txt) — Cola de bolso em 5 blocos de 2 minutos e discurso completo de 10 minutos para a defesa oral sem slides (*Pitch Tecnológico*).
 
 ### 🖥️ Suíte Executiva Interativa (Apache Superset 6.1) & 🃏 Arena Gamificada de Cards (TCG Dex)
 Clique em qualquer um dos botões abaixo para abrir o **Mega Dashboard Interativo (13 Gráficos + 6 KPIs)** ou a **Arena Gamificada de Cards Colecionáveis (520 Cards em 6 Decks de Ranking + Dossiê 3D + Modo Duelo VS)** diretamente no seu navegador via GitHub Pages:

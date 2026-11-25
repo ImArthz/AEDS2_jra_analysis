@@ -100,6 +100,31 @@
 </table>
 </div>
 
+### 🎓 IEEE カンファレンス最終論文（AEDS 2：木構造＆グラフ理論 ＋ データサイエンス）
+GitHub Actions によって自動コンパイルされた **IEEE 形式 (`IEEEtran`)** の最終論文および発表スライドの PDF を直接ダウンロードできます：
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/artigo_ieee_aeds2_grafos.pdf">
+        <img src="https://img.shields.io/badge/🌳_IEEE最終論文_(AEDS_2)-5代血統木_&_グラフ理論_(PDF)-d97706?style=for-the-badge&logo=ieee&logoColor=white" alt="IEEE AEDS 2 PDF">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/artigo_ieee_ciencia_dados.pdf">
+        <img src="https://img.shields.io/badge/📘_IEEE最終論文_(Data_Science)-機械学習_&_多次元可視化_(PDF)-0284c7?style=for-the-badge&logo=ieee&logoColor=white" alt="IEEE Data Science PDF">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/slides_apresentacao_ciencia_dados.pdf">
+        <img src="https://img.shields.io/badge/📽️_Beamer_16:9_スライド-プレゼンテーション_(PDF)-7c3aed?style=for-the-badge&logo=latex&logoColor=white" alt="Beamer Slides PDF">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
 ### 🖥️ インタラクティブ分析スイート — Apache Superset 6.1 (Apache ECharts Live HTML)
 以下のボタンをクリックすると、**全13種類のインタラクティブチャート（サンバースト拡大・平行座標ライブフィルタ・PageRank象限ズーム搭載）** をブラウザ上で直接開くことができます：
 

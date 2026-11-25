@@ -102,6 +102,31 @@ Complete architectural and mathematical documentation (including the in-depth br
 
 - LaTeX source files: [`docs/relatorio_extracao.tex`](relatorio_extracao.tex) | [`docs/relatorio_extracao_en.tex`](relatorio_extracao_en.tex) | [`docs/relatorio_extracao_ja.tex`](relatorio_extracao_ja.tex) | [`docs/proposta_ciencia_dos_dados.tex`](proposta_ciencia_dos_dados.tex)
 
+### 🎓 IEEE Conference Final Papers (AEDS 2: Trees & Graph Theory + Data Science)
+Direct PDF downloads for both **IEEE Conference (`IEEEtran`)** final papers and presentation decks compiled automatically via GitHub Actions:
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/artigo_ieee_aeds2_grafos.pdf">
+        <img src="https://img.shields.io/badge/🌳_IEEE_Paper_(AEDS_2)-Trees_&_Graph_Theory_(PDF)-d97706?style=for-the-badge&logo=ieee&logoColor=white" alt="IEEE AEDS 2 PDF">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/artigo_ieee_ciencia_dados.pdf">
+        <img src="https://img.shields.io/badge/📘_IEEE_Paper_(Data_Science)-ML_&_Visual_Analytics_(PDF)-0284c7?style=for-the-badge&logo=ieee&logoColor=white" alt="IEEE Data Science PDF">
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ImArthz/AEDS2_jra_analysis/releases/latest/download/slides_apresentacao_ciencia_dados.pdf">
+        <img src="https://img.shields.io/badge/📽️_Beamer_16:9_Slides-Presentation_(PDF)-7c3aed?style=for-the-badge&logo=latex&logoColor=white" alt="Beamer Slides PDF">
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
+
 ### 🖥️ Interactive Executive Suite (Apache Superset 6.1) & 🃏 Gamified TCG Card Arena
 Click any button below to launch the **13-Chart Interactive Dashboard** or the **Gamified Trading Card Game Arena (520 Cards across 6 Leaderboard Decks + 3D Dossier + VS Duel Mode)** directly in your browser via GitHub Pages:
 
