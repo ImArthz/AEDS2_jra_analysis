@@ -1,0 +1,83 @@
+================================================================================
+ROTEIRO DE PITCH TECNOLOGICO (10 MINUTOS — SEM SLIDES)
+Disciplina: Estruturas em Arvores e Teoria dos Grafos (AEDS II — CEFET-MG)
+Docente: Prof. Dr. Michel Pires da Silva
+Autor: Arthur De Oliveira Mendonca
+================================================================================
+REGRA DO EDITAL (Secao 4):
+"Apresentacao Oral (Pitch): Cada equipe/aluno tera 10 minutos de fala livre.
+Nao havera projecao de slides. A apresentacao e um 'Pitch' tecnologico: foque
+em convencer a audiencia sobre a relevancia do seu problema, a genialidade da
+sua modelagem com arvores/grafos e o impacto dos seus resultados."
+================================================================================
+
+
+################################################################################
+PARTE 1: COLA DE BOLSO (5 BLOCOS DE 2 MINUTOS — BATE-OLHO RAPIDO)
+################################################################################
+
+1. [00:00 - 02:00] O PROBLEMA REAL E O TAMANHO DO DESAFIO
+   -> Industria multibilionaria do turfe japones (JRA 2002-2025 + genealogia JBIS).
+   -> 3.216 corridas de elite (G1/G2/G3), 33.409 participacoes, 8.209 cavalos e 504.074 nos genealogicos de 5 geracoes.
+   -> O desafio: Como descobrir se um cavalo vence pela heranca genetica da arvore de 5 geracoes ou pelo fator humano, e como ranquear cavalos quando a contagem simples de vitorias e cega para a forca dos adversarios?
+
+2. [02:00 - 04:00] A GENIALIDADE DA MODELAGEM EM ARVORES (BIJECAO DFS->BFS E DAG)
+   -> Cada cavalo tem uma Arvore Binaria Completa de 5 geracoes: 2^1 + 2^2 + 2^3 + 2^4 + 2^5 = 62 ancestrais.
+   -> O Bug Topologico real: O HTML do JBIS usa rowspan progressivo que lista os 62 nos em Busca em Largura (BFS, nivel a nivel), enquanto parsers comuns rotulam os caminhos binarios (S, SS, SSS...) em Busca em Profundidade (DFS).
+   -> Nossa solucao: Criamos uma bijecao matematica 1-para-1 (DFS -> BFS) que realinhou os 504.074 nos em O(1) por no!
+   -> Depois, colapsamos os ancestrais repetidos (colapso de pedigree) contraindo a floresta em um Grafo Direcionado Aciclico (DAG) com 35.149 vertices unicos e 63.007 arestas.
+
+3. [04:00 - 06:00] A GENIALIDADE DA MODELAGEM EM GRAFOS (COMPETICAO E BIPARTIDOS)
+   -> Grafo Direcionado Ponderado de Competicao G_c: 8.135 vertices (cavalos) e 195.271 arestas direcionadas.
+   -> Toda vez que um cavalo A perde para um cavalo B, criamos uma aresta direcionada A -> B transferindo prestigio para o vencedor, ponderada pelo grau da corrida (G1 = 1.0, G2 = 0.7, G3 = 0.5).
+   -> Grafos Bipartidos de Afinidade: Joquei <-> Cavalo (398 x 8.135) e Joquei <-> Treinador (398 x 412).
+
+4. [06:00 - 08:00] ALGORITMOS EXECUTADOS, ESCALABILIDADE O(V+E) E DESCOBERTAS
+   -> BFS de Componentes Conexos (21,6 ms): Provou que 98,66% de todos os cavalos de 24 anos (8.026 de 8.135) formam uma unica Componente Gigante Conexa!
+   -> Dijkstra com Heap Binario (99,6 ms): Provou propriedade Small-World (campeoes de 2002 se conectam aos de 2025 em apenas 4 a 5 saltos de G1).
+   -> Wright F_X e LCA no DAG (323 ms para todos os 8.202 cavalos = 40 microssegundos por arvore!): Provou que 75,75% da elite tem inbreeding (F_X > 0) e que Northern Dancer e o maior ancestral comum (LCA em 4.206 cavalos e 1.211 vitorias Graded).
+   -> PageRank Esportivo (d=0.85, O(V+E) por epoca): Descobriu os "DIAMANTES INJUSTICADOS" — o cavalo SOUNDS OF EARTH tem ZERO vitorias Graded, mas e o #32 geral entre 8.135 cavalos (Top 0,4% da historia!) porque fez 7 podios de G1/G2 derrotando dezenas de campeoes!
+
+5. [08:00 - 10:00] IMPACTO REAL, MACHINE LEARNING E ECOSSISTEMA ABERTO
+   -> Acoplamos as metricas do DAG e dos grafos ao K-Means++ PCA (4 arquetipos de garanhoes, Chi2 = 2237,5) e a uma Random Forest sem vazamento temporal (ROC-AUC = 0,7260), provando que o DAG genetico define ONDE o cavalo corre (grama vs areia, sprint vs maratona), enquanto o grafo bipartido humano (Joquei 29,8%) define QUEM sobe ao podio.
+   -> Entregaveis publicados: Codigo 100% compativel com Linux Ubuntu 24.04 no GitHub, Dataset com DOI oficial no Zenodo (CERN), 4 redes vetoriais no Gephi, Dashboard Apache Superset/ECharts com 13 graficos e a JRA TCG Card Arena (jogo de 520 cards onde clicar no pai/avo navega pela arvore em tempo real).
+
+
+################################################################################
+PARTE 2: FALA COMPLETA DO PITCH DE 10 MINUTOS (PALAVRA POR PALAVRA)
+################################################################################
+
+[MINUTO 00:00 a 02:00 — ABERTURA E RELEVANCIA DO PROBLEMA REAL]
+"Bom dia / Boa tarde, professor Michel e colegas.
+Imaginem uma industria que movimenta bilhoes de dolares por ano em genetica de ponta e esportes de alta precisao, onde um unico cruzamento entre um garanhao e uma matriz pode custar centenas de milhares de dolares, e onde cada corrida e cronometrada ao decimo de segundo. Essa industria e o turfe japones de elite, administrado pela Japan Racing Association (JRA) e pelo banco genealogico JBIS.
+Ao longo de 24 anos — de 2002 a 2025 — foram disputadas 3.216 corridas de elite (Grau 1, Grau 2 e Grau 3), somando 33.409 participacoes de 8.209 cavalos Puro-Sangue Ingles, apoiados por mais de meio milhao — exatamente 504.074 — registros genealogicos cobrindo 5 geracoes de ancestrais.
+O problema real que nos propusemos a resolver com Estruturas em Arvores e Teoria dos Grafos nasceu de duas dores concretas:
+Primeiro: no mundo real, olhar apenas para uma tabela SQL contando quantas vitorias um cavalo teve e um erro grave. Um cavalo que vence duas corridas regionais fracas de Grau 3 parece melhor na tabela do que um cavalo que terminou cinco vezes em segundo lugar na Japan Cup G1 enfrentando os maiores campeoes da historia.
+Segundo: como provar matematicamente o quanto do sucesso de um atleta vem da sua arvore genealogica de 5 geracoes — incluindo o endocruzamento, quando o mesmo ancestral aparece nos lados do pai e da mae — e o quanto vem da rede humana de joqueis e treinadores?"
+
+[MINUTO 02:00 a 04:00 — A MODELAGEM EM ARVORES BINARIAS E A CONTRACAO EM DAG]
+"Para tirar a teoria do papel, nossa primeira grande contribuicao foi na modelagem em Arvores e Grafos Direcionados Aciclicos.
+Biologicamente, a genealogia ascendente de cada cavalo ate a quinta geracao e uma Arvore Binaria Completa de altura 5: sao 2 pais na primeira geracao, 4 avos na segunda, 8 bisavos na terceira, 16 trisavos na quarta e 32 tetravos na quinta — somando exatamente 62 nos por animal, indexados por palavras binarias sobre o alfabeto S (Sire/Pai) e D (Dam/Mae).
+Quando extraímos os 504.074 nos brutos do portal japones JBIS, encontramos um desafio classico de estrutura de dados: o HTML original usa celulas mescladas com rowspan progressivo (16, 8, 4, 2, 1), o que faz com que os ancestrais aparecam ordenados nivel por nivel — isto e, em ordem de Busca em Largura (BFS). Porem, a indexacao recursiva de caminhos binarios rotulava as posicoes em pre-ordem de Busca em Profundidade (DFS), invertendo pais e avos na base inteira!
+Nos formalizamos e implementamos uma bijecao matematica exata 1-para-1 entre a sequencia de pre-ordem DFS e a ordem de nivel BFS, realinhando todos os 504.074 nos em tempo constante O(1) por registro, com zero chaves orfas.
+Em seguida, demos um passo alem: como na selecao genética de elite os mesmos grandes patriarcas se repetem em multiplos ramos — o fenômeno de colapso de pedigree —, nos fundimos as 8.202 arvores binarias individuais colapsando os vertices de mesmo identificador biologico. Com isso, contraímos meio milhao de linhas em um Grafo Direcionado Aciclico (DAG) compacto em listas de adjacencia esparsas, com exatamente 35.149 vertices unicos e 63.007 arestas direcionadas!"
+
+[MINUTO 04:00 a 06:00 — A MODELAGEM EM GRAFOS DE COMPETICAO E BIPARTIDOS]
+"Paralelamente ao DAG genealogico, modelamos a dinamica das pistas em tres grafos complementares:
+O primeiro e o Grafo Direcionado Ponderado de Competicao, com 8.135 vertices (cavalos) e 195.271 arestas direcionadas. A regra topologica e elegante: em cada corrida, todo competidor derrotado cria uma aresta direcionada apontando para quem chegou a sua frente no podio, transferindo prestigio competitivo ponderado pelo nivel da prova — peso 1,0 para Grau 1, peso 0,7 para Grau 2 e peso 0,5 para Grau 3.
+O segundo e o Grafo Nao-Direcionado de Rivalidades, com 178.560 arestas acumulando a intensidade de enfrentamento mutuo entre pares de animais.
+E o terceiro nivel sao dois Grafos Bipartidos Ponderados que conectam a biologia ao fator humano: a rede Joquei-Cavalo (398 joqueis conectados a 8.135 cavalos) e a rede de colaboracao Joquei-Treinador (398 joqueis por 412 treinadores)."
+
+[MINUTO 06:00 a 08:00 — ALGORITMOS, DESEMPENHO O(V+E) E GRANDES DESCOBERTAS]
+"Sobre essas estruturas, implementamos nossos algoritmos priorizando complexidade linear O(V + E) sobre listas de adjacencia esparsas:
+1. Primeiro, rodamos a Busca em Largura (BFS) para decomposicao em Componentes Conexos: em apenas 21,6 milissegundos, descobrimos que 8.026 dos 8.135 cavalos — ou seja, 98,66% de todos os competidores de 24 anos de historia — formam uma unica Componente Gigante Conexa! Isso acontece porque cavalos jovens de 3 anos enfrentam veteranos de 5 ou 6 anos nas corridas de outono, criando pontes temporais que conectam 2002 a 2025.
+2. Segundo, aplicamos o algoritmo de Caminho Minimo de Dijkstra com fila de prioridades em Heap Binario, onde o custo da aresta e o inverso do peso dos confrontos (1/W). Em 99,6 milissegundos, provamos que a rede possui propriedade Small-World: lendas de 2002 como Symboli Kris S se conectam a campeoes atuais como Equinox em apenas 4 a 5 saltos de Grau 1!
+3. Terceiro, sobre o DAG de 5 geracoes, implementamos travessias BFS, DFS, busca de Menor Ancestral Comum (LCA) e o algoritmo exato de Coeficiente de Endogamia de Wright (F_X) com filtragem de prefixos minimais. O calculo de Wright para todos os 8.202 cavalos rodou em apenas 323 milissegundos — 40 microssegundos por arvore! Descobrimos que 75,75% da elite japonesa possui endogamia positiva em 5 geracoes e provamos matematicamente que o patriarca canadense Northern Dancer e o grande funil genetico da historia, aparecendo como ancestral comum duplicado (LCA) em 4.206 cavalos que venceram 1.211 corridas Graded!
+4. Quarto — e o resultado mais empolgante do trabalho — executamos o algoritmo PageRank Esportivo (fator de amortecimento 0,85 e redistribuicao uniforme de nos sumidouros) via Power Iteration esparso. Ao avaliar a escalabilidade de 2004 ate 2025, comprovamos empiricamente que o tempo de execucao cresce de forma estritamente linear O(V + E) e o residuo L1 decai exponencialmente à taxa teorica O(0,85^k).
+E o que o PageRank enxergou que nenhuma consulta SQL jamais viu? Ele descobriu os chamados 'Diamantes Injusticados'! O exemplo mais extraordinario e o cavalo Sounds of Earth: ele tem ZERO vitorias em corridas Graded na carreira inteira. Para uma tabela comum, ele e um zero. Mas o nosso PageRank colocou o Sounds of Earth na 32a posicao geral entre 8.135 cavalos (no Top 0,4% da historia da JRA!). Por que? Porque ele foi 7 vezes ao podio contra os maiores monstros da decada — incluindo vice-campeonatos na Japan Cup G1, no Arima Kinen G1 e no Kikuka Sho G1 — recebendo arestas direcionadas de prestigio de dezenas de campeoes de G1 que chegaram atras dele!"
+
+[MINUTO 08:00 a 10:00 — IMPACTO, MACHINE LEARNING E ENTREGAVEIS ABERTOS]
+"Para fechar o ciclo cientifico, alimentamos as metricas topologicas do DAG e do PageRank em modelos estatisticos e de Machine Learning sem vazamento temporal:
+O algoritmo K-Means++ projetado via PCA 2D capturou 63,4% da variancia e provou que os garanhoes do DAG se dividem naturalmente em 4 arquetipos (Especialistas de Areia, Velocistas de Sprint, Dinastias Classicas de G1 e Maratonistas Stayers, com p-valor menor que 10^-300 no teste Qui-Quadrado). E a nossa Random Forest avaliada no futuro (Out-of-Time 2016-2018) atingiu ROC-AUC de 0,7260, revelando que a arvore genealogica define ONDE o cavalo e competitivo, mas no momento da largada a aresta do grafo bipartido humano — a taxa historica previa do joquei (29,8% de importancia de Gini) somada à forma previa do cavalo (22,7%) — decide quem vence o confronto direto!
+Todo esse pacote cientifico esta 100% aberto, testado para execucao via terminal no Linux Ubuntu 24.04 no nosso repositorio GitHub, arquivado com DOI oficial no Zenodo do CERN, renderizado em 4 grafos vetoriais no Gephi e publicado em duas aplicacoes web interativas: um Dashboard no estilo Apache Superset com 13 graficos e a JRA TCG Card Arena — um jogo interativo de 520 cards onde qualquer pessoa pode clicar nos nos de Pai, Avo Materno e Joquei para navegar pelas arestas da nossa arvore genealogica e do nosso grafo em tempo real.
+Muito obrigado, professor Michel e colegas! Estou a disposicao para perguntas."

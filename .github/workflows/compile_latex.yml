@@ -64,6 +64,14 @@ jobs:
           compiler: latexmk
           args: "-xelatex -interaction=nonstopmode -halt-on-error"
 
+      - name: Compile IEEE AEDS 2 Trees & Graph Theory Final Paper (PT-BR)
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: docs/entrega_aeds2
+          root_file: artigo_ieee_aeds2_grafos.tex
+          compiler: latexmk
+          args: "-xelatex -interaction=nonstopmode -halt-on-error"
+
       - name: Create tag
         id: create_tag
         run: |
@@ -76,13 +84,14 @@ jobs:
           tag_name: ${{ steps.create_tag.outputs.tag }}
           name: "JRA Graded Races (2002-2025) & JBIS 5-Gen Pedigree Dataset (${{ steps.create_tag.outputs.tag }})"
           body: |
-            Official release of the **JRA Graded Races (2002–2025) & JBIS 5-Generation Pedigree Dataset** (Japanese & 100% English Translated CSVs, Gephi Graph Networks, PageRank, Wright's Inbreeding $F_X$, K-Means++ PCA & Random Forest Analysis, and Compiled LaTeX Technical Reports in PT-BR, EN, and JA).
+            Official release of the **JRA Graded Races (2002–2025) & JBIS 5-Generation Pedigree Dataset** (Japanese & 100% English Translated CSVs, Gephi Graph Networks, PageRank, Wright's Inbreeding $F_X$, K-Means++ PCA & Random Forest Analysis, and Compiled LaTeX Technical Reports & IEEE Papers in PT-BR, EN, and JA).
           files: |
             docs/relatorio_extracao.pdf
             docs/relatorio_extracao_en.pdf
             docs/relatorio_extracao_ja.pdf
             docs/entrega_ciencia_dados/artigo_ieee_ciencia_dados.pdf
             docs/entrega_ciencia_dados/slides_apresentacao_ciencia_dados.pdf
+            docs/entrega_aeds2/artigo_ieee_aeds2_grafos.pdf
             docs/superset_interactive_dashboard.html
             docs/superset_interactive_dashboard_en.html
             docs/superset_interactive_dashboard_ja.html
